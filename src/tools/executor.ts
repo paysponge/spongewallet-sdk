@@ -80,11 +80,12 @@ export class ToolExecutor {
           : typeof args.allowedChains === "string"
             ? args.allowedChains
             : undefined;
-        return this.http.get<unknown>("/api/balances", {
+        const params: Record<string, string> = {
           chain: (args.chain as string | undefined) ?? "all",
-          allowedChains,
-          onlyUsdc: args.onlyUsdc ? "true" : undefined,
-        });
+        };
+        if (allowedChains) params.allowedChains = allowedChains;
+        if (args.onlyUsdc) params.onlyUsdc = "true";
+        return this.http.get<unknown>("/api/balances", params);
       }
       case "evm_transfer":
         return this.http.post<unknown>("/api/transfers/evm", {
@@ -112,11 +113,13 @@ export class ToolExecutor {
         return this.http.get<unknown>("/api/solana/tokens", {
           chain: String(args.chain ?? ""),
         });
-      case "search_solana_tokens":
-        return this.http.get<unknown>("/api/solana/tokens/search", {
+      case "search_solana_tokens": {
+        const searchParams: Record<string, string> = {
           query: String(args.query ?? ""),
-          limit: args.limit !== undefined ? String(args.limit) : undefined,
-        });
+        };
+        if (args.limit !== undefined) searchParams.limit = String(args.limit);
+        return this.http.get<unknown>("/api/solana/tokens/search", searchParams);
+      }
       case "get_transaction_status": {
         const txHash = (args.txHash ?? args.transaction_hash) as string;
         if (!txHash) {
@@ -130,11 +133,12 @@ export class ToolExecutor {
           { chain: String(args.chain) },
         );
       }
-      case "get_transaction_history":
-        return this.http.get<unknown>("/api/transactions/history", {
-          limit: args.limit !== undefined ? String(args.limit) : undefined,
-          chain: args.chain ? String(args.chain) : undefined,
-        });
+      case "get_transaction_history": {
+        const historyParams: Record<string, string> = {};
+        if (args.limit !== undefined) historyParams.limit = String(args.limit);
+        if (args.chain) historyParams.chain = String(args.chain);
+        return this.http.get<unknown>("/api/transactions/history", historyParams);
+      }
       case "request_funding":
         return this.http.post<unknown>("/api/funding-requests", {
           amount: args.amount,

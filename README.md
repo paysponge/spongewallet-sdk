@@ -5,15 +5,15 @@ SDK for creating and managing wallets for AI agents with Claude Agent SDK integr
 ## Installation
 
 ```bash
-npm install @spongewallet/sdk
+npm install @paysponge/sdk
 # or
-bun add @spongewallet/sdk
+bun add @paysponge/sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import { SpongeWallet } from "@spongewallet/sdk";
+import { SpongeWallet } from "@paysponge/sdk";
 
 // Connect (handles auth automatically via browser)
 const wallet = await SpongeWallet.connect();
@@ -58,7 +58,7 @@ SPONGE_API_KEY=sponge_test_xxx node my-bot.js
 ### Master Keys (Programmatic Agent Creation)
 
 ```typescript
-import { SpongeAdmin } from "@spongewallet/sdk";
+import { SpongeAdmin } from "@paysponge/sdk";
 
 const admin = new SpongeAdmin({ apiKey: "sponge_master_..." });
 
@@ -73,7 +73,7 @@ const wallet = await SpongeWallet.connect({ apiKey });
 
 ```typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
-import { SpongeWallet } from "@spongewallet/sdk";
+import { SpongeWallet } from "@paysponge/sdk";
 
 const wallet = await SpongeWallet.connect();
 

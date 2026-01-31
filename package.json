@@ -1,5 +1,5 @@
 {
-  "name": "@spongewallet/sdk",
+  "name": "@paysponge/sdk",
   "version": "0.1.0",
   "type": "module",
   "description": "SDK for spinning up wallets for AI agents with Claude Agent SDK integration",
