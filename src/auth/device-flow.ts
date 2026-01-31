@@ -1,0 +1,215 @@
+import {
+  DeviceCodeResponseSchema,
+  TokenResponseSchema,
+  type DeviceCodeResponse,
+  type TokenResponse,
+  type Credentials,
+} from "../types/schemas.js";
+import { saveCredentials, getCredentialsPath } from "./credentials.js";
+
+const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
+
+export interface DeviceFlowOptions {
+  /** Base URL for the API */
+  baseUrl?: string;
+  /** Disable auto-opening browser */
+  noBrowser?: boolean;
+  /** Use testnets only */
+  testnet?: boolean;
+  /** Agent name to create (if new user) */
+  agentName?: string;
+  /** Type of key to generate: "agent" (default) or "master" */
+  keyType?: "agent" | "master";
+}
+
+/**
+ * Start the OAuth Device Flow authentication
+ *
+ * This flow:
+ * 1. Requests a device code from the server
+ * 2. Opens the browser to the verification URL
+ * 3. Copies the user code to clipboard
+ * 4. Polls for token until approved or expired
+ * 5. Saves credentials and returns the API key
+ */
+export async function deviceFlowAuth(
+  options: DeviceFlowOptions = {}
+): Promise<TokenResponse> {
+  const baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
+
+  // Step 1: Request device code
+  console.log("Starting authentication...\n");
+
+  const deviceCodeResponse = await requestDeviceCode(baseUrl, {
+    testnet: options.testnet,
+    agentName: options.agentName,
+    keyType: options.keyType,
+  });
+
+  // Step 2: Display instructions and optionally open browser
+  console.log("To authenticate, visit:");
+  console.log(`  ${deviceCodeResponse.verificationUri}\n`);
+  console.log(`Enter this code: ${deviceCodeResponse.userCode}\n`);
+
+  // Try to copy to clipboard
+  try {
+    const clipboardy = await import("clipboardy");
+    await clipboardy.default.write(deviceCodeResponse.userCode);
+    console.log("(Code copied to clipboard)\n");
+  } catch {
+    // Clipboard not available, that's fine
+  }
+
+  // Try to open browser
+  if (!options.noBrowser) {
+    try {
+      const open = await import("open");
+      await open.default(deviceCodeResponse.verificationUri);
+      console.log("Opening browser...\n");
+    } catch {
+      // Browser not available, that's fine
+    }
+  }
+
+  console.log("Waiting for approval...");
+
+  // Step 3: Poll for token
+  const tokenResponse = await pollForToken(
+    baseUrl,
+    deviceCodeResponse.deviceCode,
+    deviceCodeResponse.interval,
+    deviceCodeResponse.expiresIn
+  );
+
+  // Step 4: Save credentials (only for agent keys with agentId)
+  if (tokenResponse.agentId) {
+    const credentials: Credentials = {
+      apiKey: tokenResponse.apiKey,
+      agentId: tokenResponse.agentId,
+      testnet: options.testnet,
+      createdAt: new Date(),
+      baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
+    };
+    saveCredentials(credentials);
+  }
+
+  // Step 5: Display success message with API key
+  const isMaster = options.keyType === "master";
+  console.log("\n" + "=".repeat(60));
+  console.log("Authentication successful!\n");
+  console.log(`Your ${isMaster ? "master " : ""}API key: ${tokenResponse.apiKey}\n`);
+  if (isMaster) {
+    console.log("Use this key to create agents programmatically:");
+    console.log("  - Set SPONGE_MASTER_KEY environment variable, or");
+    console.log("  - Pass directly: new SpongeAdmin({ apiKey: '...' })\n");
+  } else {
+    console.log("Save this key for other machines/deployments:");
+    console.log("  - Set SPONGE_API_KEY environment variable, or");
+    console.log("  - Pass directly: SpongeWallet.connect({ apiKey: '...' })\n");
+    console.log(`Key cached locally at ${getCredentialsPath()}`);
+  }
+  console.log("=".repeat(60) + "\n");
+
+  return tokenResponse;
+}
+
+/**
+ * Request a device code from the server
+ */
+async function requestDeviceCode(
+  baseUrl: string,
+  options: { testnet?: boolean; agentName?: string; keyType?: "agent" | "master" }
+): Promise<DeviceCodeResponse> {
+  const response = await fetch(`${baseUrl}/api/oauth/device/authorization`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      clientId: "spongewallet-sdk",
+      scope: "wallet:read wallet:write transaction:sign",
+      testnet: options.testnet,
+      agentName: options.agentName,
+      keyType: options.keyType,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Failed to start device flow: ${error}`);
+  }
+
+  const data = await response.json();
+  return DeviceCodeResponseSchema.parse(data);
+}
+
+/**
+ * Poll for token until approved or expired
+ */
+async function pollForToken(
+  baseUrl: string,
+  deviceCode: string,
+  intervalSeconds: number,
+  expiresInSeconds: number
+): Promise<TokenResponse> {
+  const startTime = Date.now();
+  const expiresAt = startTime + expiresInSeconds * 1000;
+  let interval = intervalSeconds * 1000;
+
+  while (Date.now() < expiresAt) {
+    await sleep(interval);
+
+    try {
+      const response = await fetch(`${baseUrl}/api/oauth/device/token`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          grantType: "urn:ietf:params:oauth:grant-type:device_code",
+          deviceCode,
+          clientId: "spongewallet-sdk",
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return TokenResponseSchema.parse(data);
+      }
+
+      // Handle error responses
+      const errorData = await response.json().catch(() => ({}));
+      const error = errorData.error as string;
+
+      switch (error) {
+        case "authorization_pending":
+          // Keep polling
+          process.stdout.write(".");
+          break;
+        case "slow_down":
+          // Increase polling interval
+          interval += 5000;
+          break;
+        case "access_denied":
+          throw new Error("Access denied by user");
+        case "expired_token":
+          throw new Error("Device code expired. Please try again.");
+        default:
+          throw new Error(
+            `Authentication failed: ${errorData.errorDescription || error || "Unknown error"}`
+          );
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
+      throw new Error(`Network error during authentication: ${error}`);
+    }
+  }
+
+  throw new Error("Device code expired. Please try again.");
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

@@ -1,0 +1,222 @@
+import { z } from "zod";
+import {
+  TransactionResultSchema,
+  TransactionStatusSchema,
+  TransferOptionsSchema,
+  SwapOptionsSchema,
+  SubmitTransactionSchema,
+  CHAIN_IDS,
+  type TransactionResult,
+  type TransactionStatus,
+  type TransferOptions,
+  type SwapOptions,
+  type Chain,
+} from "../types/schemas.js";
+import type { HttpClient } from "./http.js";
+
+// Swap response from API
+const SwapResponseSchema = z.object({
+  signature: z.string(),
+  inputToken: z.string(),
+  outputToken: z.string(),
+  inputAmount: z.string(),
+  outputAmount: z.string(),
+  explorerUrl: z.string().optional(),
+});
+
+// Transaction status response from API
+const TransactionStatusResponseSchema = z.object({
+  transactionHash: z.string(),
+  status: z.enum(["pending", "confirmed", "failed"]),
+  confirmations: z.number().nullable(),
+  blockNumber: z.number().nullable(),
+  gasUsed: z.string().nullable(),
+  effectiveGasPrice: z.string().nullable(),
+});
+
+// Transaction history response from API
+const TransactionHistoryResponseSchema = z.object({
+  items: z.array(
+    z.object({
+      id: z.string(),
+      txHash: z.string().nullable(),
+      txStatus: z.string(),
+      fromAddress: z.string(),
+      toAddress: z.string(),
+      value: z.string(),
+      chainId: z.number(),
+      txType: z.string(),
+      createdAt: z.coerce.date(),
+    })
+  ),
+  total: z.number(),
+  page: z.number(),
+  perPage: z.number(),
+  totalPages: z.number(),
+});
+
+export class TransactionsApi {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly agentId: string
+  ) {}
+
+  /**
+   * Transfer tokens (EVM or Solana)
+   * Uses the /api/transactions/transfer endpoint
+   */
+  async transfer(options: TransferOptions): Promise<TransactionResult> {
+    const validated = TransferOptionsSchema.parse(options);
+
+    const chainId = CHAIN_IDS[validated.chain];
+    if (chainId === undefined) {
+      throw new Error(`Unknown chain: ${validated.chain}`);
+    }
+
+    // Solana transfers
+    if (validated.chain === "solana" || validated.chain === "solana-devnet") {
+      if (validated.currency !== "SOL" && validated.currency !== "USDC") {
+        throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
+      }
+
+      const response = await this.http.post<unknown>("/api/transfers/solana", {
+        chain: validated.chain,
+        to: validated.to,
+        amount: validated.amount,
+        currency: validated.currency,
+      });
+
+      const parsed = SubmitTransactionSchema.parse(response);
+      const status = parsed.status === "pending" || parsed.status === "submitted" ? "pending" : "confirmed";
+      return TransactionResultSchema.parse({
+        txHash: parsed.transactionHash,
+        status,
+        explorerUrl: parsed.explorerUrl,
+        chainId,
+      });
+    }
+
+    // Tempo pathUSD transfers
+    if (validated.chain === "tempo" || validated.currency === "pathUSD") {
+      if (validated.chain !== "tempo" || validated.currency !== "pathUSD") {
+        throw new Error("pathUSD transfers are only supported on the tempo chain");
+      }
+
+      const response = await this.http.post<unknown>("/api/transfers/tempo", {
+        to: validated.to,
+        amount: validated.amount,
+        use_gas_sponsorship: true,
+      });
+
+      const parsed = SubmitTransactionSchema.parse(response);
+      const status = parsed.status === "pending" || parsed.status === "submitted" ? "pending" : "confirmed";
+      return TransactionResultSchema.parse({
+        txHash: parsed.transactionHash,
+        status,
+        explorerUrl: parsed.explorerUrl,
+        chainId,
+      });
+    }
+
+    // EVM transfers
+    if (validated.currency !== "ETH" && validated.currency !== "USDC") {
+      throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
+    }
+
+    const response = await this.http.post<unknown>("/api/transfers/evm", {
+      chain: validated.chain,
+      to: validated.to,
+      amount: validated.amount,
+      currency: validated.currency,
+    });
+
+    const parsed = SubmitTransactionSchema.parse(response);
+    const status = parsed.status === "pending" || parsed.status === "submitted" ? "pending" : "confirmed";
+    return TransactionResultSchema.parse({
+      txHash: parsed.transactionHash,
+      status,
+      explorerUrl: parsed.explorerUrl,
+      chainId,
+    });
+  }
+
+  /**
+   * Swap tokens (Solana via Jupiter)
+   * Uses the /api/transactions/swap endpoint
+   */
+  async swap(options: SwapOptions): Promise<TransactionResult> {
+    const validated = SwapOptionsSchema.parse(options);
+
+    const response = await this.http.post<unknown>("/api/transactions/swap", {
+      chain: validated.chain,
+      inputToken: validated.from,
+      outputToken: validated.to,
+      amount: validated.amount,
+      slippageBps: validated.slippageBps,
+    });
+
+    const parsed = SwapResponseSchema.parse(response);
+
+    return TransactionResultSchema.parse({
+      txHash: parsed.signature,
+      status: "confirmed",
+      explorerUrl: parsed.explorerUrl,
+    });
+  }
+
+  /**
+   * Get transaction status
+   * Uses the /api/transactions/status/:txHash endpoint
+   */
+  async getStatus(txHash: string, chain: Chain): Promise<TransactionStatus> {
+    const params: Record<string, string> = {
+      chain,
+    };
+
+    const response = await this.http.get<unknown>(
+      `/api/transactions/status/${txHash}`,
+      params
+    );
+
+    const parsed = TransactionStatusResponseSchema.parse(response);
+
+    return TransactionStatusSchema.parse({
+      txHash: parsed.transactionHash,
+      status: parsed.status,
+      blockNumber: parsed.blockNumber,
+      confirmations: parsed.confirmations,
+      errorMessage: null,
+    });
+  }
+
+  /**
+   * Get transaction history
+   */
+  async getHistory(
+    options?: {
+      limit?: number;
+      offset?: number;
+    }
+  ): Promise<TransactionStatus[]> {
+    const params: Record<string, string> = {
+      agentId: this.agentId,
+    };
+    if (options?.limit !== undefined) {
+      params.limit = options.limit.toString();
+    }
+    if (options?.offset !== undefined) {
+      params.offset = options.offset.toString();
+    }
+
+    const response = await this.http.get<unknown>("/api/transactions", params);
+    const parsed = TransactionHistoryResponseSchema.parse(response);
+
+    return parsed.items.map((tx) => ({
+      txHash: tx.txHash ?? "",
+      status: tx.txStatus as "pending" | "confirmed" | "failed" | "unknown",
+      blockNumber: null,
+      confirmations: null,
+      errorMessage: null,
+    }));
+  }
+}

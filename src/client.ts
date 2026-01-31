@@ -1,0 +1,483 @@
+import {
+  ConnectOptionsSchema,
+  type ConnectOptions,
+  type Chain,
+  type Balance,
+  type TransferOptions,
+  type SwapOptions,
+  type TransactionResult,
+  type TransactionStatus,
+  type Agent,
+  type CreateAgentOptions,
+  type McpConfig,
+} from "./types/schemas.js";
+import {
+  loadCredentials,
+  getApiKey,
+  saveCredentials,
+  type Credentials,
+} from "./auth/credentials.js";
+import { deviceFlowAuth } from "./auth/device-flow.js";
+import { HttpClient } from "./api/http.js";
+import { AgentsApi } from "./api/agents.js";
+import { WalletsApi } from "./api/wallets.js";
+import { TransactionsApi } from "./api/transactions.js";
+import { PublicToolsApi } from "./api/public-tools.js";
+
+const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
+
+/**
+ * SpongeWallet - The main SDK client for managing agent wallets
+ *
+ * @example
+ * ```typescript
+ * import { SpongeWallet } from '@spongewallet/sdk';
+ *
+ * // Connect (handles auth automatically)
+ * const wallet = await SpongeWallet.connect();
+ *
+ * // Get wallet addresses
+ * console.log(wallet.address('base'));    // 0x...
+ * console.log(wallet.address('solana'));  // 5x...
+ *
+ * // Check balances
+ * const balances = await wallet.getBalances();
+ *
+ * // Transfer tokens
+ * await wallet.transfer({
+ *   chain: 'base',
+ *   to: '0x...',
+ *   amount: '10',
+ *   currency: 'USDC',
+ * });
+ * ```
+ */
+export class SpongeWallet {
+  private readonly http: HttpClient;
+  private readonly agents: AgentsApi;
+  private readonly wallets: WalletsApi;
+  private readonly transactions: TransactionsApi;
+  private readonly publicTools: PublicToolsApi;
+  private readonly agentId: string;
+  private readonly baseUrl: string;
+
+  // Cached wallet addresses
+  private addressCache: Record<Chain, string> | null = null;
+
+  private constructor(options: {
+    apiKey: string;
+    agentId: string;
+    baseUrl?: string;
+  }) {
+    this.baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
+    this.agentId = options.agentId;
+
+    this.http = new HttpClient({
+      baseUrl: this.baseUrl,
+      apiKey: options.apiKey,
+    });
+
+    this.agents = new AgentsApi(this.http);
+    this.wallets = new WalletsApi(this.http);
+    this.transactions = new TransactionsApi(this.http, this.agentId);
+    this.publicTools = new PublicToolsApi(this.http);
+  }
+
+  /**
+   * Connect to SpongeWallet
+   *
+   * This method handles everything:
+   * 1. Checks for cached credentials or environment variable
+   * 2. If none, starts OAuth Device Flow
+   * 3. Creates a default agent if needed
+   * 4. Returns a connected SpongeWallet instance
+   *
+   * @example
+   * ```typescript
+   * // Simple connect (uses default agent or creates one)
+   * const wallet = await SpongeWallet.connect();
+   *
+   * // Connect with options
+   * const wallet = await SpongeWallet.connect({
+   *   name: 'My Trading Bot',
+   *   testnet: true,
+   * });
+   *
+   * // Connect with existing API key
+   * const wallet = await SpongeWallet.connect({
+   *   apiKey: 'sponge_live_...',
+   * });
+   * ```
+   */
+  static async connect(options: ConnectOptions = {}): Promise<SpongeWallet> {
+    const validated = ConnectOptionsSchema.parse(options);
+    const baseUrl = validated.baseUrl ?? DEFAULT_BASE_URL;
+
+    // Step 1: Try to get API key
+    let apiKey = validated.apiKey ?? getApiKey();
+    let agentId = validated.agentId;
+    let credentials: Credentials | null = null;
+
+    // Step 2: If no API key, do device flow
+    if (!apiKey) {
+      const tokenResponse = await deviceFlowAuth({
+        baseUrl,
+        noBrowser: validated.noBrowser,
+        testnet: validated.testnet,
+        agentName: validated.name ?? "Default Agent",
+      });
+
+      apiKey = tokenResponse.apiKey;
+      agentId = tokenResponse.agentId ?? undefined;
+    } else {
+      // Load credentials to get agent ID if not provided
+      if (!agentId) {
+        credentials = loadCredentials();
+        agentId = credentials?.agentId;
+      }
+    }
+
+    // Step 3: Create HTTP client for API calls
+    const http = new HttpClient({ baseUrl, apiKey });
+    const agentsApi = new AgentsApi(http);
+
+    // Step 4: Get agent ID from the API key if not provided
+    if (!agentId) {
+      // Use the SDK endpoint to get the current agent (authenticated via API key)
+      try {
+        const currentAgent = await agentsApi.getCurrent();
+        agentId = currentAgent.id;
+
+        // Save the credentials for future use
+        saveCredentials({
+          apiKey,
+          agentId,
+          agentName: currentAgent.name,
+          testnet: validated.testnet,
+          createdAt: new Date(),
+          baseUrl: baseUrl !== DEFAULT_BASE_URL ? baseUrl : undefined,
+        });
+      } catch {
+        // If getCurrent fails, the API key might be invalid
+        throw new Error(
+          "Failed to get agent info. The API key may be invalid or expired."
+        );
+      }
+    }
+
+    return new SpongeWallet({
+      apiKey,
+      agentId,
+      baseUrl,
+    });
+  }
+
+  /**
+   * Get wallet address for a specific chain
+   */
+  address(chain: Chain): string {
+    if (this.addressCache?.[chain]) {
+      return this.addressCache[chain];
+    }
+    // Return placeholder - actual address is fetched asynchronously
+    return `<loading ${chain} address...>`;
+  }
+
+  /**
+   * Get wallet address for a specific chain (async)
+   */
+  async getAddress(chain: Chain): Promise<string | null> {
+    if (this.addressCache?.[chain]) {
+      return this.addressCache[chain];
+    }
+
+    const address = await this.wallets.getAddress(this.agentId, chain);
+
+    // Update cache
+    if (address && !this.addressCache) {
+      this.addressCache = {} as Record<Chain, string>;
+    }
+    if (address && this.addressCache) {
+      this.addressCache[chain] = address;
+    }
+
+    return address;
+  }
+
+  /**
+   * Get all wallet addresses
+   */
+  async getAddresses(): Promise<Record<Chain, string>> {
+    if (this.addressCache) {
+      return this.addressCache;
+    }
+
+    this.addressCache = await this.wallets.getAllAddresses(this.agentId);
+    return this.addressCache;
+  }
+
+  /**
+   * Get balance for a specific chain
+   */
+  async getBalance(chain: Chain): Promise<Balance> {
+    const walletsList = await this.wallets.list(this.agentId);
+    const wallet = walletsList.find((w) => w.chainName === chain);
+
+    if (!wallet) {
+      return {};
+    }
+
+    return this.wallets.getBalance(wallet.id);
+  }
+
+  /**
+   * Get balances for all chains
+   */
+  async getBalances(): Promise<Record<Chain, Balance>> {
+    return this.wallets.getAllBalances(this.agentId);
+  }
+
+  /**
+   * Get detailed balances with per-token breakdown
+   */
+  async getDetailedBalances(options?: {
+    chain?: Chain | "all";
+    allowedChains?: Chain[];
+    onlyUsdc?: boolean;
+  }) {
+    return this.publicTools.getDetailedBalances(options);
+  }
+
+  /**
+   * Transfer tokens
+   *
+   * @example
+   * ```typescript
+   * // Transfer USDC on Base
+   * const tx = await wallet.transfer({
+   *   chain: 'base',
+   *   to: '0x742d35Cc...',
+   *   amount: '10',
+   *   currency: 'USDC',
+   * });
+   * console.log(tx.txHash);
+   * ```
+   */
+  async transfer(options: TransferOptions): Promise<TransactionResult> {
+    return this.transactions.transfer(options);
+  }
+
+  /**
+   * Transfer on EVM chains (allowlist + spending limits enforced)
+   */
+  async evmTransfer(options: {
+    chain: "ethereum" | "base" | "sepolia" | "base-sepolia";
+    to: string;
+    amount: string;
+    currency: "ETH" | "USDC";
+  }) {
+    return this.publicTools.evmTransfer(options);
+  }
+
+  /**
+   * Transfer on Solana (allowlist + spending limits enforced)
+   */
+  async solanaTransfer(options: {
+    chain: "solana" | "solana-devnet";
+    to: string;
+    amount: string;
+    currency: "SOL" | "USDC";
+  }) {
+    return this.publicTools.solanaTransfer(options);
+  }
+
+  /**
+   * Swap tokens (Solana via Jupiter)
+   *
+   * @example
+   * ```typescript
+   * const tx = await wallet.swap({
+   *   chain: 'solana',
+   *   from: 'SOL',
+   *   to: 'USDC',
+   *   amount: '1',
+   * });
+   * ```
+   */
+  async swap(options: SwapOptions): Promise<TransactionResult> {
+    return this.transactions.swap(options);
+  }
+
+  /**
+   * Get transaction status
+   *
+   * @example
+   * ```typescript
+   * const status = await wallet.getTransactionStatus(txHash, 'base');
+   * console.log(status.status); // 'pending', 'confirmed', or 'failed'
+   * ```
+   */
+  async getTransactionStatus(txHash: string, chain: Chain): Promise<TransactionStatus> {
+    return this.transactions.getStatus(txHash, chain);
+  }
+
+  /**
+   * Get transaction history
+   */
+  async getTransactionHistory(options?: { limit?: number; offset?: number }) {
+    return this.transactions.getHistory(options);
+  }
+
+  /**
+   * Get detailed transaction history with chain metadata
+   */
+  async getTransactionHistoryDetailed(options?: { limit?: number; chain?: Chain }) {
+    return this.publicTools.getTransactionHistoryDetailed(options);
+  }
+
+  /**
+   * List all SPL tokens held by the Solana wallet
+   */
+  async getSolanaTokens(chain: "solana" | "solana-devnet") {
+    return this.publicTools.getSolanaTokens(chain);
+  }
+
+  /**
+   * Search Jupiter token list on Solana
+   */
+  async searchSolanaTokens(query: string, limit?: number) {
+    return this.publicTools.searchSolanaTokens(query, limit);
+  }
+
+  /**
+   * Request funding from the owner (creates an approval request)
+   */
+  async requestFunding(options: {
+    amount: string;
+    reason?: string;
+    chain?: Chain;
+    currency?: string;
+  }) {
+    return this.publicTools.requestFunding(options);
+  }
+
+  /**
+   * Withdraw funds back to the owner's main wallet
+   */
+  async withdrawToMainWallet(options: {
+    chain: Chain;
+    amount: string;
+    currency?: "native" | "USDC";
+  }) {
+    return this.publicTools.withdrawToMainWallet(options);
+  }
+
+  /**
+   * Call Sponge paid APIs via x402
+   */
+  async sponge(request: Record<string, unknown>) {
+    return this.publicTools.sponge(request);
+  }
+
+  /**
+   * Create an x402 payment payload
+   */
+  async createX402Payment(options: {
+    chain: Chain;
+    to: string;
+    token?: string;
+    amount: string;
+    decimals?: number;
+    valid_for_seconds?: number;
+    resource_url?: string;
+    resource_description?: string;
+    fee_payer?: string;
+    http_method?: "GET" | "POST";
+  }) {
+    return this.publicTools.createX402Payment(options);
+  }
+
+  /**
+   * Create a new agent
+   */
+  async createAgent(options: CreateAgentOptions): Promise<Agent> {
+    const result = await this.agents.create(options);
+    return result.agent;
+  }
+
+  /**
+   * Get all agents for this user
+   */
+  async getAgents(): Promise<Agent[]> {
+    return this.agents.list();
+  }
+
+  /**
+   * Get the current agent
+   */
+  async getAgent(): Promise<Agent> {
+    return this.agents.getCurrent();
+  }
+
+  /**
+   * Get MCP configuration for Claude Agent SDK
+   *
+   * @example
+   * ```typescript
+   * import { query } from '@anthropic-ai/claude-agent-sdk';
+   *
+   * const wallet = await SpongeWallet.connect();
+   *
+   * for await (const msg of query({
+   *   prompt: 'Check my balance',
+   *   options: {
+   *     mcpServers: {
+   *       wallet: wallet.mcp(),
+   *     },
+   *   },
+   * })) {
+   *   console.log(msg);
+   * }
+   * ```
+   */
+  mcp(): McpConfig {
+    return {
+      url: `${this.baseUrl}/mcp`,
+      headers: {
+        Authorization: `Bearer ${this.http.getApiKey()}`,
+      },
+    };
+  }
+
+  /**
+   * Get direct tools for use with raw Anthropic SDK
+   *
+   * @example
+   * ```typescript
+   * const tools = wallet.tools();
+   *
+   * const response = await anthropic.messages.create({
+   *   model: 'claude-sonnet-4-20250514',
+   *   tools: tools.definitions,
+   *   messages: [{ role: 'user', content: 'Check balance' }],
+   * });
+   *
+   * if (response.stop_reason === 'tool_use') {
+   *   const result = await tools.execute(toolCall.name, toolCall.input);
+   * }
+   * ```
+   */
+  tools() {
+    // Import dynamically to avoid circular dependencies
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { createTools } = require("./tools/index.js");
+    return createTools(this.http, this.agentId);
+  }
+
+  /**
+   * Get the agent ID
+   */
+  getAgentId(): string {
+    return this.agentId;
+  }
+}
