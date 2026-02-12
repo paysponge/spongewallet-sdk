@@ -282,71 +282,42 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       required: ["chain", "amount"],
     },
   },
-  // x402 paid API tools - temporarily disabled
-  // {
-  //   name: "sponge",
-  //   description:
-  //     "Call paid APIs via x402 (search, image, predict, crawl, parse, prospect, llm).",
-  //   input_schema: {
-  //     type: "object",
-  //     properties: {
-  //       task: {
-  //         type: "string",
-  //         description: "Task name (search, image, predict, crawl, parse, prospect, llm)",
-  //       },
-  //     },
-  //     required: ["task"],
-  //   },
-  // },
-  // {
-  //   name: "create_x402_payment",
-  //   description: "Create a signed x402 payment payload.",
-  //   input_schema: {
-  //     type: "object",
-  //     properties: {
-  //       chain: {
-  //         type: "string",
-  //         description: "Chain to pay on (e.g., base, solana, tempo)",
-  //       },
-  //       to: {
-  //         type: "string",
-  //         description: "Recipient address from 402 response",
-  //       },
-  //       token: {
-  //         type: "string",
-  //         description: "Token address or mint (optional)",
-  //       },
-  //       amount: {
-  //         type: "string",
-  //         description: "Amount to pay",
-  //       },
-  //       decimals: {
-  //         type: "number",
-  //         description: "Token decimals (optional)",
-  //       },
-  //       valid_for_seconds: {
-  //         type: "number",
-  //         description: "Payment validity window in seconds",
-  //       },
-  //       resource_url: {
-  //         type: "string",
-  //         description: "Resource URL for x402 preflight or metadata",
-  //       },
-  //       resource_description: {
-  //         type: "string",
-  //         description: "Resource description",
-  //       },
-  //       fee_payer: {
-  //         type: "string",
-  //         description: "Solana fee payer from 402 response (optional)",
-  //       },
-  //       http_method: {
-  //         type: "string",
-  //         enum: ["GET", "POST"],
-  //         description: "HTTP method used for 402 preflight (default: GET)",
-  //       },
-  //     },
-  //     required: ["chain", "to", "amount"],
-  //   },
-  // },
+  {
+    name: "x402_fetch",
+    description:
+      "Make an HTTP request with automatic x402 payment handling. " +
+      "Handles the entire x402 payment flow: makes the request, if 402 Payment Required is returned " +
+      "it extracts payment requirements, creates and signs a USDC payment, retries with Payment-Signature header, " +
+      "and returns the final response. Supports Base and Solana payments.",
+    input_schema: {
+      type: "object",
+      properties: {
+        url: {
+          type: "string",
+          description: "The URL to fetch",
+        },
+        method: {
+          type: "string",
+          enum: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+          description: "HTTP method (default: GET)",
+        },
+        headers: {
+          type: "object",
+          description: "Additional HTTP headers to include",
+        },
+        body: {
+          type: "object",
+          description:
+            "Request body (for POST/PUT/PATCH). Will be JSON-stringified if not already a string.",
+        },
+        preferred_chain: {
+          type: "string",
+          enum: ["base", "solana", "ethereum"],
+          description:
+            "Preferred chain for x402 payment. If set, this chain will be tried first. Defaults to Base.",
+        },
+      },
+      required: ["url"],
+    },
+  },
 ];
