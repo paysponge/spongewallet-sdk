@@ -178,11 +178,8 @@ async function pollForToken(
       }
 
       // Handle error responses
-      const errorData = (await response.json().catch(() => ({}))) as {
-        error?: string;
-        errorDescription?: string;
-      };
-      const error = errorData.error;
+      const errorData = (await response.json().catch(() => ({}))) as Record<string, unknown>;
+      const error = errorData.error as string;
 
       switch (error) {
         case "authorization_pending":
@@ -199,7 +196,7 @@ async function pollForToken(
           throw new Error("Device code expired. Please try again.");
         default:
           throw new Error(
-            `Authentication failed: ${errorData.errorDescription ?? error ?? "Unknown error"}`
+            `Authentication failed: ${errorData.errorDescription || error || "Unknown error"}`
           );
       }
     } catch (error) {

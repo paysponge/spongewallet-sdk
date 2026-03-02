@@ -165,13 +165,3 @@ const request = await wallet.requestFunding({
   reason: "Cover transaction fees",
 });
 ```
-
-### Withdraw to Main Wallet
-
-```typescript
-const withdrawal = await wallet.withdrawToMainWallet({
-  chain: "base",
-  amount: "10",
-  currency: "USDC",
-});
-```

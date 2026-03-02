@@ -1,0 +1,1 @@
+{"version":3,"file":"config.js","sourceRoot":"","sources":["../../src/mcp/config.ts"],"names":[],"mappings":"AAEA,MAAM,gBAAgB,GAAG,kCAAkC,CAAC;AAE5D;;;;;;;;;;;;;;;;;;;;;;;GAuBG;AACH,MAAM,UAAU,eAAe,CAC7B,MAAc,EACd,UAAkB,gBAAgB;IAElC,OAAO;QACL,GAAG,EAAE,GAAG,OAAO,MAAM;QACrB,OAAO,EAAE;YACP,aAAa,EAAE,UAAU,MAAM,EAAE;SAClC;KACF,CAAC;AACJ,CAAC"}

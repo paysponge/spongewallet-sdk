@@ -48,4 +48,26 @@ describe("PublicToolsApi", () => {
       currency: "USDC",
     });
   });
+
+  it("claims signup bonus via the REST endpoint", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({
+        success: true,
+        message: "Signup bonus claimed",
+        amount: "5",
+        currency: "USDC",
+        chain: "base",
+        recipientAddress: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+        transactionHash: "0xabc",
+        explorerUrl: "https://basescan.org/tx/0xabc",
+      }),
+    };
+    const api = new PublicToolsApi(http as any);
+
+    const result = await api.claimSignupBonus();
+
+    expect(result.success).toBe(true);
+    expect(http.post).toHaveBeenCalledWith("/api/signup-bonus/claim", {});
+  });
 });

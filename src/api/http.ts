@@ -1,4 +1,5 @@
 import { ApiErrorSchema, type ApiError } from "../types/schemas.js";
+import { SDK_VERSION } from "../version.js";
 
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 
@@ -31,10 +32,11 @@ export class HttpClient {
     return {
       Authorization: `Bearer ${this.apiKey}`,
       "Content-Type": "application/json",
+      "Sponge-Version": SDK_VERSION,
     };
   }
 
-  async get<T>(path: string, params?: Record<string, string>): Promise<T> {
+  async get<T>(path: string, params?: Record<string, string | undefined>): Promise<T> {
     const url = new URL(path, this.baseUrl);
     if (params) {
       for (const [key, value] of Object.entries(params)) {

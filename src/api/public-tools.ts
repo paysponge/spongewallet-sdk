@@ -6,7 +6,9 @@ import {
   SolanaTokensResponseSchema,
   SolanaTokenSearchResponseSchema,
   FundingRequestResponseSchema,
-  WithdrawToMainWalletResponseSchema,
+  OnrampCryptoOptionsSchema,
+  OnrampCryptoResponseSchema,
+  SignupBonusClaimResponseSchema,
   TransactionHistoryDetailedSchema,
   SpongeResponseSchema,
   X402PaymentResponseSchema,
@@ -18,7 +20,9 @@ import {
   type SolanaTokensResponse,
   type SolanaTokenSearchResponse,
   type FundingRequestResponse,
-  type WithdrawToMainWalletResponse,
+  type OnrampCryptoOptions,
+  type OnrampCryptoResponse,
+  type SignupBonusClaimResponse,
   type TransactionHistoryDetailed,
   type SpongeResponse,
   type X402PaymentResponse,
@@ -42,12 +46,6 @@ export interface FundingRequestOptions {
   reason?: string;
   chain?: Chain;
   currency?: string;
-}
-
-export interface WithdrawToMainWalletOptions {
-  chain: Chain;
-  amount: string;
-  currency?: "native" | "USDC";
 }
 
 export interface SpongeRequest {
@@ -125,9 +123,15 @@ export class PublicToolsApi {
     return FundingRequestResponseSchema.parse(response);
   }
 
-  async withdrawToMainWallet(options: WithdrawToMainWalletOptions): Promise<WithdrawToMainWalletResponse> {
-    const response = await this.http.post<unknown>("/api/wallets/withdraw-to-main", options);
-    return WithdrawToMainWalletResponseSchema.parse(response);
+  async createOnrampLink(options: OnrampCryptoOptions): Promise<OnrampCryptoResponse> {
+    const validated = OnrampCryptoOptionsSchema.parse(options);
+    const response = await this.http.post<unknown>("/api/onramp/crypto", validated);
+    return OnrampCryptoResponseSchema.parse(response);
+  }
+
+  async claimSignupBonus(): Promise<SignupBonusClaimResponse> {
+    const response = await this.http.post<unknown>("/api/signup-bonus/claim", {});
+    return SignupBonusClaimResponseSchema.parse(response);
   }
 
   async sponge(request: SpongeRequest): Promise<SpongeResponse> {

@@ -97,12 +97,13 @@ export class TransactionsApi {
     }
 
     // Tempo pathUSD transfers
-    if (validated.chain === "tempo" || validated.currency === "pathUSD") {
-      if (validated.chain !== "tempo" || validated.currency !== "pathUSD") {
-        throw new Error("pathUSD transfers are only supported on the tempo chain");
+    if (validated.chain === "tempo" || validated.chain === "tempo-mainnet" || validated.currency === "pathUSD") {
+      if ((validated.chain !== "tempo" && validated.chain !== "tempo-mainnet") || validated.currency !== "pathUSD") {
+        throw new Error("pathUSD transfers are only supported on Tempo chains");
       }
 
       const response = await this.http.post<unknown>("/api/transfers/tempo", {
+        chain: validated.chain,
         to: validated.to,
         amount: validated.amount,
         use_gas_sponsorship: true,

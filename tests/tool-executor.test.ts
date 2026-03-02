@@ -36,4 +36,69 @@ describe("ToolExecutor", () => {
 
     expect(result.status).toBe("error");
   });
+
+  it("routes claim_signup_bonus to /api/signup-bonus/claim", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ success: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("claim_signup_bonus", {});
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith("/api/signup-bonus/claim", {});
+  });
+
+  it("routes store_key to /api/agent-keys", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ success: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("store_key", {
+      service: "openai",
+      key: "sk-test-123",
+      label: "primary",
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith("/api/agent-keys", {
+      service: "openai",
+      key: "sk-test-123",
+      label: "primary",
+      metadata: undefined,
+    });
+  });
+
+  it("routes get_key_value to /api/agent-keys/value", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue({ key: { service: "openai", key: "sk" } }),
+      post: vi.fn(),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("get_key_value", {
+      service: "openai",
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.get).toHaveBeenCalledWith("/api/agent-keys/value", {
+      service: "openai",
+    });
+  });
+
+  it("routes get_key_list to /api/agent-keys", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue({ keys: [] }),
+      post: vi.fn(),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("get_key_list", {});
+
+    expect(result.status).toBe("success");
+    expect(http.get).toHaveBeenCalledWith("/api/agent-keys", {});
+  });
 });

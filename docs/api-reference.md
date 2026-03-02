@@ -121,15 +121,10 @@ Create a funding request for owner approval.
 | `chain` | `Chain` | Optional chain (default: tempo) |
 | `currency` | `string` | Optional currency (pathUSD, USDC, ETH, SOL) |
 
-#### `wallet.withdrawToMainWallet(options): Promise<WithdrawToMainWalletResponse>`
+#### `wallet.claimSignupBonus(): Promise<SignupBonusClaimResponse>`
 
-Withdraw funds back to the owner's main wallet.
-
-| Option | Type | Description |
-|--------|------|-------------|
-| `chain` | `Chain` | Chain to withdraw from |
-| `amount` | `string` | Amount to withdraw |
-| `currency` | `"native" \| "USDC"` | Token (default: native) |
+Claim the one-time sign-up bonus. Sends 1 USDC on Base to the current agent wallet.
+This can only be used once per user account.
 
 <!-- sponge tool temporarily disabled
 #### `wallet.sponge(request): Promise<SpongeResponse>`
@@ -354,19 +349,6 @@ type FundingRequestResponse = {
   requestId: string;
   message: string;
   status: string;
-};
-```
-
-### WithdrawToMainWalletResponse
-
-```typescript
-type WithdrawToMainWalletResponse = {
-  success: boolean;
-  txHash: string;
-  amount: string;
-  toAddress: string;
-  chainId: number;
-  explorerUrl?: string;
 };
 ```
 

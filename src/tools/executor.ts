@@ -80,12 +80,11 @@ export class ToolExecutor {
           : typeof args.allowedChains === "string"
             ? args.allowedChains
             : undefined;
-        const params: Record<string, string> = {
+        return this.http.get<unknown>("/api/balances", {
           chain: (args.chain as string | undefined) ?? "all",
-        };
-        if (allowedChains) params.allowedChains = allowedChains;
-        if (args.onlyUsdc) params.onlyUsdc = "true";
-        return this.http.get<unknown>("/api/balances", params);
+          allowedChains,
+          onlyUsdc: args.onlyUsdc ? "true" : undefined,
+        });
       }
       case "evm_transfer":
         return this.http.post<unknown>("/api/transfers/evm", {
@@ -109,17 +108,27 @@ export class ToolExecutor {
           amount: args.amount,
           slippageBps: args.slippageBps ?? args.slippage_bps,
         });
+      case "jupiter_swap_quote":
+        return this.http.post<unknown>("/api/transactions/swap/quote", {
+          chain: args.chain,
+          inputToken: args.inputToken ?? args.input_token,
+          outputToken: args.outputToken ?? args.output_token,
+          amount: args.amount,
+          slippageBps: args.slippageBps ?? args.slippage_bps,
+        });
+      case "jupiter_swap_execute":
+        return this.http.post<unknown>("/api/transactions/swap/execute", {
+          quoteId: args.quoteId ?? args.quote_id,
+        });
       case "get_solana_tokens":
         return this.http.get<unknown>("/api/solana/tokens", {
           chain: String(args.chain ?? ""),
         });
-      case "search_solana_tokens": {
-        const searchParams: Record<string, string> = {
+      case "search_solana_tokens":
+        return this.http.get<unknown>("/api/solana/tokens/search", {
           query: String(args.query ?? ""),
-        };
-        if (args.limit !== undefined) searchParams.limit = String(args.limit);
-        return this.http.get<unknown>("/api/solana/tokens/search", searchParams);
-      }
+          limit: args.limit !== undefined ? String(args.limit) : undefined,
+        });
       case "get_transaction_status": {
         const txHash = (args.txHash ?? args.transaction_hash) as string;
         if (!txHash) {
@@ -133,12 +142,11 @@ export class ToolExecutor {
           { chain: String(args.chain) },
         );
       }
-      case "get_transaction_history": {
-        const historyParams: Record<string, string> = {};
-        if (args.limit !== undefined) historyParams.limit = String(args.limit);
-        if (args.chain) historyParams.chain = String(args.chain);
-        return this.http.get<unknown>("/api/transactions/history", historyParams);
-      }
+      case "get_transaction_history":
+        return this.http.get<unknown>("/api/transactions/history", {
+          limit: args.limit !== undefined ? String(args.limit) : undefined,
+          chain: args.chain ? String(args.chain) : undefined,
+        });
       case "request_funding":
         return this.http.post<unknown>("/api/funding-requests", {
           amount: args.amount,
@@ -146,12 +154,18 @@ export class ToolExecutor {
           chain: args.chain,
           currency: args.currency,
         });
-      case "withdraw_to_main_wallet":
-        return this.http.post<unknown>("/api/wallets/withdraw-to-main", {
+      case "create_crypto_onramp":
+        return this.http.post<unknown>("/api/onramp/crypto", {
+          wallet_address: args.wallet_address,
+          provider: args.provider,
           chain: args.chain,
-          amount: args.amount,
-          currency: args.currency,
+          fiat_amount: args.fiat_amount,
+          fiat_currency: args.fiat_currency,
+          lock_wallet_address: args.lock_wallet_address,
+          redirect_url: args.redirect_url,
         });
+      case "claim_signup_bonus":
+        return this.http.post<unknown>("/api/signup-bonus/claim", {});
       case "sponge":
         return this.http.post<unknown>("/api/sponge", args);
       case "create_x402_payment":
@@ -166,6 +180,67 @@ export class ToolExecutor {
           resource_description: args.resource_description,
           fee_payer: args.fee_payer,
           http_method: args.http_method,
+        });
+      case "mpp_fetch":
+        return this.http.post<unknown>("/api/mpp/fetch", {
+          chain: args.chain,
+          url: args.url,
+          method: args.method,
+          headers: args.headers,
+          body: args.body,
+        });
+      case "store_key":
+        return this.http.post<unknown>("/api/agent-keys", {
+          service: args.service,
+          key: args.key,
+          label: args.label,
+          metadata: args.metadata,
+        });
+      case "get_key_list":
+        return this.http.get<unknown>("/api/agent-keys", {});
+      case "get_key_value":
+        return this.http.get<unknown>("/api/agent-keys/value", {
+          service: String(args.service),
+        });
+      case "hyperliquid":
+        return this.http.post<unknown>("/api/hyperliquid", {
+          action: args.action,
+          symbol: args.symbol,
+          side: args.side,
+          type: args.type,
+          amount: args.amount,
+          price: args.price,
+          reduce_only: args.reduce_only,
+          trigger_price: args.trigger_price,
+          tp_sl: args.tp_sl,
+          tif: args.tif,
+          order_id: args.order_id,
+          leverage: args.leverage,
+          since: args.since,
+          limit: args.limit,
+          offset: args.offset,
+          query: args.query,
+          market_type: args.market_type,
+          full: args.full,
+          destination: args.destination,
+          to_perp: args.to_perp,
+        });
+      case "submit_plan":
+        return this.http.post<unknown>("/api/plans/submit", {
+          title: args.title,
+          reasoning: args.reasoning,
+          steps: args.steps,
+        });
+      case "approve_plan":
+        return this.http.post<unknown>("/api/plans/approve", {
+          plan_id: args.plan_id,
+        });
+      case "propose_trade":
+        return this.http.post<unknown>("/api/trades/propose", {
+          input_token: args.input_token,
+          output_token: args.output_token,
+          amount: args.amount,
+          reason: args.reason,
         });
       default:
         throw new Error(`Tool not implemented: ${name}`);

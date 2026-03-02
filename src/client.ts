@@ -362,14 +362,25 @@ export class SpongeWallet {
   }
 
   /**
-   * Withdraw funds back to the owner's main wallet
+   * Create a fiat onramp link to buy USDC into this agent's wallet.
    */
-  async withdrawToMainWallet(options: {
-    chain: Chain;
-    amount: string;
-    currency?: "native" | "USDC";
+  async onrampCrypto(options: {
+    wallet_address: string;
+    provider?: "auto" | "stripe" | "coinbase";
+    chain?: "base" | "solana" | "polygon";
+    fiat_amount?: string;
+    fiat_currency?: string;
+    lock_wallet_address?: boolean;
+    redirect_url?: string;
   }) {
-    return this.publicTools.withdrawToMainWallet(options);
+    return this.publicTools.createOnrampLink(options);
+  }
+
+  /**
+   * Claim the one-time signup bonus (1 USDC on Base) to this agent wallet
+   */
+  async claimSignupBonus() {
+    return this.publicTools.claimSignupBonus();
   }
 
   /**
@@ -395,6 +406,101 @@ export class SpongeWallet {
     http_method?: "GET" | "POST";
   }) {
     return this.publicTools.createX402Payment(options);
+  }
+
+  /**
+   * Trade perps and spot on Hyperliquid DEX
+   *
+   * @example
+   * ```typescript
+   * // Check account status
+   * const status = await wallet.hyperliquid({ action: 'status' });
+   *
+   * // Place a limit order
+   * const order = await wallet.hyperliquid({
+   *   action: 'order',
+   *   symbol: 'BTC/USDC:USDC',
+   *   side: 'buy',
+   *   type: 'limit',
+   *   amount: '0.001',
+   *   price: '50000',
+   * });
+   *
+   * // Get open positions
+   * const positions = await wallet.hyperliquid({ action: 'positions' });
+   * ```
+   */
+  async hyperliquid(args: {
+    action: "status" | "order" | "cancel" | "cancel_all" | "set_leverage" | "positions" | "orders" | "fills" | "markets" | "ticker" | "orderbook" | "funding" | "withdraw" | "transfer";
+    symbol?: string;
+    side?: "buy" | "sell";
+    type?: "limit" | "market";
+    amount?: string;
+    price?: string;
+    reduce_only?: boolean;
+    trigger_price?: string;
+    tp_sl?: "tp" | "sl";
+    tif?: "GTC" | "IOC" | "PO";
+    order_id?: string;
+    leverage?: number;
+    since?: number;
+    limit?: number;
+    offset?: number;
+    query?: string;
+    market_type?: "spot" | "swap";
+    full?: boolean;
+    destination?: string;
+    to_perp?: boolean;
+  }): Promise<unknown> {
+    return this.http.post<unknown>("/api/hyperliquid", args);
+  }
+
+  /**
+   * Submit a multi-step plan for user approval
+   *
+   * @example
+   * ```typescript
+   * const plan = await wallet.submitPlan({
+   *   title: 'Rebalance Portfolio',
+   *   reasoning: 'Moving funds from SOL to USDC and bridging to Base',
+   *   steps: [
+   *     { type: 'swap', input_token: 'SOL', output_token: 'USDC', amount: '10', reason: 'Take profit' },
+   *     { type: 'bridge', source_chain: 'solana', destination_chain: 'base', token: 'USDC', amount: '100', reason: 'Move to Base' },
+   *   ],
+   * });
+   * // Present plan to user, then approve:
+   * await wallet.approvePlan(plan.planId);
+   * ```
+   */
+  async submitPlan(args: {
+    title: string;
+    reasoning?: string;
+    steps: Array<
+      | { type: "swap"; input_token: string; output_token: string; amount: string; reason: string }
+      | { type: "transfer"; chain: string; to: string; amount: string; currency: string; reason: string }
+      | { type: "bridge"; source_chain: string; destination_chain: string; token: string; amount: string; destination_token?: string; reason: string }
+    >;
+  }): Promise<unknown> {
+    return this.http.post<unknown>("/api/plans/submit", args);
+  }
+
+  /**
+   * Approve and execute a previously submitted plan
+   */
+  async approvePlan(planId: string): Promise<unknown> {
+    return this.http.post<unknown>("/api/plans/approve", { plan_id: planId });
+  }
+
+  /**
+   * Propose a single swap for user approval (fetches quote, creates pending proposal)
+   */
+  async proposeTrade(args: {
+    input_token: string;
+    output_token: string;
+    amount: string;
+    reason: string;
+  }): Promise<unknown> {
+    return this.http.post<unknown>("/api/trades/propose", args);
   }
 
   /**

@@ -10,6 +10,7 @@ export const ChainSchema = z.enum([
   "sepolia",
   "base-sepolia",
   "tempo",
+  "tempo-mainnet",
   "solana",
   "solana-devnet",
 ]);
@@ -33,7 +34,7 @@ export const SolanaChainSchema = z.enum(["solana", "solana-devnet"]);
 export type SolanaChain = z.infer<typeof SolanaChainSchema>;
 
 // Mainnet chains only
-export const MainnetChainSchema = z.enum(["ethereum", "base", "solana"]);
+export const MainnetChainSchema = z.enum(["ethereum", "base", "tempo-mainnet", "solana"]);
 export type MainnetChain = z.infer<typeof MainnetChainSchema>;
 
 // Testnet chains only
@@ -271,15 +272,42 @@ export const FundingRequestResponseSchema = z.object({
 });
 export type FundingRequestResponse = z.infer<typeof FundingRequestResponseSchema>;
 
-export const WithdrawToMainWalletResponseSchema = z.object({
-  success: z.boolean(),
-  txHash: z.string(),
-  amount: z.string(),
-  toAddress: z.string(),
-  chainId: z.number(),
-  explorerUrl: z.string().optional(),
+export const OnrampCryptoOptionsSchema = z.object({
+  wallet_address: z.string(),
+  provider: z.enum(["auto", "stripe", "coinbase"]).optional(),
+  chain: z.enum(["base", "solana", "polygon"]).optional(),
+  fiat_amount: z.string().optional(),
+  fiat_currency: z.string().optional(),
+  lock_wallet_address: z.boolean().optional(),
+  redirect_url: z.string().optional(),
 });
-export type WithdrawToMainWalletResponse = z.infer<typeof WithdrawToMainWalletResponseSchema>;
+export type OnrampCryptoOptions = z.infer<typeof OnrampCryptoOptionsSchema>;
+
+export const OnrampCryptoResponseSchema = z.object({
+  success: z.literal(true),
+  provider: z.enum(["stripe", "coinbase"]),
+  url: z.string(),
+  sessionId: z.string(),
+  status: z.literal("initiated"),
+  destinationChain: z.enum(["base", "solana", "polygon"]),
+  destinationAddress: z.string(),
+  destinationCurrency: z.literal("USDC"),
+  clientSecret: z.string().optional(),
+});
+export type OnrampCryptoResponse = z.infer<typeof OnrampCryptoResponseSchema>;
+
+export const SignupBonusClaimResponseSchema = z.object({
+  success: z.boolean(),
+  message: z.string(),
+  amount: z.string(),
+  currency: z.literal("USDC"),
+  chain: z.literal("base"),
+  recipientAddress: z.string(),
+  transactionHash: z.string(),
+  explorerUrl: z.string(),
+});
+export type SignupBonusClaimResponse = z.infer<typeof SignupBonusClaimResponseSchema>;
+
 
 export const TransactionHistoryDetailedSchema = z.object({
   transactions: z.array(
@@ -460,6 +488,7 @@ export const CHAIN_IDS: Record<Chain, number> = {
   sepolia: 11155111,
   "base-sepolia": 84532,
   tempo: 42431,
+  "tempo-mainnet": 4217,
   solana: 101,
   "solana-devnet": 102,
 };
