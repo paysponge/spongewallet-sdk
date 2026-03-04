@@ -639,9 +639,26 @@ export const TOOL_DEFINITIONS = [
                     type: "string",
                     description: "Name on card",
                 },
+                email: {
+                    type: "string",
+                    description: "Email address",
+                },
                 billing_address: {
                     type: "object",
                     description: "Billing address",
+                    properties: {
+                        line1: { type: "string" },
+                        line2: { type: "string" },
+                        city: { type: "string" },
+                        state: { type: "string" },
+                        postal_code: { type: "string" },
+                        country: { type: "string" },
+                    },
+                    required: ["line1", "city", "state", "postal_code", "country"],
+                },
+                shipping_address: {
+                    type: "object",
+                    description: "Shipping address",
                     properties: {
                         line1: { type: "string" },
                         line2: { type: "string" },
@@ -661,7 +678,7 @@ export const TOOL_DEFINITIONS = [
                     description: "Optional metadata to store alongside the card",
                 },
             },
-            required: ["card_number", "cvc", "cardholder_name", "billing_address"],
+            required: ["card_number", "cvc", "cardholder_name", "email", "billing_address", "shipping_address"],
         },
     },
     {

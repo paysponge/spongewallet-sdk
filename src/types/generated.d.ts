@@ -4444,7 +4444,16 @@ export interface operations {
                     expiration?: string;
                     cvc: string;
                     cardholder_name: string;
+                    email: string;
                     billing_address: {
+                        line1: string;
+                        line2?: string;
+                        city: string;
+                        state: string;
+                        postal_code: string;
+                        country: string;
+                    };
+                    shipping_address: {
                         line1: string;
                         line2?: string;
                         city: string;
@@ -4465,7 +4474,16 @@ export interface operations {
                     expiration?: string;
                     cvc: string;
                     cardholder_name: string;
+                    email: string;
                     billing_address: {
+                        line1: string;
+                        line2?: string;
+                        city: string;
+                        state: string;
+                        postal_code: string;
+                        country: string;
+                    };
+                    shipping_address: {
                         line1: string;
                         line2?: string;
                         city: string;
@@ -4486,7 +4504,16 @@ export interface operations {
                     expiration?: string;
                     cvc: string;
                     cardholder_name: string;
+                    email: string;
                     billing_address: {
+                        line1: string;
+                        line2?: string;
+                        city: string;
+                        state: string;
+                        postal_code: string;
+                        country: string;
+                    };
+                    shipping_address: {
                         line1: string;
                         line2?: string;
                         city: string;

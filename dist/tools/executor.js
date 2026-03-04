@@ -204,7 +204,9 @@ export class ToolExecutor {
                     expiration: args.expiration,
                     cvc: args.cvc,
                     cardholder_name: args.cardholder_name,
+                    email: args.email,
                     billing_address: args.billing_address,
+                    shipping_address: args.shipping_address,
                     label: args.label,
                     metadata: args.metadata,
                 });

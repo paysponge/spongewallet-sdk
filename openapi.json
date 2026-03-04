@@ -4804,7 +4804,9 @@
                   "card_number",
                   "cvc",
                   "cardholder_name",
-                  "billing_address"
+                  "email",
+                  "billing_address",
+                  "shipping_address"
                 ],
                 "properties": {
                   "card_number": {
@@ -4825,7 +4827,40 @@
                   "cardholder_name": {
                     "type": "string"
                   },
+                  "email": {
+                    "type": "string"
+                  },
                   "billing_address": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping_address": {
                     "type": "object",
                     "required": [
                       "line1",
@@ -4877,7 +4912,9 @@
                   "card_number",
                   "cvc",
                   "cardholder_name",
-                  "billing_address"
+                  "email",
+                  "billing_address",
+                  "shipping_address"
                 ],
                 "properties": {
                   "card_number": {
@@ -4898,7 +4935,40 @@
                   "cardholder_name": {
                     "type": "string"
                   },
+                  "email": {
+                    "type": "string"
+                  },
                   "billing_address": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping_address": {
                     "type": "object",
                     "required": [
                       "line1",
@@ -4950,7 +5020,9 @@
                   "card_number",
                   "cvc",
                   "cardholder_name",
-                  "billing_address"
+                  "email",
+                  "billing_address",
+                  "shipping_address"
                 ],
                 "properties": {
                   "card_number": {
@@ -4971,7 +5043,40 @@
                   "cardholder_name": {
                     "type": "string"
                   },
+                  "email": {
+                    "type": "string"
+                  },
                   "billing_address": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "state",
+                      "postal_code",
+                      "country"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "postal_code": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shipping_address": {
                     "type": "object",
                     "required": [
                       "line1",
