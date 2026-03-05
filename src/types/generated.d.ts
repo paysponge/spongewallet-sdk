@@ -1412,6 +1412,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/payment-links": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["postApiPayment-links"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/payment-links/{paymentLinkId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getApiPayment-linksByPaymentLinkId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/x402/payments": {
         parameters: {
             query?: never;
@@ -1550,6 +1582,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["postApiTradesPropose"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/payment-links-public/{paymentLinkId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getApiPayment-links-publicByPaymentLinkId"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -4767,6 +4815,60 @@ export interface operations {
         };
         responses: never;
     };
+    "postApiPayment-links": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    amount: number;
+                    description?: string;
+                    max_uses?: number;
+                    expires_in_minutes?: number;
+                    callback_url?: string;
+                    livemode?: boolean;
+                    agentId?: string;
+                };
+                "application/x-www-form-urlencoded": {
+                    amount: number;
+                    description?: string;
+                    max_uses?: number;
+                    expires_in_minutes?: number;
+                    callback_url?: string;
+                    livemode?: boolean;
+                    agentId?: string;
+                };
+                "multipart/form-data": {
+                    amount: number;
+                    description?: string;
+                    max_uses?: number;
+                    expires_in_minutes?: number;
+                    callback_url?: string;
+                    livemode?: boolean;
+                    agentId?: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    "getApiPayment-linksByPaymentLinkId": {
+        parameters: {
+            query?: {
+                agentId?: string;
+            };
+            header?: never;
+            path: {
+                paymentLinkId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
     postApiX402Payments: {
         parameters: {
             query?: never;
@@ -5253,6 +5355,18 @@ export interface operations {
                 };
             };
         };
+        responses: never;
+    };
+    "getApiPayment-links-publicByPaymentLinkId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                paymentLinkId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: never;
     };
     postApiUsersSync: {

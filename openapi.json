@@ -5695,6 +5695,141 @@
         "operationId": "postApiMppFetch"
       }
     },
+    "/api/payment-links": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minimum": 0.000001,
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "max_uses": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "expires_in_minutes": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "callback_url": {
+                    "type": "string"
+                  },
+                  "livemode": {
+                    "type": "boolean"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minimum": 0.000001,
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "max_uses": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "expires_in_minutes": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "callback_url": {
+                    "type": "string"
+                  },
+                  "livemode": {
+                    "type": "boolean"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minimum": 0.000001,
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "max_uses": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "expires_in_minutes": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "callback_url": {
+                    "type": "string"
+                  },
+                  "livemode": {
+                    "type": "boolean"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiPayment-links"
+      }
+    },
+    "/api/payment-links/{paymentLinkId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "paymentLinkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiPayment-linksByPaymentLinkId"
+      }
+    },
     "/api/x402/payments": {
       "post": {
         "requestBody": {
@@ -7503,6 +7638,21 @@
           }
         },
         "operationId": "postApiTradesPropose"
+      }
+    },
+    "/api/payment-links-public/{paymentLinkId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "paymentLinkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiPayment-links-publicByPaymentLinkId"
       }
     },
     "/api/users/sync": {
