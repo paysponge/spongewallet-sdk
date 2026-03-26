@@ -4791,6 +4791,44 @@
         "operationId": "postApiAgentsByIdEnrollmentsByEnrollmentIdVerifyComplete"
       }
     },
+    "/api/agents/{id}/instructions/pending": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiAgentsByIdInstructionsPending"
+      }
+    },
+    "/api/agents/{id}/instructions/{instructionId}/approved": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instructionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgentsByIdInstructionsByInstructionIdApproved"
+      }
+    },
     "/api/agents/{id}/instructions": {
       "post": {
         "parameters": [

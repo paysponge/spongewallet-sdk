@@ -1481,6 +1481,36 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiAgentsByIdHyperliquidPositionsRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
+     */
+    async getApiAgentsByIdInstructionsPendingRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiAgentsByIdInstructionsPending().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agents/{id}/instructions/pending`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiAgentsByIdInstructionsPendingRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiAgentsByIdInstructionsPendingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiAgentsByIdInstructionsPending(requestParameters, initOverrides) {
+        await this.getApiAgentsByIdInstructionsPendingRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiAgentsByIdPaymentMethods without sending the request
      */
     async getApiAgentsByIdPaymentMethodsRequestOpts(requestParameters) {
@@ -4011,6 +4041,40 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiAgentsByIdInstructions(requestParameters, initOverrides) {
         await this.postApiAgentsByIdInstructionsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiAgentsByIdInstructionsByInstructionIdApproved without sending the request
+     */
+    async postApiAgentsByIdInstructionsByInstructionIdApprovedRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling postApiAgentsByIdInstructionsByInstructionIdApproved().');
+        }
+        if (requestParameters['instructionId'] == null) {
+            throw new runtime.RequiredError('instructionId', 'Required parameter "instructionId" was null or undefined when calling postApiAgentsByIdInstructionsByInstructionIdApproved().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agents/{id}/instructions/{instructionId}/approved`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        urlPath = urlPath.replace(`{${"instructionId"}}`, encodeURIComponent(String(requestParameters['instructionId'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiAgentsByIdInstructionsByInstructionIdApprovedRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAgentsByIdInstructionsByInstructionIdApprovedRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAgentsByIdInstructionsByInstructionIdApproved(requestParameters, initOverrides) {
+        await this.postApiAgentsByIdInstructionsByInstructionIdApprovedRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiAgentsByIdInstructionsByInstructionIdCredentials without sending the request

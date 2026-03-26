@@ -114,6 +114,9 @@ export interface DefaultApiGetApiAgentsByIdHyperliquidOrdersRequest {
 export interface DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest {
     id: string;
 }
+export interface DefaultApiGetApiAgentsByIdInstructionsPendingRequest {
+    id: string;
+}
 export interface DefaultApiGetApiAgentsByIdPaymentMethodsRequest {
     id: string;
 }
@@ -359,6 +362,10 @@ export interface DefaultApiPostApiAgentsByIdHyperliquidWithdrawOperationRequest 
 export interface DefaultApiPostApiAgentsByIdInstructionsOperationRequest {
     id: string;
     postApiAgentsByIdInstructionsRequest: PostApiAgentsByIdInstructionsRequest;
+}
+export interface DefaultApiPostApiAgentsByIdInstructionsByInstructionIdApprovedRequest {
+    id: string;
+    instructionId: string;
 }
 export interface DefaultApiPostApiAgentsByIdInstructionsByInstructionIdCredentialsOperationRequest {
     id: string;
@@ -1569,6 +1576,24 @@ export interface DefaultApiInterface {
     /**
      */
     getApiAgentsByIdHyperliquidPositions(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdInstructionsPendingRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiAgentsByIdInstructionsPendingRaw(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdInstructionsPending(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiAgentsByIdPaymentMethods without sending the request
      * @param {string} id
@@ -3085,6 +3110,26 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsByIdInstructions(requestParameters: DefaultApiPostApiAgentsByIdInstructionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAgentsByIdInstructionsByInstructionIdApproved without sending the request
+     * @param {string} id
+     * @param {string} instructionId
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdInstructionsByInstructionIdApprovedRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdInstructionsByInstructionIdApprovedRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {string} instructionId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdInstructionsByInstructionIdApprovedRaw(requestParameters: DefaultApiPostApiAgentsByIdInstructionsByInstructionIdApprovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdInstructionsByInstructionIdApproved(requestParameters: DefaultApiPostApiAgentsByIdInstructionsByInstructionIdApprovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentsByIdInstructionsByInstructionIdCredentials without sending the request
      * @param {string} id
@@ -5461,6 +5506,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiAgentsByIdHyperliquidPositions(requestParameters: DefaultApiGetApiAgentsByIdHyperliquidPositionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiAgentsByIdInstructionsPending without sending the request
+     */
+    getApiAgentsByIdInstructionsPendingRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiAgentsByIdInstructionsPendingRaw(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiAgentsByIdInstructionsPending(requestParameters: DefaultApiGetApiAgentsByIdInstructionsPendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiAgentsByIdPaymentMethods without sending the request
      */
     getApiAgentsByIdPaymentMethodsRequestOpts(requestParameters: DefaultApiGetApiAgentsByIdPaymentMethodsRequest): Promise<runtime.RequestOpts>;
@@ -6250,6 +6305,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiAgentsByIdInstructions(requestParameters: DefaultApiPostApiAgentsByIdInstructionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiAgentsByIdInstructionsByInstructionIdApproved without sending the request
+     */
+    postApiAgentsByIdInstructionsByInstructionIdApprovedRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdInstructionsByInstructionIdApprovedRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiAgentsByIdInstructionsByInstructionIdApprovedRaw(requestParameters: DefaultApiPostApiAgentsByIdInstructionsByInstructionIdApprovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiAgentsByIdInstructionsByInstructionIdApproved(requestParameters: DefaultApiPostApiAgentsByIdInstructionsByInstructionIdApprovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiAgentsByIdInstructionsByInstructionIdCredentials without sending the request
      */
