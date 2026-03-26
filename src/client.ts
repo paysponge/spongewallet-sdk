@@ -427,6 +427,19 @@ export class SpongeWallet {
   }
 
   /**
+   * Fetch any URL with automatic MPP payment handling
+   */
+  async mppFetch(options: {
+    url: string;
+    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    headers?: Record<string, string>;
+    body?: unknown;
+    chain?: "tempo" | "tempo-testnet";
+  }) {
+    return this.publicTools.mppFetch(options);
+  }
+
+  /**
    * Trade perps and spot on Hyperliquid DEX
    *
    * @example

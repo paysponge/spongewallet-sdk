@@ -100,5 +100,12 @@ export class PublicToolsApi {
             preferred_chain: preferred_chain ?? preferredChain,
         });
     }
+    async mppFetch(options) {
+        const { method = "GET", ...rest } = options;
+        return this.http.post("/api/mpp/fetch", {
+            ...rest,
+            method,
+        });
+    }
 }
 //# sourceMappingURL=public-tools.js.map

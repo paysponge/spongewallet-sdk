@@ -91,6 +91,20 @@ export const CreateAgentOptionsSchema = z.object({
 export const PlatformCreateAgentOptionsSchema = CreateAgentOptionsSchema.extend({
     isTestMode: z.boolean().optional(),
 });
+export const PlatformFleetSpendingLimitOptionsSchema = z.object({
+    agentIds: z.array(z.string().uuid()).optional(),
+    dailySpendingLimit: z.string().optional(),
+    weeklySpendingLimit: z.string().optional(),
+    monthlySpendingLimit: z.string().optional(),
+}).refine((value) => Boolean(value.dailySpendingLimit
+    || value.weeklySpendingLimit
+    || value.monthlySpendingLimit), {
+    message: "At least one spending limit is required",
+});
+export const PlatformFleetSpendingLimitFailureSchema = z.object({
+    agentId: z.string().uuid(),
+    error: z.string(),
+});
 export const AgentSchema = z.object({
     id: z.string().uuid(),
     name: z.string(),
@@ -101,6 +115,10 @@ export const AgentSchema = z.object({
     monthlySpendingLimit: z.string().nullish(),
     createdAt: z.coerce.date(),
     updatedAt: z.coerce.date().nullish(),
+});
+export const PlatformFleetSpendingLimitResultSchema = z.object({
+    updated: z.array(AgentSchema),
+    failed: z.array(PlatformFleetSpendingLimitFailureSchema),
 });
 export const MasterApiKeySchema = z.object({
     id: z.string().uuid(),
@@ -119,6 +137,129 @@ export const CreatedMasterApiKeySchema = z.object({
     keyName: z.string().nullish(),
     scopes: z.array(z.string()),
     createdAt: z.coerce.date(),
+});
+export const BridgeCustomerEndorsementRequirementSchema = z.object({
+    complete: z.array(z.string()),
+    pending: z.array(z.string()),
+    missing: z.unknown().nullable(),
+    issues: z.array(z.string()),
+});
+export const BridgeCustomerEndorsementSchema = z.object({
+    name: z.string(),
+    status: z.string(),
+    requirements: BridgeCustomerEndorsementRequirementSchema.nullable(),
+    additionalRequirements: z.array(z.string()),
+});
+export const BridgeCustomerSchema = z.object({
+    id: z.string(),
+    bridgeCustomerId: z.string(),
+    kycLinkId: z.string().nullable(),
+    status: z.string().nullable(),
+    kycStatus: z.string().nullable(),
+    tosStatus: z.string().nullable(),
+    hasAcceptedTermsOfService: z.boolean(),
+    capabilities: z.record(z.string()),
+    endorsements: z.array(BridgeCustomerEndorsementSchema),
+    requestedWalletId: z.string().nullable(),
+    requestedAt: z.coerce.date().nullable(),
+    livemode: z.boolean(),
+    hostedLinkUrl: z.string().nullable(),
+    tosLinkUrl: z.string().nullable(),
+    customerType: z.string().nullable(),
+    updatedAt: z.coerce.date(),
+});
+export const BridgeKycLinkResponseSchema = z.object({
+    url: z.string(),
+    customer: BridgeCustomerSchema,
+});
+export const BridgeExternalAccountSchema = z.object({
+    id: z.string(),
+    bridgeExternalAccountId: z.string(),
+    bridgeCustomerId: z.string(),
+    currency: z.string(),
+    last4: z.string().nullable(),
+    active: z.boolean(),
+    livemode: z.boolean(),
+    bankName: z.string().nullable(),
+    accountType: z.string().nullable(),
+    accountOwnerType: z.string().nullable(),
+    createdAt: z.coerce.date(),
+    updatedAt: z.coerce.date(),
+});
+export const BridgeVirtualAccountActivitySchema = z.object({
+    id: z.string(),
+    bridgeEventId: z.string(),
+    type: z.string(),
+    status: z.string().nullable(),
+    amount: z.string().nullable(),
+    currency: z.string().nullable(),
+    receiptTxHash: z.string().nullable(),
+    eventCreatedAt: z.coerce.date().nullable(),
+    createdAt: z.coerce.date(),
+});
+export const BridgeVirtualAccountSchema = z.object({
+    id: z.string(),
+    bridgeVirtualAccountId: z.string(),
+    bridgeCustomerId: z.string(),
+    walletId: z.string(),
+    status: z.string().nullable(),
+    sourceCurrency: z.string(),
+    destinationCurrency: z.string(),
+    destinationPaymentRail: z.string(),
+    destinationAddress: z.string(),
+    depositInstructions: z.record(z.unknown()).nullable(),
+    activities: z.array(BridgeVirtualAccountActivitySchema),
+    accountReadyNotifiedAt: z.coerce.date().nullable(),
+    livemode: z.boolean(),
+    createdAt: z.coerce.date(),
+    updatedAt: z.coerce.date(),
+});
+export const BridgeTransferSchema = z.object({
+    id: z.string(),
+    bridgeTransferId: z.string(),
+    bridgeCustomerId: z.string(),
+    bridgeExternalAccountId: z.string(),
+    walletId: z.string(),
+    status: z.string(),
+    amount: z.string(),
+    sourceCurrency: z.string(),
+    sourcePaymentRail: z.string(),
+    destinationCurrency: z.string(),
+    destinationPaymentRail: z.string(),
+    fundingTxHash: z.string().nullable(),
+    fundingExplorerUrl: z.string().nullable(),
+    failureReason: z.string().nullable(),
+    receiptUrl: z.string().nullable(),
+    depositInstructions: z.record(z.unknown()).nullable(),
+    isStaticTemplate: z.boolean(),
+    livemode: z.boolean(),
+    createdAt: z.coerce.date(),
+    updatedAt: z.coerce.date(),
+});
+export const BridgeCustomerTypeSchema = z.enum(["individual", "business"]);
+export const BridgeCreateKycLinkOptionsSchema = z.object({
+    walletId: z.string().optional(),
+    redirectUri: z.string().optional(),
+    customerType: BridgeCustomerTypeSchema.optional(),
+});
+export const BridgeCreateExternalAccountOptionsSchema = z.object({
+    customerId: z.string(),
+    bankName: z.string(),
+    accountOwnerName: z.string(),
+    routingNumber: z.string(),
+    accountNumber: z.string(),
+    checkingOrSavings: z.enum(["checking", "savings"]),
+    streetLine1: z.string(),
+    streetLine2: z.string().optional(),
+    city: z.string(),
+    state: z.string(),
+    postalCode: z.string(),
+    country: z.string().optional(),
+});
+export const BridgeCreateTransferOptionsSchema = z.object({
+    walletId: z.string(),
+    externalAccountId: z.string(),
+    amount: z.string(),
 });
 // ============================================================================
 // Wallet Types

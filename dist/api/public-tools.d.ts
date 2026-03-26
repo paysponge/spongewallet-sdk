@@ -39,6 +39,13 @@ export interface PaidFetchOptions {
     body?: unknown;
     chain?: "base" | "solana" | "tempo" | "ethereum";
 }
+export interface MppFetchOptions {
+    url: string;
+    method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    headers?: Record<string, string>;
+    body?: unknown;
+    chain?: "tempo" | "tempo-testnet";
+}
 export declare class PublicToolsApi {
     private readonly http;
     constructor(http: HttpClient);
@@ -54,5 +61,6 @@ export declare class PublicToolsApi {
     createX402Payment(options: CreateX402PaymentOptions): Promise<X402PaymentResponse>;
     paidFetch(options: PaidFetchOptions): Promise<unknown>;
     x402Fetch(options: X402FetchOptions): Promise<unknown>;
+    mppFetch(options: MppFetchOptions): Promise<unknown>;
 }
 //# sourceMappingURL=public-tools.d.ts.map

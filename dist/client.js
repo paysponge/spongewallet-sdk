@@ -318,6 +318,12 @@ export class SpongeWallet {
         return this.publicTools.x402Fetch(options);
     }
     /**
+     * Fetch any URL with automatic MPP payment handling
+     */
+    async mppFetch(options) {
+        return this.publicTools.mppFetch(options);
+    }
+    /**
      * Trade perps and spot on Hyperliquid DEX
      *
      * @example

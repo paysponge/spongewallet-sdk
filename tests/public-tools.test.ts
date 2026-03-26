@@ -118,4 +118,54 @@ describe("PublicToolsApi", () => {
       preferred_chain: "solana",
     });
   });
+
+  it("posts mpp fetch requests to the REST endpoint", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        data: { session: "mpp" },
+      }),
+    };
+    const api = new PublicToolsApi(http as any);
+
+    const result = await api.mppFetch({
+      url: "https://tempo.example.com/premium",
+      method: "POST",
+      chain: "tempo",
+      body: { query: "hello" },
+    });
+
+    expect(result).toEqual({
+      ok: true,
+      status: 200,
+      data: { session: "mpp" },
+    });
+    expect(http.post).toHaveBeenCalledWith("/api/mpp/fetch", {
+      url: "https://tempo.example.com/premium",
+      method: "POST",
+      chain: "tempo",
+      body: { query: "hello" },
+    });
+  });
+
+  it("defaults mpp fetch requests to GET", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const api = new PublicToolsApi(http as any);
+
+    await api.mppFetch({
+      url: "https://tempo.example.com/stream",
+      chain: "tempo-testnet",
+    });
+
+    expect(http.post).toHaveBeenCalledWith("/api/mpp/fetch", {
+      url: "https://tempo.example.com/stream",
+      method: "GET",
+      chain: "tempo-testnet",
+    });
+  });
 });

@@ -1,5 +1,5 @@
 import { SpongeWallet } from "./client.js";
-import { type Agent, type CreatedMasterApiKey, type MasterApiKey, type PlatformConnectOptions, type PlatformCreateAgentOptions } from "./types/schemas.js";
+import { type Agent, type BridgeCreateExternalAccountOptions, type BridgeCreateKycLinkOptions, type BridgeCreateTransferOptions, type BridgeCustomer, type BridgeExternalAccount, type BridgeKycLinkResponse, type BridgeTransfer, type BridgeVirtualAccount, type CreatedMasterApiKey, type MasterApiKey, type PlatformConnectOptions, type PlatformCreateAgentOptions, type PlatformFleetSpendingLimitOptions, type PlatformFleetSpendingLimitResult } from "./types/schemas.js";
 export declare class SpongePlatform {
     private readonly http;
     private readonly agents;
@@ -13,12 +13,21 @@ export declare class SpongePlatform {
     listAgents(): Promise<Agent[]>;
     getAgent(agentId: string): Promise<Agent>;
     updateAgent(agentId: string, updates: Partial<PlatformCreateAgentOptions>): Promise<Agent>;
+    setFleetSpendingLimits(options: PlatformFleetSpendingLimitOptions): Promise<PlatformFleetSpendingLimitResult>;
     deleteAgent(agentId: string): Promise<void>;
     getAgentApiKey(agentId: string, isTestMode?: boolean): Promise<string | null>;
     regenerateAgentApiKey(agentId: string, isTestMode?: boolean): Promise<string>;
     listMasterKeys(): Promise<MasterApiKey[]>;
     createMasterKey(name?: string): Promise<CreatedMasterApiKey>;
     revokeMasterKey(id: string): Promise<void>;
+    getBridgeCustomer(forceRefresh?: boolean): Promise<BridgeCustomer | null>;
+    createBridgeKycLink(options?: BridgeCreateKycLinkOptions): Promise<BridgeKycLinkResponse>;
+    listBridgeExternalAccounts(): Promise<BridgeExternalAccount[]>;
+    createBridgeExternalAccount(options: BridgeCreateExternalAccountOptions): Promise<BridgeExternalAccount>;
+    getBridgeVirtualAccount(walletId: string): Promise<BridgeVirtualAccount | null>;
+    createBridgeVirtualAccount(walletId: string): Promise<BridgeVirtualAccount>;
+    listBridgeTransfers(transferId?: string): Promise<BridgeTransfer[]>;
+    createBridgeTransfer(options: BridgeCreateTransferOptions): Promise<BridgeTransfer>;
     connectAgent(options: {
         apiKey: string;
         agentId?: string;

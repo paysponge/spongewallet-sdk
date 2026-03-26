@@ -172,7 +172,7 @@ export declare class SpongeWallet {
         limit?: number;
         offset?: number;
     }): Promise<{
-        status: "unknown" | "pending" | "confirmed" | "failed";
+        status: "unknown" | "failed" | "pending" | "confirmed";
         txHash: string;
         blockNumber: number | null;
         confirmations: number | null;
@@ -240,13 +240,13 @@ export declare class SpongeWallet {
         redirect_url?: string;
     }): Promise<{
         status: "initiated";
+        url: string;
+        destinationCurrency: "USDC";
+        destinationAddress: string;
         provider: "stripe" | "coinbase";
         success: true;
-        url: string;
         sessionId: string;
         destinationChain: "base" | "solana" | "polygon";
-        destinationAddress: string;
-        destinationCurrency: "USDC";
         clientSecret?: string | undefined;
     }>;
     /**
@@ -254,9 +254,9 @@ export declare class SpongeWallet {
      */
     claimSignupBonus(): Promise<{
         message: string;
-        chain: "base";
-        amount: string;
         currency: "USDC";
+        amount: string;
+        chain: "base";
         explorerUrl: string;
         transactionHash: string;
         success: boolean;
@@ -266,27 +266,27 @@ export declare class SpongeWallet {
      * Call Sponge paid APIs via x402
      */
     sponge(request: Record<string, unknown>): Promise<{
-        status: "success" | "payment_required" | "error";
+        status: "error" | "success" | "payment_required";
         provider: string;
         task: string;
-        summary?: string | undefined;
         error?: string | undefined;
+        summary?: string | undefined;
         data?: unknown;
         image_data?: string | undefined;
         image_mime_type?: string | undefined;
         payment?: {
+            amount: string;
             decimals: number;
             chain: string;
             to: string;
-            amount: string;
             token: string;
             raw_amount: string;
         } | undefined;
         payment_made?: {
             expiresAt: string;
+            amount: string;
             chain: string;
             to: string;
-            amount: string;
             token: string;
         } | undefined;
         wallet_balance?: Record<string, {
@@ -348,6 +348,16 @@ export declare class SpongeWallet {
         body?: unknown;
         preferredChain?: "base" | "solana" | "ethereum";
         preferred_chain?: "base" | "solana" | "ethereum";
+    }): Promise<unknown>;
+    /**
+     * Fetch any URL with automatic MPP payment handling
+     */
+    mppFetch(options: {
+        url: string;
+        method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+        headers?: Record<string, string>;
+        body?: unknown;
+        chain?: "tempo" | "tempo-testnet";
     }): Promise<unknown>;
     /**
      * Trade perps and spot on Hyperliquid DEX

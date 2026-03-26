@@ -74,6 +74,14 @@ export interface PaidFetchOptions {
   chain?: "base" | "solana" | "tempo" | "ethereum";
 }
 
+export interface MppFetchOptions {
+  url: string;
+  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  headers?: Record<string, string>;
+  body?: unknown;
+  chain?: "tempo" | "tempo-testnet";
+}
+
 export class PublicToolsApi {
   constructor(private readonly http: HttpClient) {}
 
@@ -206,6 +214,15 @@ export class PublicToolsApi {
       ...rest,
       method,
       preferred_chain: preferred_chain ?? preferredChain,
+    });
+  }
+
+  async mppFetch(options: MppFetchOptions): Promise<unknown> {
+    const { method = "GET", ...rest } = options;
+
+    return this.http.post<unknown>("/api/mpp/fetch", {
+      ...rest,
+      method,
     });
   }
 }

@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { getApiKey } from "./auth/credentials.js";
 import { AgentsApi } from "./api/agents.js";
-import { HttpClient } from "./api/http.js";
+import { HttpClient, SpongeApiError } from "./api/http.js";
 import { SpongeWallet } from "./client.js";
-import { AgentSchema, CreatedMasterApiKeySchema, MasterApiKeySchema, PlatformConnectOptionsSchema, PlatformCreateAgentOptionsSchema, } from "./types/schemas.js";
+import { AgentSchema, BridgeCreateExternalAccountOptionsSchema, BridgeCreateKycLinkOptionsSchema, BridgeCreateTransferOptionsSchema, BridgeCustomerSchema, BridgeExternalAccountSchema, BridgeKycLinkResponseSchema, BridgeTransferSchema, BridgeVirtualAccountSchema, CreatedMasterApiKeySchema, MasterApiKeySchema, PlatformConnectOptionsSchema, PlatformCreateAgentOptionsSchema, PlatformFleetSpendingLimitOptionsSchema, } from "./types/schemas.js";
 const DEFAULT_BASE_URL = "https://api.wallet.paysponge.com";
 const CreateAgentResponseSchema = z.object({
     agent: AgentSchema,
@@ -11,6 +11,11 @@ const CreateAgentResponseSchema = z.object({
 });
 const AgentApiKeyResponseSchema = z.object({
     mcpApiKey: z.string().nullable(),
+});
+const BridgeCustomerLookupSchema = z.object({
+    id: z.string().optional(),
+    kycStatus: z.string().nullable().optional(),
+    tosStatus: z.string().nullable().optional(),
 });
 export class SpongePlatform {
     http;
@@ -53,6 +58,40 @@ export class SpongePlatform {
     async updateAgent(agentId, updates) {
         return this.agents.update(agentId, updates);
     }
+    async setFleetSpendingLimits(options) {
+        const validated = PlatformFleetSpendingLimitOptionsSchema.parse(options);
+        const targetAgentIds = validated.agentIds
+            ?? (await this.listAgents()).map((agent) => agent.id);
+        const updates = {
+            dailySpendingLimit: validated.dailySpendingLimit,
+            weeklySpendingLimit: validated.weeklySpendingLimit,
+            monthlySpendingLimit: validated.monthlySpendingLimit,
+        };
+        const settled = await Promise.all(targetAgentIds.map(async (agentId) => {
+            try {
+                const agent = await this.updateAgent(agentId, updates);
+                return { ok: true, agent };
+            }
+            catch (error) {
+                return {
+                    ok: false,
+                    agentId,
+                    error: error instanceof Error ? error.message : String(error),
+                };
+            }
+        }));
+        return {
+            updated: settled
+                .filter((result) => result.ok)
+                .map((result) => result.agent),
+            failed: settled
+                .filter((result) => !result.ok)
+                .map((result) => ({
+                agentId: result.agentId,
+                error: result.error,
+            })),
+        };
+    }
     async deleteAgent(agentId) {
         return this.agents.delete(agentId);
     }
@@ -80,6 +119,57 @@ export class SpongePlatform {
     }
     async revokeMasterKey(id) {
         await this.http.delete("/api/master-keys/" + encodeURIComponent(id));
+    }
+    async getBridgeCustomer(forceRefresh = false) {
+        const response = await this.http.get("/api/bridge-fiat/customer", {
+            forceRefresh: forceRefresh ? "true" : undefined,
+        });
+        const parsed = BridgeCustomerLookupSchema.parse(response);
+        if (!parsed.id) {
+            return null;
+        }
+        return BridgeCustomerSchema.parse(response);
+    }
+    async createBridgeKycLink(options = {}) {
+        const validated = BridgeCreateKycLinkOptionsSchema.parse(options);
+        const response = await this.http.post("/api/bridge-fiat/customer/kyc-link", validated);
+        return BridgeKycLinkResponseSchema.parse(response);
+    }
+    async listBridgeExternalAccounts() {
+        const response = await this.http.get("/api/bridge-fiat/external-accounts");
+        return z.array(BridgeExternalAccountSchema).parse(response);
+    }
+    async createBridgeExternalAccount(options) {
+        const validated = BridgeCreateExternalAccountOptionsSchema.parse(options);
+        const response = await this.http.post("/api/bridge-fiat/external-accounts", validated);
+        return BridgeExternalAccountSchema.parse(response);
+    }
+    async getBridgeVirtualAccount(walletId) {
+        try {
+            const response = await this.http.get("/api/bridge-fiat/wallets/" + encodeURIComponent(walletId) + "/virtual-account");
+            return BridgeVirtualAccountSchema.parse(response);
+        }
+        catch (error) {
+            if (error instanceof SpongeApiError && error.statusCode === 404) {
+                return null;
+            }
+            throw error;
+        }
+    }
+    async createBridgeVirtualAccount(walletId) {
+        const response = await this.http.post("/api/bridge-fiat/wallets/" + encodeURIComponent(walletId) + "/virtual-account");
+        return BridgeVirtualAccountSchema.parse(response);
+    }
+    async listBridgeTransfers(transferId) {
+        const response = await this.http.get("/api/bridge-fiat/transfers", {
+            transferId,
+        });
+        return z.array(BridgeTransferSchema).parse(response);
+    }
+    async createBridgeTransfer(options) {
+        const validated = BridgeCreateTransferOptionsSchema.parse(options);
+        const response = await this.http.post("/api/bridge-fiat/transfers", validated);
+        return BridgeTransferSchema.parse(response);
     }
     async connectAgent(options) {
         return SpongeWallet.connect({

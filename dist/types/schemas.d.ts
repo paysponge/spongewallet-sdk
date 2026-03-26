@@ -133,6 +133,44 @@ export declare const PlatformCreateAgentOptionsSchema: z.ZodObject<{
     isTestMode?: boolean | undefined;
 }>;
 export type PlatformCreateAgentOptions = z.infer<typeof PlatformCreateAgentOptionsSchema>;
+export declare const PlatformFleetSpendingLimitOptionsSchema: z.ZodEffects<z.ZodObject<{
+    agentIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dailySpendingLimit: z.ZodOptional<z.ZodString>;
+    weeklySpendingLimit: z.ZodOptional<z.ZodString>;
+    monthlySpendingLimit: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    dailySpendingLimit?: string | undefined;
+    weeklySpendingLimit?: string | undefined;
+    monthlySpendingLimit?: string | undefined;
+    agentIds?: string[] | undefined;
+}, {
+    dailySpendingLimit?: string | undefined;
+    weeklySpendingLimit?: string | undefined;
+    monthlySpendingLimit?: string | undefined;
+    agentIds?: string[] | undefined;
+}>, {
+    dailySpendingLimit?: string | undefined;
+    weeklySpendingLimit?: string | undefined;
+    monthlySpendingLimit?: string | undefined;
+    agentIds?: string[] | undefined;
+}, {
+    dailySpendingLimit?: string | undefined;
+    weeklySpendingLimit?: string | undefined;
+    monthlySpendingLimit?: string | undefined;
+    agentIds?: string[] | undefined;
+}>;
+export type PlatformFleetSpendingLimitOptions = z.infer<typeof PlatformFleetSpendingLimitOptionsSchema>;
+export declare const PlatformFleetSpendingLimitFailureSchema: z.ZodObject<{
+    agentId: z.ZodString;
+    error: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    agentId: string;
+    error: string;
+}, {
+    agentId: string;
+    error: string;
+}>;
+export type PlatformFleetSpendingLimitFailure = z.infer<typeof PlatformFleetSpendingLimitFailureSchema>;
 export declare const AgentSchema: z.ZodObject<{
     id: z.ZodString;
     name: z.ZodString;
@@ -165,6 +203,82 @@ export declare const AgentSchema: z.ZodObject<{
     updatedAt?: Date | null | undefined;
 }>;
 export type Agent = z.infer<typeof AgentSchema>;
+export declare const PlatformFleetSpendingLimitResultSchema: z.ZodObject<{
+    updated: z.ZodArray<z.ZodObject<{
+        id: z.ZodString;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        status: z.ZodEnum<["active", "paused", "suspended"]>;
+        dailySpendingLimit: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        weeklySpendingLimit: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        monthlySpendingLimit: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        createdAt: z.ZodDate;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodDate>>;
+    }, "strip", z.ZodTypeAny, {
+        status: "active" | "paused" | "suspended";
+        name: string;
+        id: string;
+        createdAt: Date;
+        description?: string | null | undefined;
+        dailySpendingLimit?: string | null | undefined;
+        weeklySpendingLimit?: string | null | undefined;
+        monthlySpendingLimit?: string | null | undefined;
+        updatedAt?: Date | null | undefined;
+    }, {
+        status: "active" | "paused" | "suspended";
+        name: string;
+        id: string;
+        createdAt: Date;
+        description?: string | null | undefined;
+        dailySpendingLimit?: string | null | undefined;
+        weeklySpendingLimit?: string | null | undefined;
+        monthlySpendingLimit?: string | null | undefined;
+        updatedAt?: Date | null | undefined;
+    }>, "many">;
+    failed: z.ZodArray<z.ZodObject<{
+        agentId: z.ZodString;
+        error: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        agentId: string;
+        error: string;
+    }, {
+        agentId: string;
+        error: string;
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    updated: {
+        status: "active" | "paused" | "suspended";
+        name: string;
+        id: string;
+        createdAt: Date;
+        description?: string | null | undefined;
+        dailySpendingLimit?: string | null | undefined;
+        weeklySpendingLimit?: string | null | undefined;
+        monthlySpendingLimit?: string | null | undefined;
+        updatedAt?: Date | null | undefined;
+    }[];
+    failed: {
+        agentId: string;
+        error: string;
+    }[];
+}, {
+    updated: {
+        status: "active" | "paused" | "suspended";
+        name: string;
+        id: string;
+        createdAt: Date;
+        description?: string | null | undefined;
+        dailySpendingLimit?: string | null | undefined;
+        weeklySpendingLimit?: string | null | undefined;
+        monthlySpendingLimit?: string | null | undefined;
+        updatedAt?: Date | null | undefined;
+    }[];
+    failed: {
+        agentId: string;
+        error: string;
+    }[];
+}>;
+export type PlatformFleetSpendingLimitResult = z.infer<typeof PlatformFleetSpendingLimitResultSchema>;
 export declare const MasterApiKeySchema: z.ZodObject<{
     id: z.ZodString;
     keyPrefix: z.ZodString;
@@ -217,6 +331,663 @@ export declare const CreatedMasterApiKeySchema: z.ZodObject<{
     keyName?: string | null | undefined;
 }>;
 export type CreatedMasterApiKey = z.infer<typeof CreatedMasterApiKeySchema>;
+export declare const BridgeCustomerEndorsementRequirementSchema: z.ZodObject<{
+    complete: z.ZodArray<z.ZodString, "many">;
+    pending: z.ZodArray<z.ZodString, "many">;
+    missing: z.ZodNullable<z.ZodUnknown>;
+    issues: z.ZodArray<z.ZodString, "many">;
+}, "strip", z.ZodTypeAny, {
+    issues: string[];
+    complete: string[];
+    pending: string[];
+    missing?: unknown;
+}, {
+    issues: string[];
+    complete: string[];
+    pending: string[];
+    missing?: unknown;
+}>;
+export type BridgeCustomerEndorsementRequirement = z.infer<typeof BridgeCustomerEndorsementRequirementSchema>;
+export declare const BridgeCustomerEndorsementSchema: z.ZodObject<{
+    name: z.ZodString;
+    status: z.ZodString;
+    requirements: z.ZodNullable<z.ZodObject<{
+        complete: z.ZodArray<z.ZodString, "many">;
+        pending: z.ZodArray<z.ZodString, "many">;
+        missing: z.ZodNullable<z.ZodUnknown>;
+        issues: z.ZodArray<z.ZodString, "many">;
+    }, "strip", z.ZodTypeAny, {
+        issues: string[];
+        complete: string[];
+        pending: string[];
+        missing?: unknown;
+    }, {
+        issues: string[];
+        complete: string[];
+        pending: string[];
+        missing?: unknown;
+    }>>;
+    additionalRequirements: z.ZodArray<z.ZodString, "many">;
+}, "strip", z.ZodTypeAny, {
+    status: string;
+    name: string;
+    requirements: {
+        issues: string[];
+        complete: string[];
+        pending: string[];
+        missing?: unknown;
+    } | null;
+    additionalRequirements: string[];
+}, {
+    status: string;
+    name: string;
+    requirements: {
+        issues: string[];
+        complete: string[];
+        pending: string[];
+        missing?: unknown;
+    } | null;
+    additionalRequirements: string[];
+}>;
+export type BridgeCustomerEndorsement = z.infer<typeof BridgeCustomerEndorsementSchema>;
+export declare const BridgeCustomerSchema: z.ZodObject<{
+    id: z.ZodString;
+    bridgeCustomerId: z.ZodString;
+    kycLinkId: z.ZodNullable<z.ZodString>;
+    status: z.ZodNullable<z.ZodString>;
+    kycStatus: z.ZodNullable<z.ZodString>;
+    tosStatus: z.ZodNullable<z.ZodString>;
+    hasAcceptedTermsOfService: z.ZodBoolean;
+    capabilities: z.ZodRecord<z.ZodString, z.ZodString>;
+    endorsements: z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        status: z.ZodString;
+        requirements: z.ZodNullable<z.ZodObject<{
+            complete: z.ZodArray<z.ZodString, "many">;
+            pending: z.ZodArray<z.ZodString, "many">;
+            missing: z.ZodNullable<z.ZodUnknown>;
+            issues: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            issues: string[];
+            complete: string[];
+            pending: string[];
+            missing?: unknown;
+        }, {
+            issues: string[];
+            complete: string[];
+            pending: string[];
+            missing?: unknown;
+        }>>;
+        additionalRequirements: z.ZodArray<z.ZodString, "many">;
+    }, "strip", z.ZodTypeAny, {
+        status: string;
+        name: string;
+        requirements: {
+            issues: string[];
+            complete: string[];
+            pending: string[];
+            missing?: unknown;
+        } | null;
+        additionalRequirements: string[];
+    }, {
+        status: string;
+        name: string;
+        requirements: {
+            issues: string[];
+            complete: string[];
+            pending: string[];
+            missing?: unknown;
+        } | null;
+        additionalRequirements: string[];
+    }>, "many">;
+    requestedWalletId: z.ZodNullable<z.ZodString>;
+    requestedAt: z.ZodNullable<z.ZodDate>;
+    livemode: z.ZodBoolean;
+    hostedLinkUrl: z.ZodNullable<z.ZodString>;
+    tosLinkUrl: z.ZodNullable<z.ZodString>;
+    customerType: z.ZodNullable<z.ZodString>;
+    updatedAt: z.ZodDate;
+}, "strip", z.ZodTypeAny, {
+    status: string | null;
+    id: string;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    kycLinkId: string | null;
+    kycStatus: string | null;
+    tosStatus: string | null;
+    hasAcceptedTermsOfService: boolean;
+    capabilities: Record<string, string>;
+    endorsements: {
+        status: string;
+        name: string;
+        requirements: {
+            issues: string[];
+            complete: string[];
+            pending: string[];
+            missing?: unknown;
+        } | null;
+        additionalRequirements: string[];
+    }[];
+    requestedWalletId: string | null;
+    requestedAt: Date | null;
+    livemode: boolean;
+    hostedLinkUrl: string | null;
+    tosLinkUrl: string | null;
+    customerType: string | null;
+}, {
+    status: string | null;
+    id: string;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    kycLinkId: string | null;
+    kycStatus: string | null;
+    tosStatus: string | null;
+    hasAcceptedTermsOfService: boolean;
+    capabilities: Record<string, string>;
+    endorsements: {
+        status: string;
+        name: string;
+        requirements: {
+            issues: string[];
+            complete: string[];
+            pending: string[];
+            missing?: unknown;
+        } | null;
+        additionalRequirements: string[];
+    }[];
+    requestedWalletId: string | null;
+    requestedAt: Date | null;
+    livemode: boolean;
+    hostedLinkUrl: string | null;
+    tosLinkUrl: string | null;
+    customerType: string | null;
+}>;
+export type BridgeCustomer = z.infer<typeof BridgeCustomerSchema>;
+export declare const BridgeKycLinkResponseSchema: z.ZodObject<{
+    url: z.ZodString;
+    customer: z.ZodObject<{
+        id: z.ZodString;
+        bridgeCustomerId: z.ZodString;
+        kycLinkId: z.ZodNullable<z.ZodString>;
+        status: z.ZodNullable<z.ZodString>;
+        kycStatus: z.ZodNullable<z.ZodString>;
+        tosStatus: z.ZodNullable<z.ZodString>;
+        hasAcceptedTermsOfService: z.ZodBoolean;
+        capabilities: z.ZodRecord<z.ZodString, z.ZodString>;
+        endorsements: z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            status: z.ZodString;
+            requirements: z.ZodNullable<z.ZodObject<{
+                complete: z.ZodArray<z.ZodString, "many">;
+                pending: z.ZodArray<z.ZodString, "many">;
+                missing: z.ZodNullable<z.ZodUnknown>;
+                issues: z.ZodArray<z.ZodString, "many">;
+            }, "strip", z.ZodTypeAny, {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            }, {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            }>>;
+            additionalRequirements: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            status: string;
+            name: string;
+            requirements: {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            } | null;
+            additionalRequirements: string[];
+        }, {
+            status: string;
+            name: string;
+            requirements: {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            } | null;
+            additionalRequirements: string[];
+        }>, "many">;
+        requestedWalletId: z.ZodNullable<z.ZodString>;
+        requestedAt: z.ZodNullable<z.ZodDate>;
+        livemode: z.ZodBoolean;
+        hostedLinkUrl: z.ZodNullable<z.ZodString>;
+        tosLinkUrl: z.ZodNullable<z.ZodString>;
+        customerType: z.ZodNullable<z.ZodString>;
+        updatedAt: z.ZodDate;
+    }, "strip", z.ZodTypeAny, {
+        status: string | null;
+        id: string;
+        updatedAt: Date;
+        bridgeCustomerId: string;
+        kycLinkId: string | null;
+        kycStatus: string | null;
+        tosStatus: string | null;
+        hasAcceptedTermsOfService: boolean;
+        capabilities: Record<string, string>;
+        endorsements: {
+            status: string;
+            name: string;
+            requirements: {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            } | null;
+            additionalRequirements: string[];
+        }[];
+        requestedWalletId: string | null;
+        requestedAt: Date | null;
+        livemode: boolean;
+        hostedLinkUrl: string | null;
+        tosLinkUrl: string | null;
+        customerType: string | null;
+    }, {
+        status: string | null;
+        id: string;
+        updatedAt: Date;
+        bridgeCustomerId: string;
+        kycLinkId: string | null;
+        kycStatus: string | null;
+        tosStatus: string | null;
+        hasAcceptedTermsOfService: boolean;
+        capabilities: Record<string, string>;
+        endorsements: {
+            status: string;
+            name: string;
+            requirements: {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            } | null;
+            additionalRequirements: string[];
+        }[];
+        requestedWalletId: string | null;
+        requestedAt: Date | null;
+        livemode: boolean;
+        hostedLinkUrl: string | null;
+        tosLinkUrl: string | null;
+        customerType: string | null;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    url: string;
+    customer: {
+        status: string | null;
+        id: string;
+        updatedAt: Date;
+        bridgeCustomerId: string;
+        kycLinkId: string | null;
+        kycStatus: string | null;
+        tosStatus: string | null;
+        hasAcceptedTermsOfService: boolean;
+        capabilities: Record<string, string>;
+        endorsements: {
+            status: string;
+            name: string;
+            requirements: {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            } | null;
+            additionalRequirements: string[];
+        }[];
+        requestedWalletId: string | null;
+        requestedAt: Date | null;
+        livemode: boolean;
+        hostedLinkUrl: string | null;
+        tosLinkUrl: string | null;
+        customerType: string | null;
+    };
+}, {
+    url: string;
+    customer: {
+        status: string | null;
+        id: string;
+        updatedAt: Date;
+        bridgeCustomerId: string;
+        kycLinkId: string | null;
+        kycStatus: string | null;
+        tosStatus: string | null;
+        hasAcceptedTermsOfService: boolean;
+        capabilities: Record<string, string>;
+        endorsements: {
+            status: string;
+            name: string;
+            requirements: {
+                issues: string[];
+                complete: string[];
+                pending: string[];
+                missing?: unknown;
+            } | null;
+            additionalRequirements: string[];
+        }[];
+        requestedWalletId: string | null;
+        requestedAt: Date | null;
+        livemode: boolean;
+        hostedLinkUrl: string | null;
+        tosLinkUrl: string | null;
+        customerType: string | null;
+    };
+}>;
+export type BridgeKycLinkResponse = z.infer<typeof BridgeKycLinkResponseSchema>;
+export declare const BridgeExternalAccountSchema: z.ZodObject<{
+    id: z.ZodString;
+    bridgeExternalAccountId: z.ZodString;
+    bridgeCustomerId: z.ZodString;
+    currency: z.ZodString;
+    last4: z.ZodNullable<z.ZodString>;
+    active: z.ZodBoolean;
+    livemode: z.ZodBoolean;
+    bankName: z.ZodNullable<z.ZodString>;
+    accountType: z.ZodNullable<z.ZodString>;
+    accountOwnerType: z.ZodNullable<z.ZodString>;
+    createdAt: z.ZodDate;
+    updatedAt: z.ZodDate;
+}, "strip", z.ZodTypeAny, {
+    id: string;
+    active: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    livemode: boolean;
+    bridgeExternalAccountId: string;
+    currency: string;
+    last4: string | null;
+    bankName: string | null;
+    accountType: string | null;
+    accountOwnerType: string | null;
+}, {
+    id: string;
+    active: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    livemode: boolean;
+    bridgeExternalAccountId: string;
+    currency: string;
+    last4: string | null;
+    bankName: string | null;
+    accountType: string | null;
+    accountOwnerType: string | null;
+}>;
+export type BridgeExternalAccount = z.infer<typeof BridgeExternalAccountSchema>;
+export declare const BridgeVirtualAccountActivitySchema: z.ZodObject<{
+    id: z.ZodString;
+    bridgeEventId: z.ZodString;
+    type: z.ZodString;
+    status: z.ZodNullable<z.ZodString>;
+    amount: z.ZodNullable<z.ZodString>;
+    currency: z.ZodNullable<z.ZodString>;
+    receiptTxHash: z.ZodNullable<z.ZodString>;
+    eventCreatedAt: z.ZodNullable<z.ZodDate>;
+    createdAt: z.ZodDate;
+}, "strip", z.ZodTypeAny, {
+    type: string;
+    status: string | null;
+    id: string;
+    createdAt: Date;
+    currency: string | null;
+    bridgeEventId: string;
+    amount: string | null;
+    receiptTxHash: string | null;
+    eventCreatedAt: Date | null;
+}, {
+    type: string;
+    status: string | null;
+    id: string;
+    createdAt: Date;
+    currency: string | null;
+    bridgeEventId: string;
+    amount: string | null;
+    receiptTxHash: string | null;
+    eventCreatedAt: Date | null;
+}>;
+export type BridgeVirtualAccountActivity = z.infer<typeof BridgeVirtualAccountActivitySchema>;
+export declare const BridgeVirtualAccountSchema: z.ZodObject<{
+    id: z.ZodString;
+    bridgeVirtualAccountId: z.ZodString;
+    bridgeCustomerId: z.ZodString;
+    walletId: z.ZodString;
+    status: z.ZodNullable<z.ZodString>;
+    sourceCurrency: z.ZodString;
+    destinationCurrency: z.ZodString;
+    destinationPaymentRail: z.ZodString;
+    destinationAddress: z.ZodString;
+    depositInstructions: z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+    activities: z.ZodArray<z.ZodObject<{
+        id: z.ZodString;
+        bridgeEventId: z.ZodString;
+        type: z.ZodString;
+        status: z.ZodNullable<z.ZodString>;
+        amount: z.ZodNullable<z.ZodString>;
+        currency: z.ZodNullable<z.ZodString>;
+        receiptTxHash: z.ZodNullable<z.ZodString>;
+        eventCreatedAt: z.ZodNullable<z.ZodDate>;
+        createdAt: z.ZodDate;
+    }, "strip", z.ZodTypeAny, {
+        type: string;
+        status: string | null;
+        id: string;
+        createdAt: Date;
+        currency: string | null;
+        bridgeEventId: string;
+        amount: string | null;
+        receiptTxHash: string | null;
+        eventCreatedAt: Date | null;
+    }, {
+        type: string;
+        status: string | null;
+        id: string;
+        createdAt: Date;
+        currency: string | null;
+        bridgeEventId: string;
+        amount: string | null;
+        receiptTxHash: string | null;
+        eventCreatedAt: Date | null;
+    }>, "many">;
+    accountReadyNotifiedAt: z.ZodNullable<z.ZodDate>;
+    livemode: z.ZodBoolean;
+    createdAt: z.ZodDate;
+    updatedAt: z.ZodDate;
+}, "strip", z.ZodTypeAny, {
+    status: string | null;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    livemode: boolean;
+    bridgeVirtualAccountId: string;
+    walletId: string;
+    sourceCurrency: string;
+    destinationCurrency: string;
+    destinationPaymentRail: string;
+    destinationAddress: string;
+    depositInstructions: Record<string, unknown> | null;
+    activities: {
+        type: string;
+        status: string | null;
+        id: string;
+        createdAt: Date;
+        currency: string | null;
+        bridgeEventId: string;
+        amount: string | null;
+        receiptTxHash: string | null;
+        eventCreatedAt: Date | null;
+    }[];
+    accountReadyNotifiedAt: Date | null;
+}, {
+    status: string | null;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    livemode: boolean;
+    bridgeVirtualAccountId: string;
+    walletId: string;
+    sourceCurrency: string;
+    destinationCurrency: string;
+    destinationPaymentRail: string;
+    destinationAddress: string;
+    depositInstructions: Record<string, unknown> | null;
+    activities: {
+        type: string;
+        status: string | null;
+        id: string;
+        createdAt: Date;
+        currency: string | null;
+        bridgeEventId: string;
+        amount: string | null;
+        receiptTxHash: string | null;
+        eventCreatedAt: Date | null;
+    }[];
+    accountReadyNotifiedAt: Date | null;
+}>;
+export type BridgeVirtualAccount = z.infer<typeof BridgeVirtualAccountSchema>;
+export declare const BridgeTransferSchema: z.ZodObject<{
+    id: z.ZodString;
+    bridgeTransferId: z.ZodString;
+    bridgeCustomerId: z.ZodString;
+    bridgeExternalAccountId: z.ZodString;
+    walletId: z.ZodString;
+    status: z.ZodString;
+    amount: z.ZodString;
+    sourceCurrency: z.ZodString;
+    sourcePaymentRail: z.ZodString;
+    destinationCurrency: z.ZodString;
+    destinationPaymentRail: z.ZodString;
+    fundingTxHash: z.ZodNullable<z.ZodString>;
+    fundingExplorerUrl: z.ZodNullable<z.ZodString>;
+    failureReason: z.ZodNullable<z.ZodString>;
+    receiptUrl: z.ZodNullable<z.ZodString>;
+    depositInstructions: z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+    isStaticTemplate: z.ZodBoolean;
+    livemode: z.ZodBoolean;
+    createdAt: z.ZodDate;
+    updatedAt: z.ZodDate;
+}, "strip", z.ZodTypeAny, {
+    status: string;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    livemode: boolean;
+    bridgeExternalAccountId: string;
+    amount: string;
+    walletId: string;
+    sourceCurrency: string;
+    destinationCurrency: string;
+    destinationPaymentRail: string;
+    depositInstructions: Record<string, unknown> | null;
+    bridgeTransferId: string;
+    sourcePaymentRail: string;
+    fundingTxHash: string | null;
+    fundingExplorerUrl: string | null;
+    failureReason: string | null;
+    receiptUrl: string | null;
+    isStaticTemplate: boolean;
+}, {
+    status: string;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    bridgeCustomerId: string;
+    livemode: boolean;
+    bridgeExternalAccountId: string;
+    amount: string;
+    walletId: string;
+    sourceCurrency: string;
+    destinationCurrency: string;
+    destinationPaymentRail: string;
+    depositInstructions: Record<string, unknown> | null;
+    bridgeTransferId: string;
+    sourcePaymentRail: string;
+    fundingTxHash: string | null;
+    fundingExplorerUrl: string | null;
+    failureReason: string | null;
+    receiptUrl: string | null;
+    isStaticTemplate: boolean;
+}>;
+export type BridgeTransfer = z.infer<typeof BridgeTransferSchema>;
+export declare const BridgeCustomerTypeSchema: z.ZodEnum<["individual", "business"]>;
+export type BridgeCustomerType = z.infer<typeof BridgeCustomerTypeSchema>;
+export declare const BridgeCreateKycLinkOptionsSchema: z.ZodObject<{
+    walletId: z.ZodOptional<z.ZodString>;
+    redirectUri: z.ZodOptional<z.ZodString>;
+    customerType: z.ZodOptional<z.ZodEnum<["individual", "business"]>>;
+}, "strip", z.ZodTypeAny, {
+    customerType?: "individual" | "business" | undefined;
+    walletId?: string | undefined;
+    redirectUri?: string | undefined;
+}, {
+    customerType?: "individual" | "business" | undefined;
+    walletId?: string | undefined;
+    redirectUri?: string | undefined;
+}>;
+export type BridgeCreateKycLinkOptions = z.infer<typeof BridgeCreateKycLinkOptionsSchema>;
+export declare const BridgeCreateExternalAccountOptionsSchema: z.ZodObject<{
+    customerId: z.ZodString;
+    bankName: z.ZodString;
+    accountOwnerName: z.ZodString;
+    routingNumber: z.ZodString;
+    accountNumber: z.ZodString;
+    checkingOrSavings: z.ZodEnum<["checking", "savings"]>;
+    streetLine1: z.ZodString;
+    streetLine2: z.ZodOptional<z.ZodString>;
+    city: z.ZodString;
+    state: z.ZodString;
+    postalCode: z.ZodString;
+    country: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    bankName: string;
+    customerId: string;
+    accountOwnerName: string;
+    routingNumber: string;
+    accountNumber: string;
+    checkingOrSavings: "checking" | "savings";
+    streetLine1: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    streetLine2?: string | undefined;
+    country?: string | undefined;
+}, {
+    bankName: string;
+    customerId: string;
+    accountOwnerName: string;
+    routingNumber: string;
+    accountNumber: string;
+    checkingOrSavings: "checking" | "savings";
+    streetLine1: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    streetLine2?: string | undefined;
+    country?: string | undefined;
+}>;
+export type BridgeCreateExternalAccountOptions = z.infer<typeof BridgeCreateExternalAccountOptionsSchema>;
+export declare const BridgeCreateTransferOptionsSchema: z.ZodObject<{
+    walletId: z.ZodString;
+    externalAccountId: z.ZodString;
+    amount: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    amount: string;
+    walletId: string;
+    externalAccountId: string;
+}, {
+    amount: string;
+    walletId: string;
+    externalAccountId: string;
+}>;
+export type BridgeCreateTransferOptions = z.infer<typeof BridgeCreateTransferOptionsSchema>;
 export declare const WalletSchema: z.ZodObject<{
     id: z.ZodString;
     agentId: z.ZodString;
@@ -292,27 +1063,27 @@ export declare const TransferOptionsSchema: z.ZodEffects<z.ZodObject<{
     currency: z.ZodOptional<z.ZodString>;
     token: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    amount: string;
     chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
-    amount: string;
     currency?: string | undefined;
     token?: string | undefined;
 }, {
+    amount: string;
     chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
-    amount: string;
     currency?: string | undefined;
     token?: string | undefined;
 }>, {
+    amount: string;
     chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
-    amount: string;
     currency?: string | undefined;
     token?: string | undefined;
 }, {
+    amount: string;
     chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia" | "tempo-testnet" | "tempo" | "solana" | "solana-devnet";
     to: string;
-    amount: string;
     currency?: string | undefined;
     token?: string | undefined;
 }>;
@@ -323,12 +1094,12 @@ export declare const TransactionResultSchema: z.ZodObject<{
     explorerUrl: z.ZodOptional<z.ZodString>;
     chainId: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    status: "pending" | "confirmed" | "failed";
+    status: "failed" | "pending" | "confirmed";
     txHash: string;
     chainId?: number | undefined;
     explorerUrl?: string | undefined;
 }, {
-    status: "pending" | "confirmed" | "failed";
+    status: "failed" | "pending" | "confirmed";
     txHash: string;
     chainId?: number | undefined;
     explorerUrl?: string | undefined;
@@ -341,13 +1112,13 @@ export declare const TransactionStatusSchema: z.ZodObject<{
     confirmations: z.ZodNullable<z.ZodNumber>;
     errorMessage: z.ZodNullable<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    status: "unknown" | "pending" | "confirmed" | "failed";
+    status: "unknown" | "failed" | "pending" | "confirmed";
     txHash: string;
     blockNumber: number | null;
     confirmations: number | null;
     errorMessage: string | null;
 }, {
-    status: "unknown" | "pending" | "confirmed" | "failed";
+    status: "unknown" | "failed" | "pending" | "confirmed";
     txHash: string;
     blockNumber: number | null;
     confirmations: number | null;
@@ -361,15 +1132,15 @@ export declare const SwapOptionsSchema: z.ZodObject<{
     amount: z.ZodString;
     slippageBps: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
+    amount: string;
     chain: "solana" | "solana-devnet";
     to: string;
-    amount: string;
     from: string;
     slippageBps?: number | undefined;
 }, {
+    amount: string;
     chain: "solana" | "solana-devnet";
     to: string;
-    amount: string;
     from: string;
     slippageBps?: number | undefined;
 }>;
@@ -456,15 +1227,15 @@ export declare const EvmTransferOptionsSchema: z.ZodObject<{
     amount: z.ZodString;
     currency: z.ZodEnum<["ETH", "USDC"]>;
 }, "strip", z.ZodTypeAny, {
+    currency: "ETH" | "USDC";
+    amount: string;
     chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia";
     to: string;
-    amount: string;
-    currency: "ETH" | "USDC";
 }, {
+    currency: "ETH" | "USDC";
+    amount: string;
     chain: "ethereum" | "base" | "monad" | "sepolia" | "base-sepolia";
     to: string;
-    amount: string;
-    currency: "ETH" | "USDC";
 }>;
 export type EvmTransferOptions = z.infer<typeof EvmTransferOptionsSchema>;
 export declare const SolanaTransferOptionsSchema: z.ZodObject<{
@@ -473,15 +1244,15 @@ export declare const SolanaTransferOptionsSchema: z.ZodObject<{
     amount: z.ZodString;
     currency: z.ZodEnum<["SOL", "USDC"]>;
 }, "strip", z.ZodTypeAny, {
+    currency: "USDC" | "SOL";
+    amount: string;
     chain: "solana" | "solana-devnet";
     to: string;
-    amount: string;
-    currency: "USDC" | "SOL";
 }, {
+    currency: "USDC" | "SOL";
+    amount: string;
     chain: "solana" | "solana-devnet";
     to: string;
-    amount: string;
-    currency: "USDC" | "SOL";
 }>;
 export type SolanaTransferOptions = z.infer<typeof SolanaTransferOptionsSchema>;
 export declare const SubmitTransactionSchema: z.ZodObject<{
@@ -633,23 +1404,23 @@ export declare const OnrampCryptoResponseSchema: z.ZodObject<{
     clientSecret: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     status: "initiated";
+    url: string;
+    destinationCurrency: "USDC";
+    destinationAddress: string;
     provider: "stripe" | "coinbase";
     success: true;
-    url: string;
     sessionId: string;
     destinationChain: "base" | "solana" | "polygon";
-    destinationAddress: string;
-    destinationCurrency: "USDC";
     clientSecret?: string | undefined;
 }, {
     status: "initiated";
+    url: string;
+    destinationCurrency: "USDC";
+    destinationAddress: string;
     provider: "stripe" | "coinbase";
     success: true;
-    url: string;
     sessionId: string;
     destinationChain: "base" | "solana" | "polygon";
-    destinationAddress: string;
-    destinationCurrency: "USDC";
     clientSecret?: string | undefined;
 }>;
 export type OnrampCryptoResponse = z.infer<typeof OnrampCryptoResponseSchema>;
@@ -664,18 +1435,18 @@ export declare const SignupBonusClaimResponseSchema: z.ZodObject<{
     explorerUrl: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     message: string;
-    chain: "base";
-    amount: string;
     currency: "USDC";
+    amount: string;
+    chain: "base";
     explorerUrl: string;
     transactionHash: string;
     success: boolean;
     recipientAddress: string;
 }, {
     message: string;
-    chain: "base";
-    amount: string;
     currency: "USDC";
+    amount: string;
+    chain: "base";
     explorerUrl: string;
     transactionHash: string;
     success: boolean;
@@ -762,17 +1533,17 @@ export declare const SpongeResponseSchema: z.ZodObject<{
         raw_amount: z.ZodString;
         decimals: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
+        amount: string;
         decimals: number;
         chain: string;
         to: string;
-        amount: string;
         token: string;
         raw_amount: string;
     }, {
+        amount: string;
         decimals: number;
         chain: string;
         to: string;
-        amount: string;
         token: string;
         raw_amount: string;
     }>>;
@@ -784,15 +1555,15 @@ export declare const SpongeResponseSchema: z.ZodObject<{
         expiresAt: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         expiresAt: string;
+        amount: string;
         chain: string;
         to: string;
-        amount: string;
         token: string;
     }, {
         expiresAt: string;
+        amount: string;
         chain: string;
         to: string;
-        amount: string;
         token: string;
     }>>;
     wallet_balance: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -830,27 +1601,27 @@ export declare const SpongeResponseSchema: z.ZodObject<{
     api_error_details: z.ZodOptional<z.ZodUnknown>;
     receipt: z.ZodOptional<z.ZodUnknown>;
 }, "strip", z.ZodTypeAny, {
-    status: "success" | "payment_required" | "error";
+    status: "error" | "success" | "payment_required";
     provider: string;
     task: string;
-    summary?: string | undefined;
     error?: string | undefined;
+    summary?: string | undefined;
     data?: unknown;
     image_data?: string | undefined;
     image_mime_type?: string | undefined;
     payment?: {
+        amount: string;
         decimals: number;
         chain: string;
         to: string;
-        amount: string;
         token: string;
         raw_amount: string;
     } | undefined;
     payment_made?: {
         expiresAt: string;
+        amount: string;
         chain: string;
         to: string;
-        amount: string;
         token: string;
     } | undefined;
     wallet_balance?: Record<string, {
@@ -865,27 +1636,27 @@ export declare const SpongeResponseSchema: z.ZodObject<{
     api_error_details?: unknown;
     receipt?: unknown;
 }, {
-    status: "success" | "payment_required" | "error";
+    status: "error" | "success" | "payment_required";
     provider: string;
     task: string;
-    summary?: string | undefined;
     error?: string | undefined;
+    summary?: string | undefined;
     data?: unknown;
     image_data?: string | undefined;
     image_mime_type?: string | undefined;
     payment?: {
+        amount: string;
         decimals: number;
         chain: string;
         to: string;
-        amount: string;
         token: string;
         raw_amount: string;
     } | undefined;
     payment_made?: {
         expiresAt: string;
+        amount: string;
         chain: string;
         to: string;
-        amount: string;
         token: string;
     } | undefined;
     wallet_balance?: Record<string, {
