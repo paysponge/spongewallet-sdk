@@ -1,6 +1,6 @@
 {
   "name": "@paysponge/sdk",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "type": "module",
   "description": "SDK for spinning up wallets for AI agents with Claude Agent SDK integration",
   "main": "./dist/index.js",
@@ -29,8 +29,9 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
+    "typecheck:examples": "tsc -p tsconfig.examples.json",
     "test": "vitest run",
-    "check": "bun run generate && bun run typecheck && bun test",
+    "check": "bun run generate && bun run typecheck && bun run typecheck:examples && bun test",
     "test:watch": "vitest",
     "prepublishOnly": "bun run check && bun run build",
     "example:basic": "bun run examples/basic.ts",

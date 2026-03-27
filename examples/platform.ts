@@ -10,6 +10,7 @@
  *
  * Optional:
  *   SPONGE_API_URL=http://localhost:8000
+ *   SPONGE_KEEP_AGENT=true
  */
 
 import { SpongePlatform } from "../src/index.js";
@@ -22,6 +23,7 @@ async function main() {
 
   const baseUrl = process.env.SPONGE_API_URL || "https://api.wallet.paysponge.com";
   const masterKey = process.env.SPONGE_MASTER_KEY;
+  const keepAgent = process.env.SPONGE_KEEP_AGENT === "true";
   if (!masterKey) {
     throw new Error("SPONGE_MASTER_KEY is required. Create one in Dashboard -> Settings -> Master API Keys.");
   }
@@ -34,39 +36,60 @@ async function main() {
   console.log(`   Connected to ${platform.getBaseUrl()}`);
   console.log();
 
-  console.log("2. Creating agent via SpongePlatform...");
-  const created = await platform.createAgent({
+  let createdAgentId: string | null = null;
+
+  try {
+    console.log("2. Creating agent via SpongePlatform...");
+    const created = await platform.createAgent({
       name: `bot-${Date.now()}`,
       description: "Created via master key example",
       isTestMode: true,
-  });
-  console.log(`   Agent: ${created.agent.name} (${created.agent.id})`);
-  console.log(`   API Key: ${created.apiKey.substring(0, 24)}...`);
-  console.log();
+    });
+    createdAgentId = created.agent.id;
+    console.log(`   Agent: ${created.agent.name} (${created.agent.id})`);
+    console.log(`   API Key: ${created.apiKey.substring(0, 24)}...`);
+    console.log();
 
-  console.log("3. Connecting to created agent wallet...");
-  const wallet = await platform.connectAgent({
-    apiKey: created.apiKey,
-    agentId: created.agent.id,
-  });
-  console.log(`   Connected! Agent ID: ${wallet.getAgentId()}`);
-  console.log();
+    console.log("3. Connecting to created agent wallet...");
+    const wallet = await platform.connectAgent({
+      apiKey: created.apiKey,
+      agentId: created.agent.id,
+    });
+    console.log(`   Connected! Agent ID: ${wallet.getAgentId()}`);
+    console.log();
 
-  console.log("4. Getting wallet addresses...");
-  const addresses = await wallet.getAddresses();
-  for (const [chain, address] of Object.entries(addresses)) {
-    console.log(`   ${chain}: ${address}`);
+    console.log("4. Getting wallet addresses...");
+    const addresses = await wallet.getAddresses();
+    for (const [chain, address] of Object.entries(addresses)) {
+      console.log(`   ${chain}: ${address}`);
+    }
+    console.log();
+
+    console.log("5. Listing agents for this platform...");
+    const agents = await platform.listAgents();
+    console.log(`   Agent count: ${agents.length}`);
+    console.log();
+
+    console.log("=".repeat(60));
+    console.log("Platform example completed!");
+    console.log("=".repeat(60));
+  } finally {
+    if (!createdAgentId || keepAgent) {
+      if (createdAgentId && keepAgent) {
+        console.log("Preserving created agent because SPONGE_KEEP_AGENT=true");
+      }
+      return;
+    }
+
+    console.log();
+    console.log("6. Cleaning up example agent...");
+    try {
+      await platform.deleteAgent(createdAgentId);
+      console.log(`   Deleted ${createdAgentId}`);
+    } catch (cleanupError) {
+      console.error(`   Failed to delete ${createdAgentId}:`, cleanupError);
+    }
   }
-  console.log();
-
-  console.log("5. Listing agents for this platform...");
-  const agents = await platform.listAgents();
-  console.log(`   Agent count: ${agents.length}`);
-  console.log();
-
-  console.log("=".repeat(60));
-  console.log("Platform example completed!");
-  console.log("=".repeat(60));
 }
 
 main().catch((error) => {
