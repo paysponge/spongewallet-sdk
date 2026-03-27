@@ -36,6 +36,8 @@ interface AuthOpts extends SharedOpts {
   name?: string;
   email?: string;
   browser: boolean; // --no-browser → false
+  continueClaim?: boolean;
+  switch?: boolean;
 }
 
 interface OnboardOpts extends AuthOpts {
@@ -96,7 +98,10 @@ export function buildCliProgram(metadata: CliMetadata = {}): Command {
     program
       .command("login")
       .description("Claim a pending agent or authenticate and cache credentials")
-  ).action((opts: AuthOpts) => handleLogin(opts));
+  )
+    .option("--continue-claim", "open the cached claim URL for the current agent")
+    .option("--switch", "replace cached credentials with a new agent login")
+    .action((opts: AuthOpts) => handleLogin(opts));
 
   shared(
     program.command("logout").description("Remove stored credentials")
@@ -145,7 +150,21 @@ export async function runCli(
 async function handleLogin(opts: AuthOpts) {
   const creds = loadCredentials(opts.credentialsPath);
 
-  if (!process.env.SPONGE_API_KEY && creds?.claimUrl) {
+  if (opts.switch) {
+    deleteCredentials(opts.credentialsPath);
+  }
+
+  if (opts.continueClaim) {
+    if (!creds?.claimUrl) {
+      throw new Error(
+        "No pending claim URL found in cached credentials. Run `spongewallet login --switch` to authenticate a different agent."
+      );
+    }
+    await continueClaimFlow(creds, opts);
+    return;
+  }
+
+  if (!opts.switch && !process.env.SPONGE_API_KEY && creds?.claimUrl) {
     await continueClaimFlow(creds, opts);
     return;
   }
@@ -290,6 +309,11 @@ async function handleWhoami(opts: SharedOpts, meta: CliMetadata) {
     `Credentials: ${getCredentialsPath(opts.credentialsPath)}`
   );
   p.log.info(lines.join("\n"));
+  if (creds.claimUrl) {
+    const cmd = meta.commandName ?? "spongewallet";
+    p.log.step(`Run \`${cmd} login --continue-claim\` to reopen this claim flow.`);
+    p.log.step(`Run \`${cmd} login --switch\` to replace this cached agent with a different one.`);
+  }
 }
 
 async function handleMcpPrint(opts: McpPrintOpts) {
@@ -344,10 +368,12 @@ async function continueClaimFlow(creds: Credentials, opts: AuthOpts) {
   }
 
   p.log.info("After the browser claim completes, the cached API key will keep working for this agent.");
+  p.log.step("To authenticate a different agent, run `spongewallet login --switch`.");
   p.outro("Claim flow ready");
 }
 
 function requiredInput(
+  command: Command,
   opts: Record<string, unknown>,
   positional: string | undefined,
   optionKey: string,
@@ -359,7 +385,10 @@ function requiredInput(
     ?? (typeof fromOption === "string" ? fromOption : undefined);
 
   if (!value) {
-    throw new Error(`missing required argument or option: ${flagName}`);
+    command.error(`missing required argument or option: ${flagName}`, {
+      exitCode: 1,
+      code: "sponge.missing_required_input",
+    });
   }
 
   return value;
@@ -555,11 +584,11 @@ function registerCuratedCommands(
     });
 
   shared(program.command("send").description("Send assets on EVM, Solana, or Tempo"))
-    .usage("<chain> <to> <asset> <amount> [options]")
-    .argument("<chain>", "destination chain")
-    .argument("<to>", "recipient address")
-    .argument("<asset>", "currency symbol or token symbol/address")
-    .argument("<amount>", "amount to send")
+    .usage("[chain] [to] [asset] [amount] [options]")
+    .argument("[chain]", "destination chain")
+    .argument("[to]", "recipient address")
+    .argument("[asset]", "currency symbol or token symbol/address")
+    .argument("[amount]", "amount to send")
     .option("--chain <chain>", "destination chain")
     .option("--to <address>", "recipient address")
     .option("--amount <amount>", "amount to send")
@@ -571,26 +600,27 @@ function registerCuratedCommands(
       assetArg: string | undefined,
       amountArg: string | undefined,
       opts: Record<string, unknown>,
+      command: Command,
     ) => {
-      const wallet = await connectWallet(opts);
-      const chain = requiredInput(opts, chainArg, "chain", "--chain");
+      const chain = requiredInput(command, opts, chainArg, "chain", "--chain");
       const asset = isTempoChain(chain)
-        ? normalizeTempoTokenSymbol(requiredInput(opts, assetArg, "asset", "--asset"), chain)
-        : requiredInput(opts, assetArg, "asset", "--asset");
+        ? normalizeTempoTokenSymbol(requiredInput(command, opts, assetArg, "asset", "--asset"), chain)
+        : requiredInput(command, opts, assetArg, "asset", "--asset");
       const input =
         chain === "tempo" || chain === "tempo-testnet"
           ? {
               chain,
-              to: requiredInput(opts, toArg, "to", "--to"),
-              amount: requiredInput(opts, amountArg, "amount", "--amount"),
+              to: requiredInput(command, opts, toArg, "to", "--to"),
+              amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
               token: asset,
             }
           : {
               chain,
-              to: requiredInput(opts, toArg, "to", "--to"),
-              amount: requiredInput(opts, amountArg, "amount", "--amount"),
+              to: requiredInput(command, opts, toArg, "to", "--to"),
+              amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
               currency: asset,
             };
+      const wallet = await connectWallet(opts);
       const data = await wallet.transfer(input as any);
       displayToolResult(getToolDefinition(chain.startsWith("solana") ? "solana_transfer" : "evm_transfer"), data);
     });
@@ -627,20 +657,26 @@ function registerCuratedCommands(
     });
 
   shared(program.command("search-tokens").description("Search the Solana token list"))
-    .usage("<query> [limit] [options]")
-    .argument("<query>", "token symbol or name")
+    .usage("[query] [limit] [options]")
+    .argument("[query]", "token symbol or name")
     .argument("[limit]", "maximum results")
     .option("--query <query>", "token symbol or name")
     .option("--limit <n>", "maximum results", parseInt)
     .addHelpText("after", "\nExamples:\n  spongewallet search-tokens BONK\n  spongewallet search-tokens BONK 5\n")
-    .action(async (queryArg: string | undefined, limitArg: string | undefined, opts: Record<string, unknown>) => {
-      const wallet = await connectWallet(opts);
+    .action(async (
+      queryArg: string | undefined,
+      limitArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       const limit =
         limitArg !== undefined
           ? parseInt(limitArg, 10)
           : opts.limit as number | undefined;
+      const query = requiredInput(command, opts, queryArg, "query", "--query");
+      const wallet = await connectWallet(opts);
       const data = await wallet.searchSolanaTokens(
-        requiredInput(opts, queryArg, "query", "--query"),
+        query,
         Number.isFinite(limit as number) ? limit : undefined,
       );
       displayToolResult(getToolDefinition("search_solana_tokens"), data);
@@ -680,17 +716,24 @@ function registerCuratedCommands(
   const txCmd = program.command("tx").description("Transaction status and signing");
 
   shared(txCmd.command("status").description("Check transaction status"))
-    .usage("<chain> <txHash> [options]")
-    .argument("<chain>", "transaction chain")
-    .argument("<txHash>", "transaction hash or signature")
+    .usage("[chain] [txHash] [options]")
+    .argument("[chain]", "transaction chain")
+    .argument("[txHash]", "transaction hash or signature")
     .option("--tx-hash <hash>", "transaction hash or signature")
     .option("--chain <chain>", "transaction chain")
     .addHelpText("after", "\nExamples:\n  spongewallet tx status base 0x123...\n  spongewallet tx status solana 5K2...\n")
-    .action(async (chainArg: string | undefined, txHashArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      chainArg: string | undefined,
+      txHashArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
+      const txHash = requiredInput(command, opts, txHashArg, "txHash", "--tx-hash");
+      const chain = requiredInput(command, opts, chainArg, "chain", "--chain") as any;
       const wallet = await connectWallet(opts);
       const data = await wallet.getTransactionStatus(
-        requiredInput(opts, txHashArg, "txHash", "--tx-hash"),
-        requiredInput(opts, chainArg, "chain", "--chain") as any,
+        txHash,
+        chain,
       );
       displayToolResult(getToolDefinition("get_transaction_status"), data);
     });
@@ -724,13 +767,22 @@ function registerCuratedCommands(
     .option("--amount <amount>", "amount to swap")
     .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
     .addHelpText("after", "\nExamples:\n  spongewallet swap solana SOL USDC 1\n  spongewallet swap solana --chain solana --from SOL --to USDC --amount 1\n")
-    .action(async (fromArg: string | undefined, toArg: string | undefined, amountArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      fromArg: string | undefined,
+      toArg: string | undefined,
+      amountArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
+      const from = requiredInput(command, opts, fromArg, "from", "--from");
+      const to = requiredInput(command, opts, toArg, "to", "--to");
+      const amount = requiredInput(command, opts, amountArg, "amount", "--amount");
       const wallet = await connectWallet(opts);
       const data = await wallet.swap({
         chain: opts.chain as any,
-        from: requiredInput(opts, fromArg, "from", "--from"),
-        to: requiredInput(opts, toArg, "to", "--to"),
-        amount: requiredInput(opts, amountArg, "amount", "--amount"),
+        from,
+        to,
+        amount,
         slippageBps: opts.slippageBps as number | undefined,
       });
       displayToolResult(getToolDefinition("solana_swap"), data);
@@ -747,24 +799,34 @@ function registerCuratedCommands(
     .option("--amount <amount>", "amount to quote")
     .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
     .addHelpText("after", "\nExamples:\n  spongewallet swap quote SOL USDC 1\n  spongewallet swap quote --chain solana --from SOL --to USDC --amount 1\n")
-    .action(async (fromArg: string | undefined, toArg: string | undefined, amountArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      fromArg: string | undefined,
+      toArg: string | undefined,
+      amountArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeToolCommand(opts, "jupiter_swap_quote", {
         chain: opts.chain,
-        input_token: requiredInput(opts, fromArg, "from", "--from"),
-        output_token: requiredInput(opts, toArg, "to", "--to"),
-        amount: requiredInput(opts, amountArg, "amount", "--amount"),
+        input_token: requiredInput(command, opts, fromArg, "from", "--from"),
+        output_token: requiredInput(command, opts, toArg, "to", "--to"),
+        amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
         slippage_bps: opts.slippageBps,
       });
     });
 
   shared(swapCmd.command("execute").description("Execute a previously quoted Jupiter swap"))
-    .usage("<quoteId> [options]")
-    .argument("<quoteId>", "quote ID to execute")
+    .usage("[quoteId] [options]")
+    .argument("[quoteId]", "quote ID to execute")
     .option("--quote-id <id>", "quote ID to execute")
     .addHelpText("after", "\nExamples:\n  spongewallet swap execute quote_123\n")
-    .action(async (quoteIdArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      quoteIdArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeToolCommand(opts, "jupiter_swap_execute", {
-        quote_id: requiredInput(opts, quoteIdArg, "quoteId", "--quote-id"),
+        quote_id: requiredInput(command, opts, quoteIdArg, "quoteId", "--quote-id"),
       });
     });
 
@@ -778,11 +840,17 @@ function registerCuratedCommands(
     .option("--amount <amount>", "amount to swap")
     .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
     .addHelpText("after", "\nExamples:\n  spongewallet swap base ETH USDC 0.1\n  spongewallet swap base --from ETH --to USDC --amount 0.1\n")
-    .action(async (fromArg: string | undefined, toArg: string | undefined, amountArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      fromArg: string | undefined,
+      toArg: string | undefined,
+      amountArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeToolCommand(opts, "base_swap", {
-        input_token: requiredInput(opts, fromArg, "from", "--from"),
-        output_token: requiredInput(opts, toArg, "to", "--to"),
-        amount: requiredInput(opts, amountArg, "amount", "--amount"),
+        input_token: requiredInput(command, opts, fromArg, "from", "--from"),
+        output_token: requiredInput(command, opts, toArg, "to", "--to"),
+        amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
         slippage_bps: opts.slippageBps,
       });
     });
@@ -798,19 +866,25 @@ function registerCuratedCommands(
     .option("--amount <amount>", "amount to swap")
     .option("--slippage-bps <bps>", "slippage in basis points", parseInt)
     .addHelpText("after", "\nExamples:\n  spongewallet swap tempo pathUSD USDC.e 1\n  spongewallet swap tempo --chain tempo --from pathUSD --to USDC.e --amount 1\n")
-    .action(async (fromArg: string | undefined, toArg: string | undefined, amountArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      fromArg: string | undefined,
+      toArg: string | undefined,
+      amountArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       const chain = String(opts.chain ?? "tempo") as "tempo" | "tempo-testnet";
       await executeToolCommand(opts, "tempo_swap", {
         chain,
         input_token: normalizeTempoTokenSymbol(
-          requiredInput(opts, fromArg, "from", "--from"),
+          requiredInput(command, opts, fromArg, "from", "--from"),
           chain
         ),
         output_token: normalizeTempoTokenSymbol(
-          requiredInput(opts, toArg, "to", "--to"),
+          requiredInput(command, opts, toArg, "to", "--to"),
           chain
         ),
-        amount: requiredInput(opts, amountArg, "amount", "--amount"),
+        amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
         slippage_bps: opts.slippageBps,
       });
     });
@@ -834,12 +908,13 @@ function registerCuratedCommands(
       tokenArg: string | undefined,
       amountArg: string | undefined,
       opts: Record<string, unknown>,
+      command: Command,
     ) => {
       await executeToolCommand(opts, "bridge", {
-        source_chain: requiredInput(opts, sourceChainArg, "sourceChain", "--source-chain"),
-        destination_chain: requiredInput(opts, destinationChainArg, "destinationChain", "--destination-chain"),
-        token: requiredInput(opts, tokenArg, "token", "--token"),
-        amount: requiredInput(opts, amountArg, "amount", "--amount"),
+        source_chain: requiredInput(command, opts, sourceChainArg, "sourceChain", "--source-chain"),
+        destination_chain: requiredInput(command, opts, destinationChainArg, "destinationChain", "--destination-chain"),
+        token: requiredInput(command, opts, tokenArg, "token", "--token"),
+        amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
         destination_token: opts.destinationToken,
         recipient_address: opts.recipientAddress,
       });
@@ -907,29 +982,38 @@ function registerCuratedCommands(
     });
 
   shared(keysCmd.command("get").description("Get a stored key value"))
-    .usage("<service> [options]")
-    .argument("<service>", "service name")
+    .usage("[service] [options]")
+    .argument("[service]", "service name")
     .option("--service <service>", "service name")
     .addHelpText("after", "\nExamples:\n  spongewallet keys get openai\n")
-    .action(async (serviceArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      serviceArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeToolCommand(opts, "get_key_value", {
-        service: requiredInput(opts, serviceArg, "service", "--service"),
+        service: requiredInput(command, opts, serviceArg, "service", "--service"),
       });
     });
 
   shared(keysCmd.command("set").description("Store a service key"))
-    .usage("<service> <key> [options]")
-    .argument("<service>", "service name")
-    .argument("<key>", "key or secret to store")
+    .usage("[service] [key] [options]")
+    .argument("[service]", "service name")
+    .argument("[key]", "key or secret to store")
     .option("--service <service>", "service name")
     .option("--key <secret>", "key or secret to store")
     .option("--label <label>", "friendly label")
     .option("--metadata <json>", "metadata as JSON", parseJsonObject)
     .addHelpText("after", "\nExamples:\n  spongewallet keys set openai sk-... --label primary\n")
-    .action(async (serviceArg: string | undefined, keyArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      serviceArg: string | undefined,
+      keyArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeToolCommand(opts, "store_key", {
-        service: requiredInput(opts, serviceArg, "service", "--service"),
-        key: requiredInput(opts, keyArg, "key", "--key"),
+        service: requiredInput(command, opts, serviceArg, "service", "--service"),
+        key: requiredInput(command, opts, keyArg, "key", "--key"),
         label: opts.label,
         metadata: opts.metadata,
       });
@@ -1002,25 +1086,28 @@ function registerCuratedCommands(
     });
 
   shared(planCmd.command("approve").description("Approve and execute a submitted plan"))
-    .usage("<planId> [options]")
-    .argument("<planId>", "plan ID")
+    .usage("[planId] [options]")
+    .argument("[planId]", "plan ID")
     .option("--plan-id <id>", "plan ID")
     .addHelpText("after", "\nExamples:\n  spongewallet plan approve plan_123\n")
-    .action(async (planIdArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      planIdArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
+      const planId = requiredInput(command, opts, planIdArg, "planId", "--plan-id");
       const wallet = await connectWallet(opts);
-      const data = await wallet.approvePlan(
-        requiredInput(opts, planIdArg, "planId", "--plan-id"),
-      );
+      const data = await wallet.approvePlan(planId);
       displayToolResult(getToolDefinition("approve_plan"), data);
     });
 
   const tradeCmd = program.command("trade").description("Single trade proposal flow");
 
   shared(tradeCmd.command("propose").description("Propose a trade for approval"))
-    .usage("<from> <to> <amount> --reason <text> [options]")
-    .argument("<from>", "input token")
-    .argument("<to>", "output token")
-    .argument("<amount>", "amount to trade")
+    .usage("[from] [to] [amount] --reason <text> [options]")
+    .argument("[from]", "input token")
+    .argument("[to]", "output token")
+    .argument("[amount]", "amount to trade")
     .option("--from <token>", "input token")
     .option("--to <token>", "output token")
     .option("--amount <amount>", "amount to trade")
@@ -1031,12 +1118,16 @@ function registerCuratedCommands(
       toArg: string | undefined,
       amountArg: string | undefined,
       opts: Record<string, unknown>,
+      command: Command,
     ) => {
+      const inputToken = requiredInput(command, opts, fromArg, "from", "--from");
+      const outputToken = requiredInput(command, opts, toArg, "to", "--to");
+      const amount = requiredInput(command, opts, amountArg, "amount", "--amount");
       const wallet = await connectWallet(opts);
       const data = await wallet.proposeTrade({
-        input_token: requiredInput(opts, fromArg, "from", "--from"),
-        output_token: requiredInput(opts, toArg, "to", "--to"),
-        amount: requiredInput(opts, amountArg, "amount", "--amount"),
+        input_token: inputToken,
+        output_token: outputToken,
+        amount,
         reason: String(opts.reason),
       });
       displayToolResult(getToolDefinition("propose_trade"), data);
@@ -1045,9 +1136,9 @@ function registerCuratedCommands(
   const authCmd = program.command("auth").description("Authentication helpers");
 
   shared(authCmd.command("siwe").description("Generate a SIWE signature"))
-    .usage("<domain> <uri> [options]")
-    .argument("<domain>", "requesting domain")
-    .argument("<uri>", "resource URI")
+    .usage("[domain] [uri] [options]")
+    .argument("[domain]", "requesting domain")
+    .argument("[uri]", "resource URI")
     .option("--domain <domain>", "requesting domain")
     .option("--uri <uri>", "resource URI")
     .option("--statement <text>", "human-readable statement")
@@ -1056,10 +1147,15 @@ function registerCuratedCommands(
     .option("--not-before <iso>", "not before time")
     .option("--resources <json>", "resources array as JSON", parseJsonValue)
     .addHelpText("after", "\nExamples:\n  spongewallet auth siwe app.example.com https://app.example.com\n")
-    .action(async (domainArg: string | undefined, uriArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      domainArg: string | undefined,
+      uriArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeToolCommand(opts, "generate_siwe", {
-        domain: requiredInput(opts, domainArg, "domain", "--domain"),
-        uri: requiredInput(opts, uriArg, "uri", "--uri"),
+        domain: requiredInput(command, opts, domainArg, "domain", "--domain"),
+        uri: requiredInput(command, opts, uriArg, "uri", "--uri"),
         statement: opts.statement,
         chain_id: opts.chainId,
         expiration_time: opts.expirationTime,
@@ -1127,10 +1223,10 @@ function registerCuratedCommands(
     });
 
   shared(hyperliquidCmd.command("order").description("Place a Hyperliquid order"))
-    .argument("<symbol>", "market symbol")
-    .argument("<side>", "buy or sell")
-    .argument("<type>", "order type")
-    .argument("<amount>", "order amount")
+    .argument("[symbol]", "market symbol")
+    .argument("[side]", "buy or sell")
+    .argument("[type]", "order type")
+    .argument("[amount]", "order amount")
     .argument("[price]", "limit price")
     .option("--symbol <symbol>", "market symbol")
     .option("--side <side>", "buy or sell")
@@ -1145,24 +1241,29 @@ function registerCuratedCommands(
       amountArg: string | undefined,
       priceArg: string | undefined,
       opts: Record<string, unknown>,
+      command: Command,
     ) => {
       await executeHyperliquidAction(opts, {
         action: "order",
-        symbol: requiredInput(opts, symbolArg, "symbol", "--symbol"),
-        side: requiredInput(opts, sideArg, "side", "--side"),
-        type: requiredInput(opts, typeArg, "type", "--type"),
-        amount: requiredInput(opts, amountArg, "amount", "--amount"),
+        symbol: requiredInput(command, opts, symbolArg, "symbol", "--symbol"),
+        side: requiredInput(command, opts, sideArg, "side", "--side"),
+        type: requiredInput(command, opts, typeArg, "type", "--type"),
+        amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
         price: priceArg ?? (opts.price as string | undefined),
       });
     });
 
   shared(hyperliquidCmd.command("cancel").description("Cancel a Hyperliquid order"))
-    .argument("<orderId>", "order ID")
+    .argument("[orderId]", "order ID")
     .option("--order-id <id>", "order ID")
-    .action(async (orderIdArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      orderIdArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeHyperliquidAction(opts, {
         action: "cancel",
-        order_id: requiredInput(opts, orderIdArg, "orderId", "--order-id"),
+        order_id: requiredInput(command, opts, orderIdArg, "orderId", "--order-id"),
       });
     });
 
@@ -1172,14 +1273,19 @@ function registerCuratedCommands(
     });
 
   shared(hyperliquidCmd.command("leverage").description("Set Hyperliquid leverage"))
-    .argument("<symbol>", "market symbol")
-    .argument("<leverage>", "leverage")
+    .argument("[symbol]", "market symbol")
+    .argument("[leverage]", "leverage")
     .option("--symbol <symbol>", "market symbol")
     .option("--leverage <n>", "leverage", parseFloat)
-    .action(async (symbolArg: string | undefined, leverageArg: string | undefined, opts: Record<string, unknown>) => {
+    .action(async (
+      symbolArg: string | undefined,
+      leverageArg: string | undefined,
+      opts: Record<string, unknown>,
+      command: Command,
+    ) => {
       await executeHyperliquidAction(opts, {
         action: "set_leverage",
-        symbol: requiredInput(opts, symbolArg, "symbol", "--symbol"),
+        symbol: requiredInput(command, opts, symbolArg, "symbol", "--symbol"),
         leverage: leverageArg !== undefined ? parseFloat(leverageArg) : opts.leverage,
       });
     });

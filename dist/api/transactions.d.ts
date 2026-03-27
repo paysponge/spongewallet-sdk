@@ -4,6 +4,7 @@ export declare class TransactionsApi {
     private readonly http;
     private readonly agentId;
     constructor(http: HttpClient, agentId: string);
+    private normalizeCurrencySymbol;
     /**
      * Transfer tokens (EVM or Solana)
      * Uses the /api/transactions/transfer endpoint

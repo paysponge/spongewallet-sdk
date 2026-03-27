@@ -1,8 +1,31 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { buildCliProgram } from "../src/cli.js";
 
 function commandNames(command: { commands: Array<{ name(): string }> }) {
   return command.commands.map((entry) => entry.name());
+}
+
+function optionFlags(command: { options: Array<{ flags: string }> }) {
+  return command.options.map((entry) => entry.flags);
+}
+
+function argumentRequirements(command: {
+  registeredArguments: Array<{ name(): string; required: boolean }>;
+}) {
+  return command.registeredArguments.map((entry) => ({
+    name: entry.name(),
+    required: entry.required,
+  }));
+}
+
+function applyExitOverride(command: {
+  exitOverride(): unknown;
+  commands: Array<{ exitOverride(): unknown; commands: Array<any> }>;
+}) {
+  command.exitOverride();
+  for (const subcommand of command.commands) {
+    applyExitOverride(subcommand);
+  }
 }
 
 describe("CLI command tree", () => {
@@ -60,5 +83,86 @@ describe("CLI command tree", () => {
       "search-tokens",
       "onramp",
     ]));
+  });
+
+  it("makes switching agents explicit on login", () => {
+    const program = buildCliProgram();
+    const login = program.commands.find((entry) => entry.name() === "login");
+
+    expect(login).toBeDefined();
+    expect(optionFlags(login!)).toEqual(expect.arrayContaining([
+      "--continue-claim",
+      "--switch",
+    ]));
+  });
+
+  it("allows option-only forms for commands that advertise flag fallbacks", () => {
+    const program = buildCliProgram();
+    const send = program.commands.find((entry) => entry.name() === "send");
+    const searchTokens = program.commands.find((entry) => entry.name() === "search-tokens");
+    const keys = program.commands.find((entry) => entry.name() === "keys");
+    const tx = program.commands.find((entry) => entry.name() === "tx");
+    const swap = program.commands.find((entry) => entry.name() === "swap");
+    const trade = program.commands.find((entry) => entry.name() === "trade");
+    const auth = program.commands.find((entry) => entry.name() === "auth");
+
+    expect(argumentRequirements(send as any)).toEqual([
+      { name: "chain", required: false },
+      { name: "to", required: false },
+      { name: "asset", required: false },
+      { name: "amount", required: false },
+    ]);
+    expect(argumentRequirements(searchTokens as any)).toEqual([
+      { name: "query", required: false },
+      { name: "limit", required: false },
+    ]);
+    expect(argumentRequirements(tx!.commands.find((entry) => entry.name() === "status") as any)).toEqual([
+      { name: "chain", required: false },
+      { name: "txHash", required: false },
+    ]);
+    expect(argumentRequirements(swap!.commands.find((entry) => entry.name() === "execute") as any)).toEqual([
+      { name: "quoteId", required: false },
+    ]);
+    expect(argumentRequirements(keys!.commands.find((entry) => entry.name() === "get") as any)).toEqual([
+      { name: "service", required: false },
+    ]);
+    expect(argumentRequirements(keys!.commands.find((entry) => entry.name() === "set") as any)).toEqual([
+      { name: "service", required: false },
+      { name: "key", required: false },
+    ]);
+    expect(argumentRequirements(program.commands.find((entry) => entry.name() === "plan")!.commands.find((entry) => entry.name() === "approve") as any)).toEqual([
+      { name: "planId", required: false },
+    ]);
+    expect(argumentRequirements(trade!.commands.find((entry) => entry.name() === "propose") as any)).toEqual([
+      { name: "from", required: false },
+      { name: "to", required: false },
+      { name: "amount", required: false },
+    ]);
+    expect(argumentRequirements(auth!.commands.find((entry) => entry.name() === "siwe") as any)).toEqual([
+      { name: "domain", required: false },
+      { name: "uri", required: false },
+    ]);
+  });
+
+  it("shows command help when required fallback inputs are missing", async () => {
+    const program = buildCliProgram();
+    const output: string[] = [];
+    applyExitOverride(program as any);
+    const stderr = vi.spyOn(process.stderr, "write").mockImplementation(((chunk: string | Uint8Array) => {
+      output.push(typeof chunk === "string" ? chunk : chunk.toString("utf8"));
+      return true;
+    }) as any);
+
+    try {
+      await expect(program.parseAsync(["send"], { from: "user" })).rejects.toMatchObject({
+        code: "sponge.missing_required_input",
+      });
+    } finally {
+      stderr.mockRestore();
+    }
+
+    const rendered = output.join("");
+    expect(rendered).toContain("missing required argument or option: --chain");
+    expect(rendered).toContain("Usage: spongewallet send [chain] [to] [asset] [amount] [options]");
   });
 });

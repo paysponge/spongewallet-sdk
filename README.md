@@ -182,6 +182,9 @@ npx spongewallet init --email alice@example.com
 # Claim pending agent or do normal login if no pending claim exists
 npx spongewallet login
 
+# Replace the cached agent with a different login
+npx spongewallet login --switch
+
 # Curated wallet workflows
 npx spongewallet balance
 npx spongewallet send base 0xabc... USDC 10

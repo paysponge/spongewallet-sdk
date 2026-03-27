@@ -64,6 +64,10 @@ export class TransactionsApi {
     private readonly agentId: string
   ) {}
 
+  private normalizeCurrencySymbol(currency: string): string {
+    return currency.trim().toUpperCase();
+  }
+
   /**
    * Transfer tokens (EVM or Solana)
    * Uses the /api/transactions/transfer endpoint
@@ -79,7 +83,8 @@ export class TransactionsApi {
 
     // Solana transfers
     if (validated.chain === "solana" || validated.chain === "solana-devnet") {
-      if (validated.currency !== "SOL" && validated.currency !== "USDC") {
+      const normalizedCurrency = this.normalizeCurrencySymbol(validated.currency ?? "");
+      if (normalizedCurrency !== "SOL" && normalizedCurrency !== "USDC") {
         throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
       }
 
@@ -89,7 +94,7 @@ export class TransactionsApi {
             chain: validated.chain,
             to: validated.to,
             amount: validated.amount,
-            currency: validated.currency,
+            currency: normalizedCurrency,
           },
         }),
       );
@@ -133,7 +138,8 @@ export class TransactionsApi {
     }
 
     // EVM transfers
-    if (validated.currency !== "ETH" && validated.currency !== "USDC") {
+    const normalizedCurrency = this.normalizeCurrencySymbol(validated.currency ?? "");
+    if (normalizedCurrency !== "ETH" && normalizedCurrency !== "USDC") {
       throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
     }
 
@@ -143,7 +149,7 @@ export class TransactionsApi {
           chain: validated.chain,
           to: validated.to,
           amount: validated.amount,
-          currency: validated.currency,
+          currency: normalizedCurrency,
         },
       }),
     );

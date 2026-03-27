@@ -44,6 +44,9 @@ export class TransactionsApi {
         this.http = http;
         this.agentId = agentId;
     }
+    normalizeCurrencySymbol(currency) {
+        return currency.trim().toUpperCase();
+    }
     /**
      * Transfer tokens (EVM or Solana)
      * Uses the /api/transactions/transfer endpoint
@@ -57,7 +60,8 @@ export class TransactionsApi {
         }
         // Solana transfers
         if (validated.chain === "solana" || validated.chain === "solana-devnet") {
-            if (validated.currency !== "SOL" && validated.currency !== "USDC") {
+            const normalizedCurrency = this.normalizeCurrencySymbol(validated.currency ?? "");
+            if (normalizedCurrency !== "SOL" && normalizedCurrency !== "USDC") {
                 throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
             }
             const response = await client.request(client.api.postApiTransfersSolanaRequestOpts({
@@ -65,7 +69,7 @@ export class TransactionsApi {
                     chain: validated.chain,
                     to: validated.to,
                     amount: validated.amount,
-                    currency: validated.currency,
+                    currency: normalizedCurrency,
                 },
             }));
             const parsed = SubmitTransactionSchema.parse(response);
@@ -101,7 +105,8 @@ export class TransactionsApi {
             });
         }
         // EVM transfers
-        if (validated.currency !== "ETH" && validated.currency !== "USDC") {
+        const normalizedCurrency = this.normalizeCurrencySymbol(validated.currency ?? "");
+        if (normalizedCurrency !== "ETH" && normalizedCurrency !== "USDC") {
             throw new Error(`Currency ${validated.currency} not supported on ${validated.chain}`);
         }
         const response = await client.request(client.api.postApiTransfersEvmRequestOpts({
@@ -109,7 +114,7 @@ export class TransactionsApi {
                 chain: validated.chain,
                 to: validated.to,
                 amount: validated.amount,
-                currency: validated.currency,
+                currency: normalizedCurrency,
             },
         }));
         const parsed = SubmitTransactionSchema.parse(response);

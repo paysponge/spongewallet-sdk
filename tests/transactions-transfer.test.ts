@@ -55,6 +55,58 @@ describe("TransactionsApi.transfer", () => {
     });
   });
 
+  it("normalizes lowercase symbols for Solana transfers", async () => {
+    const http = {
+      post: vi.fn().mockResolvedValue({
+        transactionHash: "5h3GQy",
+        status: "pending",
+      }),
+      get: vi.fn(),
+    };
+    const api = new TransactionsApi(http as any, "agent-1");
+
+    const result = await api.transfer({
+      chain: "solana",
+      to: "11111111111111111111111111111111",
+      amount: "1",
+      currency: "usdc",
+    });
+
+    expect(result.txHash).toBe("5h3GQy");
+    expect(http.post).toHaveBeenCalledWith("/api/transfers/solana", {
+      chain: "solana",
+      to: "11111111111111111111111111111111",
+      amount: "1",
+      currency: "USDC",
+    });
+  });
+
+  it("normalizes lowercase symbols for EVM transfers", async () => {
+    const http = {
+      post: vi.fn().mockResolvedValue({
+        transactionHash: "0xabc",
+        status: "pending",
+      }),
+      get: vi.fn(),
+    };
+    const api = new TransactionsApi(http as any, "agent-1");
+
+    const result = await api.transfer({
+      chain: "base",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "1",
+      currency: "usdc",
+    });
+
+    expect(result.txHash).toBe("0xabc");
+    expect(http.post).toHaveBeenCalledWith("/api/transfers/evm", {
+      chain: "base",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      amount: "1",
+      currency: "USDC",
+    });
+  });
+
   it("uses /api/transfers/tempo for pathUSD on tempo-testnet", async () => {
     const http = {
       post: vi.fn().mockResolvedValue({
