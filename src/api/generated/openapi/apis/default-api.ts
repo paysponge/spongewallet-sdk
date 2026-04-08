@@ -77,6 +77,7 @@ import type {
   PostApiPlansApproveRequest,
   PostApiPlansSubmitRequest,
   PostApiPolymarketRequest,
+  PostApiRainCustomerRequest,
   PostApiRpcByChainIdRequest,
   PostApiSignupBonusClaimRequest,
   PostApiSiweGenerateRequest,
@@ -235,6 +236,8 @@ import {
     PostApiPlansSubmitRequestToJSON,
     PostApiPolymarketRequestFromJSON,
     PostApiPolymarketRequestToJSON,
+    PostApiRainCustomerRequestFromJSON,
+    PostApiRainCustomerRequestToJSON,
     PostApiRpcByChainIdRequestFromJSON,
     PostApiRpcByChainIdRequestToJSON,
     PostApiSignupBonusClaimRequestFromJSON,
@@ -577,6 +580,10 @@ export interface DefaultApiGetApiPaymentLinksPublicByPaymentLinkIdRequest {
 export interface DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest {
     walletAddress: string;
     transactionHash: string;
+}
+
+export interface DefaultApiGetApiRainCustomerRequest {
+    forceRefresh?: GetApiBridgeFiatCustomerForceRefreshParameter;
 }
 
 export interface DefaultApiGetApiSolanaTokensRequest {
@@ -997,6 +1004,10 @@ export interface DefaultApiPostApiPlansSubmitOperationRequest {
 
 export interface DefaultApiPostApiPolymarketOperationRequest {
     postApiPolymarketRequest: PostApiPolymarketRequest;
+}
+
+export interface DefaultApiPostApiRainCustomerOperationRequest {
+    postApiRainCustomerRequest: PostApiRainCustomerRequest;
 }
 
 export interface DefaultApiPostApiRpcByChainIdOperationRequest {
@@ -1743,6 +1754,25 @@ export interface DefaultApiInterface {
     /**
      */
     deleteApiMasterKeysById(requestParameters: DefaultApiDeleteApiMasterKeysByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for deleteApiRainCustomer without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiRainCustomerRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteApiRainCustomerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    deleteApiRainCustomer(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for deleteApiSpendingLimitsById without sending the request
@@ -3192,6 +3222,46 @@ export interface DefaultApiInterface {
     /**
      */
     getApiPromoKv2Jm7DZOIDGi6D2Freemoney(requestParameters: DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiRainConfig without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainConfigRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiRainConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiRainCustomer without sending the request
+     * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainCustomerRequestOpts(requestParameters: DefaultApiGetApiRainCustomerRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [forceRefresh] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainCustomerRaw(requestParameters: DefaultApiGetApiRainCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiRainCustomer(requestParameters: DefaultApiGetApiRainCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiSolanaTokens without sending the request
@@ -5318,6 +5388,46 @@ export interface DefaultApiInterface {
     postApiPolymarket(requestParameters: DefaultApiPostApiPolymarketOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiRainCustomer without sending the request
+     * @param {PostApiRainCustomerRequest} postApiRainCustomerRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCustomerRequestOpts(requestParameters: DefaultApiPostApiRainCustomerOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiRainCustomerRequest} postApiRainCustomerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCustomerRaw(requestParameters: DefaultApiPostApiRainCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiRainCustomer(requestParameters: DefaultApiPostApiRainCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiRainCustomerRefresh without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCustomerRefreshRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCustomerRefreshRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiRainCustomerRefresh(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiRpcByChainId without sending the request
      * @param {string} chainId 
      * @param {PostApiRpcByChainIdRequest} postApiRpcByChainIdRequest 
@@ -7316,6 +7426,40 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async deleteApiMasterKeysById(requestParameters: DefaultApiDeleteApiMasterKeysByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteApiMasterKeysByIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteApiRainCustomer without sending the request
+     */
+    async deleteApiRainCustomerRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/rain/customer`;
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteApiRainCustomerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteApiRainCustomerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteApiRainCustomer(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteApiRainCustomerRaw(initOverrides);
     }
 
     /**
@@ -10131,6 +10275,78 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiPromoKv2Jm7DZOIDGi6D2Freemoney(requestParameters: DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiPromoKv2Jm7DZOIDGi6D2FreemoneyRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiRainConfig without sending the request
+     */
+    async getApiRainConfigRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/rain/config`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiRainConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiRainConfigRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiRainConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiRainConfigRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiRainCustomer without sending the request
+     */
+    async getApiRainCustomerRequestOpts(requestParameters: DefaultApiGetApiRainCustomerRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['forceRefresh'] != null) {
+            queryParameters['forceRefresh'] = requestParameters['forceRefresh'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/rain/customer`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiRainCustomerRaw(requestParameters: DefaultApiGetApiRainCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiRainCustomerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiRainCustomer(requestParameters: DefaultApiGetApiRainCustomerRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiRainCustomerRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -14636,6 +14852,84 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiPolymarket(requestParameters: DefaultApiPostApiPolymarketOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiPolymarketRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiRainCustomer without sending the request
+     */
+    async postApiRainCustomerRequestOpts(requestParameters: DefaultApiPostApiRainCustomerOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiRainCustomerRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiRainCustomerRequest',
+                'Required parameter "postApiRainCustomerRequest" was null or undefined when calling postApiRainCustomer().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/rain/customer`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiRainCustomerRequestToJSON(requestParameters['postApiRainCustomerRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiRainCustomerRaw(requestParameters: DefaultApiPostApiRainCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiRainCustomerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiRainCustomer(requestParameters: DefaultApiPostApiRainCustomerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiRainCustomerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiRainCustomerRefresh without sending the request
+     */
+    async postApiRainCustomerRefreshRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/rain/customer/refresh`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiRainCustomerRefreshRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiRainCustomerRefreshRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiRainCustomerRefresh(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiRainCustomerRefreshRaw(initOverrides);
     }
 
     /**

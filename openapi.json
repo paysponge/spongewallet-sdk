@@ -11891,6 +11891,132 @@
         "operationId": "postApiWebhooksBridge"
       }
     },
+    "/api/rain/config": {
+      "get": {
+        "operationId": "getApiRainConfig"
+      }
+    },
+    "/api/rain/customer": {
+      "get": {
+        "parameters": [
+          {
+            "name": "forceRefresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "format": "boolean",
+                  "default": false,
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "operationId": "getApiRainCustomer"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "firstName",
+                  "lastName"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "firstName",
+                  "lastName"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "firstName",
+                  "lastName"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "walletId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiRainCustomer"
+      },
+      "delete": {
+        "operationId": "deleteApiRainCustomer"
+      }
+    },
+    "/api/rain/customer/refresh": {
+      "post": {
+        "operationId": "postApiRainCustomerRefresh"
+      }
+    },
     "/api/card-access-requests/": {
       "post": {
         "requestBody": {
