@@ -77,6 +77,7 @@ import type {
   PostApiPlansApproveRequest,
   PostApiPlansSubmitRequest,
   PostApiPolymarketRequest,
+  PostApiRainCardRequest,
   PostApiRainCustomerRequest,
   PostApiRpcByChainIdRequest,
   PostApiSignupBonusClaimRequest,
@@ -236,6 +237,8 @@ import {
     PostApiPlansSubmitRequestToJSON,
     PostApiPolymarketRequestFromJSON,
     PostApiPolymarketRequestToJSON,
+    PostApiRainCardRequestFromJSON,
+    PostApiRainCardRequestToJSON,
     PostApiRainCustomerRequestFromJSON,
     PostApiRainCustomerRequestToJSON,
     PostApiRpcByChainIdRequestFromJSON,
@@ -1004,6 +1007,10 @@ export interface DefaultApiPostApiPlansSubmitOperationRequest {
 
 export interface DefaultApiPostApiPolymarketOperationRequest {
     postApiPolymarketRequest: PostApiPolymarketRequest;
+}
+
+export interface DefaultApiPostApiRainCardOperationRequest {
+    postApiRainCardRequest: PostApiRainCardRequest;
 }
 
 export interface DefaultApiPostApiRainCustomerOperationRequest {
@@ -3224,6 +3231,25 @@ export interface DefaultApiInterface {
     getApiPromoKv2Jm7DZOIDGi6D2Freemoney(requestParameters: DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiRainCards without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainCardsRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainCardsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiRainCards(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiRainConfig without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -5386,6 +5412,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiPolymarket(requestParameters: DefaultApiPostApiPolymarketOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiRainCard without sending the request
+     * @param {PostApiRainCardRequest} postApiRainCardRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCardRequestOpts(requestParameters: DefaultApiPostApiRainCardOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiRainCardRequest} postApiRainCardRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCardRaw(requestParameters: DefaultApiPostApiRainCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiRainCard(requestParameters: DefaultApiPostApiRainCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiRainCustomer without sending the request
@@ -10278,6 +10325,40 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiRainCards without sending the request
+     */
+    async getApiRainCardsRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/rain/cards`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiRainCardsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiRainCardsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiRainCards(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiRainCardsRaw(initOverrides);
+    }
+
+    /**
      * Creates request options for getApiRainConfig without sending the request
      */
     async getApiRainConfigRequestOpts(): Promise<runtime.RequestOpts> {
@@ -14852,6 +14933,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiPolymarket(requestParameters: DefaultApiPostApiPolymarketOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiPolymarketRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiRainCard without sending the request
+     */
+    async postApiRainCardRequestOpts(requestParameters: DefaultApiPostApiRainCardOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiRainCardRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiRainCardRequest',
+                'Required parameter "postApiRainCardRequest" was null or undefined when calling postApiRainCard().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/rain/card`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiRainCardRequestToJSON(requestParameters['postApiRainCardRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiRainCardRaw(requestParameters: DefaultApiPostApiRainCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiRainCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiRainCard(requestParameters: DefaultApiPostApiRainCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiRainCardRaw(requestParameters, initOverrides);
     }
 
     /**

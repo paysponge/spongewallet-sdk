@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { PostApiRainCustomerRequestAddress } from './post-api-rain-customer-request-address.js';
+import {
+    PostApiRainCustomerRequestAddressFromJSON,
+    PostApiRainCustomerRequestAddressFromJSONTyped,
+    PostApiRainCustomerRequestAddressToJSON,
+    PostApiRainCustomerRequestAddressToJSONTyped,
+} from './post-api-rain-customer-request-address.js';
+
 /**
  * 
  * @export
@@ -42,6 +50,48 @@ export interface PostApiRainCustomerRequest {
      * @type {string}
      * @memberof PostApiRainCustomerRequest
      */
+    birthDate: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    nationalId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    countryOfIssue: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    phoneCountryCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    phoneNumber?: string;
+    /**
+     * 
+     * @type {PostApiRainCustomerRequestAddress}
+     * @memberof PostApiRainCustomerRequest
+     */
+    address: PostApiRainCustomerRequestAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    occupation: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
     walletId?: string;
 }
 
@@ -52,6 +102,11 @@ export function instanceOfPostApiRainCustomerRequest(value: object): value is Po
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('firstName' in value) || value['firstName'] === undefined) return false;
     if (!('lastName' in value) || value['lastName'] === undefined) return false;
+    if (!('birthDate' in value) || value['birthDate'] === undefined) return false;
+    if (!('nationalId' in value) || value['nationalId'] === undefined) return false;
+    if (!('countryOfIssue' in value) || value['countryOfIssue'] === undefined) return false;
+    if (!('address' in value) || value['address'] === undefined) return false;
+    if (!('occupation' in value) || value['occupation'] === undefined) return false;
     return true;
 }
 
@@ -68,6 +123,13 @@ export function PostApiRainCustomerRequestFromJSONTyped(json: any, ignoreDiscrim
         'email': json['email'],
         'firstName': json['firstName'],
         'lastName': json['lastName'],
+        'birthDate': json['birthDate'],
+        'nationalId': json['nationalId'],
+        'countryOfIssue': json['countryOfIssue'],
+        'phoneCountryCode': json['phoneCountryCode'] == null ? undefined : json['phoneCountryCode'],
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
+        'address': PostApiRainCustomerRequestAddressFromJSON(json['address']),
+        'occupation': json['occupation'],
         'walletId': json['walletId'] == null ? undefined : json['walletId'],
     };
 }
@@ -86,6 +148,13 @@ export function PostApiRainCustomerRequestToJSONTyped(value?: PostApiRainCustome
         'email': value['email'],
         'firstName': value['firstName'],
         'lastName': value['lastName'],
+        'birthDate': value['birthDate'],
+        'nationalId': value['nationalId'],
+        'countryOfIssue': value['countryOfIssue'],
+        'phoneCountryCode': value['phoneCountryCode'],
+        'phoneNumber': value['phoneNumber'],
+        'address': PostApiRainCustomerRequestAddressToJSON(value['address']),
+        'occupation': value['occupation'],
         'walletId': value['walletId'],
     };
 }

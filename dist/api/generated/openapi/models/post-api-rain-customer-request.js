@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PostApiRainCustomerRequestAddressFromJSON, PostApiRainCustomerRequestAddressToJSON, } from './post-api-rain-customer-request-address.js';
 /**
  * Check if a given object implements the PostApiRainCustomerRequest interface.
  */
@@ -20,6 +21,16 @@ export function instanceOfPostApiRainCustomerRequest(value) {
     if (!('firstName' in value) || value['firstName'] === undefined)
         return false;
     if (!('lastName' in value) || value['lastName'] === undefined)
+        return false;
+    if (!('birthDate' in value) || value['birthDate'] === undefined)
+        return false;
+    if (!('nationalId' in value) || value['nationalId'] === undefined)
+        return false;
+    if (!('countryOfIssue' in value) || value['countryOfIssue'] === undefined)
+        return false;
+    if (!('address' in value) || value['address'] === undefined)
+        return false;
+    if (!('occupation' in value) || value['occupation'] === undefined)
         return false;
     return true;
 }
@@ -34,6 +45,13 @@ export function PostApiRainCustomerRequestFromJSONTyped(json, ignoreDiscriminato
         'email': json['email'],
         'firstName': json['firstName'],
         'lastName': json['lastName'],
+        'birthDate': json['birthDate'],
+        'nationalId': json['nationalId'],
+        'countryOfIssue': json['countryOfIssue'],
+        'phoneCountryCode': json['phoneCountryCode'] == null ? undefined : json['phoneCountryCode'],
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
+        'address': PostApiRainCustomerRequestAddressFromJSON(json['address']),
+        'occupation': json['occupation'],
         'walletId': json['walletId'] == null ? undefined : json['walletId'],
     };
 }
@@ -48,6 +66,13 @@ export function PostApiRainCustomerRequestToJSONTyped(value, ignoreDiscriminator
         'email': value['email'],
         'firstName': value['firstName'],
         'lastName': value['lastName'],
+        'birthDate': value['birthDate'],
+        'nationalId': value['nationalId'],
+        'countryOfIssue': value['countryOfIssue'],
+        'phoneCountryCode': value['phoneCountryCode'],
+        'phoneNumber': value['phoneNumber'],
+        'address': PostApiRainCustomerRequestAddressToJSON(value['address']),
+        'occupation': value['occupation'],
         'walletId': value['walletId'],
     };
 }

@@ -11932,7 +11932,12 @@
                 "required": [
                   "email",
                   "firstName",
-                  "lastName"
+                  "lastName",
+                  "birthDate",
+                  "nationalId",
+                  "countryOfIssue",
+                  "address",
+                  "occupation"
                 ],
                 "properties": {
                   "email": {
@@ -11941,10 +11946,84 @@
                   },
                   "firstName": {
                     "minLength": 1,
+                    "maxLength": 50,
                     "type": "string"
                   },
                   "lastName": {
                     "minLength": 1,
+                    "maxLength": 50,
+                    "type": "string"
+                  },
+                  "birthDate": {
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "type": "string"
+                  },
+                  "nationalId": {
+                    "minLength": 1,
+                    "maxLength": 30,
+                    "type": "string"
+                  },
+                  "countryOfIssue": {
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "type": "string"
+                  },
+                  "phoneCountryCode": {
+                    "minLength": 1,
+                    "maxLength": 3,
+                    "pattern": "^[0-9]+$",
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "minLength": 1,
+                    "maxLength": 15,
+                    "pattern": "^[0-9]+$",
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "occupation": {
+                    "minLength": 1,
+                    "maxLength": 50,
                     "type": "string"
                   },
                   "walletId": {
@@ -11959,7 +12038,12 @@
                 "required": [
                   "email",
                   "firstName",
-                  "lastName"
+                  "lastName",
+                  "birthDate",
+                  "nationalId",
+                  "countryOfIssue",
+                  "address",
+                  "occupation"
                 ],
                 "properties": {
                   "email": {
@@ -11968,10 +12052,84 @@
                   },
                   "firstName": {
                     "minLength": 1,
+                    "maxLength": 50,
                     "type": "string"
                   },
                   "lastName": {
                     "minLength": 1,
+                    "maxLength": 50,
+                    "type": "string"
+                  },
+                  "birthDate": {
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "type": "string"
+                  },
+                  "nationalId": {
+                    "minLength": 1,
+                    "maxLength": 30,
+                    "type": "string"
+                  },
+                  "countryOfIssue": {
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "type": "string"
+                  },
+                  "phoneCountryCode": {
+                    "minLength": 1,
+                    "maxLength": 3,
+                    "pattern": "^[0-9]+$",
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "minLength": 1,
+                    "maxLength": 15,
+                    "pattern": "^[0-9]+$",
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "occupation": {
+                    "minLength": 1,
+                    "maxLength": 50,
                     "type": "string"
                   },
                   "walletId": {
@@ -11986,7 +12144,12 @@
                 "required": [
                   "email",
                   "firstName",
-                  "lastName"
+                  "lastName",
+                  "birthDate",
+                  "nationalId",
+                  "countryOfIssue",
+                  "address",
+                  "occupation"
                 ],
                 "properties": {
                   "email": {
@@ -11995,10 +12158,84 @@
                   },
                   "firstName": {
                     "minLength": 1,
+                    "maxLength": 50,
                     "type": "string"
                   },
                   "lastName": {
                     "minLength": 1,
+                    "maxLength": 50,
+                    "type": "string"
+                  },
+                  "birthDate": {
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "type": "string"
+                  },
+                  "nationalId": {
+                    "minLength": 1,
+                    "maxLength": 30,
+                    "type": "string"
+                  },
+                  "countryOfIssue": {
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "type": "string"
+                  },
+                  "phoneCountryCode": {
+                    "minLength": 1,
+                    "maxLength": 3,
+                    "pattern": "^[0-9]+$",
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "minLength": 1,
+                    "maxLength": 15,
+                    "pattern": "^[0-9]+$",
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "occupation": {
+                    "minLength": 1,
+                    "maxLength": 50,
                     "type": "string"
                   },
                   "walletId": {
@@ -12018,6 +12255,174 @@
     "/api/rain/customer/refresh": {
       "post": {
         "operationId": "postApiRainCustomerRefresh"
+      }
+    },
+    "/api/rain/card": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "billing"
+                ],
+                "properties": {
+                  "billing": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "billing"
+                ],
+                "properties": {
+                  "billing": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "billing"
+                ],
+                "properties": {
+                  "billing": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiRainCard"
+      }
+    },
+    "/api/rain/cards": {
+      "get": {
+        "operationId": "getApiRainCards"
       }
     },
     "/api/card-access-requests/": {

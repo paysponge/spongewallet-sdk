@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { PostApiRainCustomerRequestAddress } from './post-api-rain-customer-request-address.js';
 /**
  *
  * @export
@@ -33,6 +34,48 @@ export interface PostApiRainCustomerRequest {
      * @memberof PostApiRainCustomerRequest
      */
     lastName: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    birthDate: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    nationalId: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    countryOfIssue: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    phoneCountryCode?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    phoneNumber?: string;
+    /**
+     *
+     * @type {PostApiRainCustomerRequestAddress}
+     * @memberof PostApiRainCustomerRequest
+     */
+    address: PostApiRainCustomerRequestAddress;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiRainCustomerRequest
+     */
+    occupation: string;
     /**
      *
      * @type {string}
