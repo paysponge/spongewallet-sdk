@@ -77,6 +77,7 @@ export * from './post-api-plans-submit-request-steps-inner-any-of2.js';
 export * from './post-api-plans-submit-request-steps-inner-any-of2-source-chain.js';
 export * from './post-api-polymarket-request.js';
 export * from './post-api-rain-card-request.js';
+export * from './post-api-rain-cards-by-card-id-secrets-request.js';
 export * from './post-api-rain-customer-request.js';
 export * from './post-api-rain-customer-request-address.js';
 export * from './post-api-rpc-by-chain-id-request.js';

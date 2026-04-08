@@ -78,6 +78,7 @@ import type {
   PostApiPlansSubmitRequest,
   PostApiPolymarketRequest,
   PostApiRainCardRequest,
+  PostApiRainCardsByCardIdSecretsRequest,
   PostApiRainCustomerRequest,
   PostApiRpcByChainIdRequest,
   PostApiSignupBonusClaimRequest,
@@ -239,6 +240,8 @@ import {
     PostApiPolymarketRequestToJSON,
     PostApiRainCardRequestFromJSON,
     PostApiRainCardRequestToJSON,
+    PostApiRainCardsByCardIdSecretsRequestFromJSON,
+    PostApiRainCardsByCardIdSecretsRequestToJSON,
     PostApiRainCustomerRequestFromJSON,
     PostApiRainCustomerRequestToJSON,
     PostApiRpcByChainIdRequestFromJSON,
@@ -1011,6 +1014,11 @@ export interface DefaultApiPostApiPolymarketOperationRequest {
 
 export interface DefaultApiPostApiRainCardOperationRequest {
     postApiRainCardRequest: PostApiRainCardRequest;
+}
+
+export interface DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest {
+    cardId: string;
+    postApiRainCardsByCardIdSecretsRequest: PostApiRainCardsByCardIdSecretsRequest;
 }
 
 export interface DefaultApiPostApiRainCustomerOperationRequest {
@@ -5433,6 +5441,29 @@ export interface DefaultApiInterface {
     /**
      */
     postApiRainCard(requestParameters: DefaultApiPostApiRainCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiRainCardsByCardIdSecrets without sending the request
+     * @param {string} cardId 
+     * @param {PostApiRainCardsByCardIdSecretsRequest} postApiRainCardsByCardIdSecretsRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCardsByCardIdSecretsRequestOpts(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} cardId 
+     * @param {PostApiRainCardsByCardIdSecretsRequest} postApiRainCardsByCardIdSecretsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainCardsByCardIdSecretsRaw(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiRainCardsByCardIdSecrets(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiRainCustomer without sending the request
@@ -14977,6 +15008,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiRainCard(requestParameters: DefaultApiPostApiRainCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiRainCardRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiRainCardsByCardIdSecrets without sending the request
+     */
+    async postApiRainCardsByCardIdSecretsRequestOpts(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['cardId'] == null) {
+            throw new runtime.RequiredError(
+                'cardId',
+                'Required parameter "cardId" was null or undefined when calling postApiRainCardsByCardIdSecrets().'
+            );
+        }
+
+        if (requestParameters['postApiRainCardsByCardIdSecretsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiRainCardsByCardIdSecretsRequest',
+                'Required parameter "postApiRainCardsByCardIdSecretsRequest" was null or undefined when calling postApiRainCardsByCardIdSecrets().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/rain/cards/{cardId}/secrets`;
+        urlPath = urlPath.replace(`{${"cardId"}}`, encodeURIComponent(String(requestParameters['cardId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiRainCardsByCardIdSecretsRequestToJSON(requestParameters['postApiRainCardsByCardIdSecretsRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiRainCardsByCardIdSecretsRaw(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiRainCardsByCardIdSecretsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiRainCardsByCardIdSecrets(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiRainCardsByCardIdSecretsRaw(requestParameters, initOverrides);
     }
 
     /**
