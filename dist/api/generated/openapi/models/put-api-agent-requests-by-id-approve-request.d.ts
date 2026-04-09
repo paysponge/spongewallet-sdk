@@ -36,6 +36,12 @@ export interface PutApiAgentRequestsByIdApproveRequest {
     selectedOptions?: object;
     /**
      *
+     * @type {boolean}
+     * @memberof PutApiAgentRequestsByIdApproveRequest
+     */
+    savePreferences?: boolean;
+    /**
+     *
      * @type {PutApiAgentRequestsByIdApproveRequestDoordashEdits}
      * @memberof PutApiAgentRequestsByIdApproveRequest
      */

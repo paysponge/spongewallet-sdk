@@ -47,6 +47,12 @@ export interface PutApiAgentRequestsByIdApproveRequest {
     selectedOptions?: object;
     /**
      * 
+     * @type {boolean}
+     * @memberof PutApiAgentRequestsByIdApproveRequest
+     */
+    savePreferences?: boolean;
+    /**
+     * 
      * @type {PutApiAgentRequestsByIdApproveRequestDoordashEdits}
      * @memberof PutApiAgentRequestsByIdApproveRequest
      */
@@ -73,6 +79,7 @@ export function PutApiAgentRequestsByIdApproveRequestFromJSONTyped(json: any, ig
         'txHash': json['txHash'] == null ? undefined : json['txHash'],
         'forceExecute': json['forceExecute'] == null ? undefined : json['forceExecute'],
         'selectedOptions': json['selectedOptions'] == null ? undefined : json['selectedOptions'],
+        'savePreferences': json['savePreferences'] == null ? undefined : json['savePreferences'],
         'doordashEdits': json['doordashEdits'] == null ? undefined : PutApiAgentRequestsByIdApproveRequestDoordashEditsFromJSON(json['doordashEdits']),
     };
 }
@@ -91,6 +98,7 @@ export function PutApiAgentRequestsByIdApproveRequestToJSONTyped(value?: PutApiA
         'txHash': value['txHash'],
         'forceExecute': value['forceExecute'],
         'selectedOptions': value['selectedOptions'],
+        'savePreferences': value['savePreferences'],
         'doordashEdits': PutApiAgentRequestsByIdApproveRequestDoordashEditsToJSON(value['doordashEdits']),
     };
 }

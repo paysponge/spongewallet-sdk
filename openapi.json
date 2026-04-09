@@ -3685,6 +3685,9 @@
                       }
                     }
                   },
+                  "savePreferences": {
+                    "type": "boolean"
+                  },
                   "doordashEdits": {
                     "type": "object",
                     "properties": {
@@ -3738,6 +3741,9 @@
                       }
                     }
                   },
+                  "savePreferences": {
+                    "type": "boolean"
+                  },
                   "doordashEdits": {
                     "type": "object",
                     "properties": {
@@ -3790,6 +3796,9 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "savePreferences": {
+                    "type": "boolean"
                   },
                   "doordashEdits": {
                     "type": "object",
