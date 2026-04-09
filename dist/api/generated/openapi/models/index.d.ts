@@ -76,6 +76,7 @@ export * from './post-api-plans-submit-request-steps-inner-any-of2-source-chain.
 export * from './post-api-polymarket-request.js';
 export * from './post-api-rain-card-request.js';
 export * from './post-api-rain-cards-by-card-id-secrets-request.js';
+export * from './post-api-rain-contracts-by-contract-id-fund-request.js';
 export * from './post-api-rain-customer-request.js';
 export * from './post-api-rain-customer-request-address.js';
 export * from './post-api-rpc-by-chain-id-request.js';
@@ -110,6 +111,8 @@ export * from './post-oauth-register-request.js';
 export * from './post-oauth-revoke-request.js';
 export * from './post-oauth-token-request.js';
 export * from './put-api-agent-requests-by-id-approve-request.js';
+export * from './put-api-agent-requests-by-id-approve-request-doordash-edits.js';
+export * from './put-api-agent-requests-by-id-approve-request-doordash-edits-items-inner.js';
 export * from './put-api-agent-requests-plans-by-plan-id-reject-request.js';
 export * from './put-api-agents-by-id-request.js';
 export * from './put-api-flows-by-id-request.js';

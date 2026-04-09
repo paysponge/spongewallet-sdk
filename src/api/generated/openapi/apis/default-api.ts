@@ -79,6 +79,7 @@ import type {
   PostApiPolymarketRequest,
   PostApiRainCardRequest,
   PostApiRainCardsByCardIdSecretsRequest,
+  PostApiRainContractsByContractIdFundRequest,
   PostApiRainCustomerRequest,
   PostApiRpcByChainIdRequest,
   PostApiSignupBonusClaimRequest,
@@ -242,6 +243,8 @@ import {
     PostApiRainCardRequestToJSON,
     PostApiRainCardsByCardIdSecretsRequestFromJSON,
     PostApiRainCardsByCardIdSecretsRequestToJSON,
+    PostApiRainContractsByContractIdFundRequestFromJSON,
+    PostApiRainContractsByContractIdFundRequestToJSON,
     PostApiRainCustomerRequestFromJSON,
     PostApiRainCustomerRequestToJSON,
     PostApiRpcByChainIdRequestFromJSON,
@@ -1019,6 +1022,16 @@ export interface DefaultApiPostApiRainCardOperationRequest {
 export interface DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest {
     cardId: string;
     postApiRainCardsByCardIdSecretsRequest: PostApiRainCardsByCardIdSecretsRequest;
+}
+
+export interface DefaultApiPostApiRainContractsByContractIdFundOperationRequest {
+    contractId: string;
+    postApiRainContractsByContractIdFundRequest: PostApiRainContractsByContractIdFundRequest;
+}
+
+export interface DefaultApiPostApiRainContractsByContractIdWithdrawRequest {
+    contractId: string;
+    postApiRainContractsByContractIdFundRequest: PostApiRainContractsByContractIdFundRequest;
 }
 
 export interface DefaultApiPostApiRainCustomerOperationRequest {
@@ -3239,6 +3252,25 @@ export interface DefaultApiInterface {
     getApiPromoKv2Jm7DZOIDGi6D2Freemoney(requestParameters: DefaultApiGetApiPromoKv2Jm7DZOIDGi6D2FreemoneyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiRainBalances without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainBalancesRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainBalancesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiRainBalances(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiRainCards without sending the request
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -3275,6 +3307,25 @@ export interface DefaultApiInterface {
     /**
      */
     getApiRainConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiRainContracts without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainContractsRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiRainContractsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiRainContracts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiRainCustomer without sending the request
@@ -5464,6 +5515,52 @@ export interface DefaultApiInterface {
     /**
      */
     postApiRainCardsByCardIdSecrets(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiRainContractsByContractIdFund without sending the request
+     * @param {string} contractId 
+     * @param {PostApiRainContractsByContractIdFundRequest} postApiRainContractsByContractIdFundRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainContractsByContractIdFundRequestOpts(requestParameters: DefaultApiPostApiRainContractsByContractIdFundOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} contractId 
+     * @param {PostApiRainContractsByContractIdFundRequest} postApiRainContractsByContractIdFundRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainContractsByContractIdFundRaw(requestParameters: DefaultApiPostApiRainContractsByContractIdFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiRainContractsByContractIdFund(requestParameters: DefaultApiPostApiRainContractsByContractIdFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiRainContractsByContractIdWithdraw without sending the request
+     * @param {string} contractId 
+     * @param {PostApiRainContractsByContractIdFundRequest} postApiRainContractsByContractIdFundRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainContractsByContractIdWithdrawRequestOpts(requestParameters: DefaultApiPostApiRainContractsByContractIdWithdrawRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} contractId 
+     * @param {PostApiRainContractsByContractIdFundRequest} postApiRainContractsByContractIdFundRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiRainContractsByContractIdWithdrawRaw(requestParameters: DefaultApiPostApiRainContractsByContractIdWithdrawRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiRainContractsByContractIdWithdraw(requestParameters: DefaultApiPostApiRainContractsByContractIdWithdrawRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiRainCustomer without sending the request
@@ -10356,6 +10453,40 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiRainBalances without sending the request
+     */
+    async getApiRainBalancesRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/rain/balances`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiRainBalancesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiRainBalancesRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiRainBalances(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiRainBalancesRaw(initOverrides);
+    }
+
+    /**
      * Creates request options for getApiRainCards without sending the request
      */
     async getApiRainCardsRequestOpts(): Promise<runtime.RequestOpts> {
@@ -10421,6 +10552,40 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiRainConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiRainConfigRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiRainContracts without sending the request
+     */
+    async getApiRainContractsRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/rain/contracts`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiRainContractsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiRainContractsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiRainContracts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiRainContractsRaw(initOverrides);
     }
 
     /**
@@ -15060,6 +15225,110 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiRainCardsByCardIdSecrets(requestParameters: DefaultApiPostApiRainCardsByCardIdSecretsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiRainCardsByCardIdSecretsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiRainContractsByContractIdFund without sending the request
+     */
+    async postApiRainContractsByContractIdFundRequestOpts(requestParameters: DefaultApiPostApiRainContractsByContractIdFundOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError(
+                'contractId',
+                'Required parameter "contractId" was null or undefined when calling postApiRainContractsByContractIdFund().'
+            );
+        }
+
+        if (requestParameters['postApiRainContractsByContractIdFundRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiRainContractsByContractIdFundRequest',
+                'Required parameter "postApiRainContractsByContractIdFundRequest" was null or undefined when calling postApiRainContractsByContractIdFund().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/rain/contracts/{contractId}/fund`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiRainContractsByContractIdFundRequestToJSON(requestParameters['postApiRainContractsByContractIdFundRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiRainContractsByContractIdFundRaw(requestParameters: DefaultApiPostApiRainContractsByContractIdFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiRainContractsByContractIdFundRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiRainContractsByContractIdFund(requestParameters: DefaultApiPostApiRainContractsByContractIdFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiRainContractsByContractIdFundRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiRainContractsByContractIdWithdraw without sending the request
+     */
+    async postApiRainContractsByContractIdWithdrawRequestOpts(requestParameters: DefaultApiPostApiRainContractsByContractIdWithdrawRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError(
+                'contractId',
+                'Required parameter "contractId" was null or undefined when calling postApiRainContractsByContractIdWithdraw().'
+            );
+        }
+
+        if (requestParameters['postApiRainContractsByContractIdFundRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiRainContractsByContractIdFundRequest',
+                'Required parameter "postApiRainContractsByContractIdFundRequest" was null or undefined when calling postApiRainContractsByContractIdWithdraw().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/rain/contracts/{contractId}/withdraw`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiRainContractsByContractIdFundRequestToJSON(requestParameters['postApiRainContractsByContractIdFundRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiRainContractsByContractIdWithdrawRaw(requestParameters: DefaultApiPostApiRainContractsByContractIdWithdrawRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiRainContractsByContractIdWithdrawRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiRainContractsByContractIdWithdraw(requestParameters: DefaultApiPostApiRainContractsByContractIdWithdrawRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiRainContractsByContractIdWithdrawRaw(requestParameters, initOverrides);
     }
 
     /**

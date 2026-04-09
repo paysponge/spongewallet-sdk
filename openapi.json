@@ -3684,6 +3684,38 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "doordashEdits": {
+                    "type": "object",
+                    "properties": {
+                      "restaurantName": {
+                        "type": "string"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "name",
+                            "quantity"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "quantity": {
+                              "type": "number"
+                            },
+                            "specialInstructions": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "deliveryAddress": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -3705,6 +3737,38 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "doordashEdits": {
+                    "type": "object",
+                    "properties": {
+                      "restaurantName": {
+                        "type": "string"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "name",
+                            "quantity"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "quantity": {
+                              "type": "number"
+                            },
+                            "specialInstructions": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "deliveryAddress": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -3723,6 +3787,38 @@
                     "type": "object",
                     "patternProperties": {
                       "^(.*)$": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "doordashEdits": {
+                    "type": "object",
+                    "properties": {
+                      "restaurantName": {
+                        "type": "string"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "name",
+                            "quantity"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "quantity": {
+                              "type": "number"
+                            },
+                            "specialInstructions": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "deliveryAddress": {
                         "type": "string"
                       }
                     }
@@ -12485,6 +12581,146 @@
           }
         },
         "operationId": "postApiRainCardsByCardIdSecrets"
+      }
+    },
+    "/api/rain/balances": {
+      "get": {
+        "operationId": "getApiRainBalances"
+      }
+    },
+    "/api/rain/contracts": {
+      "get": {
+        "operationId": "getApiRainContracts"
+      }
+    },
+    "/api/rain/contracts/{contractId}/fund": {
+      "post": {
+        "parameters": [
+          {
+            "name": "contractId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minLength": 1,
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minLength": 1,
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minLength": 1,
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiRainContractsByContractIdFund"
+      }
+    },
+    "/api/rain/contracts/{contractId}/withdraw": {
+      "post": {
+        "parameters": [
+          {
+            "name": "contractId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minLength": 1,
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minLength": 1,
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minLength": 1,
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiRainContractsByContractIdWithdraw"
       }
     },
     "/api/card-access-requests/": {

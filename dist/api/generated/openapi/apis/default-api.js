@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRainCardRequestToJSON, PostApiRainCardsByCardIdSecretsRequestToJSON, PostApiRainCustomerRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRainCardRequestToJSON, PostApiRainCardsByCardIdSecretsRequestToJSON, PostApiRainContractsByContractIdFundRequestToJSON, PostApiRainCustomerRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -2897,6 +2897,32 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiPromoKv2Jm7DZOIDGi6D2FreemoneyRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiRainBalances without sending the request
+     */
+    async getApiRainBalancesRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/rain/balances`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiRainBalancesRaw(initOverrides) {
+        const requestOptions = await this.getApiRainBalancesRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiRainBalances(initOverrides) {
+        await this.getApiRainBalancesRaw(initOverrides);
+    }
+    /**
      * Creates request options for getApiRainCards without sending the request
      */
     async getApiRainCardsRequestOpts() {
@@ -2947,6 +2973,32 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiRainConfig(initOverrides) {
         await this.getApiRainConfigRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiRainContracts without sending the request
+     */
+    async getApiRainContractsRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/rain/contracts`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiRainContractsRaw(initOverrides) {
+        const requestOptions = await this.getApiRainContractsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiRainContracts(initOverrides) {
+        await this.getApiRainContractsRaw(initOverrides);
     }
     /**
      * Creates request options for getApiRainCustomer without sending the request
@@ -6190,6 +6242,76 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiRainCardsByCardIdSecrets(requestParameters, initOverrides) {
         await this.postApiRainCardsByCardIdSecretsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiRainContractsByContractIdFund without sending the request
+     */
+    async postApiRainContractsByContractIdFundRequestOpts(requestParameters) {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling postApiRainContractsByContractIdFund().');
+        }
+        if (requestParameters['postApiRainContractsByContractIdFundRequest'] == null) {
+            throw new runtime.RequiredError('postApiRainContractsByContractIdFundRequest', 'Required parameter "postApiRainContractsByContractIdFundRequest" was null or undefined when calling postApiRainContractsByContractIdFund().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/rain/contracts/{contractId}/fund`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiRainContractsByContractIdFundRequestToJSON(requestParameters['postApiRainContractsByContractIdFundRequest']),
+        };
+    }
+    /**
+     */
+    async postApiRainContractsByContractIdFundRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiRainContractsByContractIdFundRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiRainContractsByContractIdFund(requestParameters, initOverrides) {
+        await this.postApiRainContractsByContractIdFundRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiRainContractsByContractIdWithdraw without sending the request
+     */
+    async postApiRainContractsByContractIdWithdrawRequestOpts(requestParameters) {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling postApiRainContractsByContractIdWithdraw().');
+        }
+        if (requestParameters['postApiRainContractsByContractIdFundRequest'] == null) {
+            throw new runtime.RequiredError('postApiRainContractsByContractIdFundRequest', 'Required parameter "postApiRainContractsByContractIdFundRequest" was null or undefined when calling postApiRainContractsByContractIdWithdraw().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/rain/contracts/{contractId}/withdraw`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiRainContractsByContractIdFundRequestToJSON(requestParameters['postApiRainContractsByContractIdFundRequest']),
+        };
+    }
+    /**
+     */
+    async postApiRainContractsByContractIdWithdrawRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiRainContractsByContractIdWithdrawRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiRainContractsByContractIdWithdraw(requestParameters, initOverrides) {
+        await this.postApiRainContractsByContractIdWithdrawRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiRainCustomer without sending the request
