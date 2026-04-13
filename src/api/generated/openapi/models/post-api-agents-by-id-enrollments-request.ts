@@ -36,6 +36,18 @@ export interface PostApiAgentsByIdEnrollmentsRequest {
      * @type {string}
      * @memberof PostApiAgentsByIdEnrollmentsRequest
      */
+    consumerFirstName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdEnrollmentsRequest
+     */
+    consumerLastName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdEnrollmentsRequest
+     */
     cardLast4?: string;
     /**
      * 
@@ -78,6 +90,8 @@ export function PostApiAgentsByIdEnrollmentsRequestFromJSONTyped(json: any, igno
         
         'btTokenId': json['btTokenId'],
         'consumerEmail': json['consumerEmail'],
+        'consumerFirstName': json['consumerFirstName'] == null ? undefined : json['consumerFirstName'],
+        'consumerLastName': json['consumerLastName'] == null ? undefined : json['consumerLastName'],
         'cardLast4': json['cardLast4'] == null ? undefined : json['cardLast4'],
         'cardBrand': json['cardBrand'] == null ? undefined : json['cardBrand'],
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
@@ -98,6 +112,8 @@ export function PostApiAgentsByIdEnrollmentsRequestToJSONTyped(value?: PostApiAg
         
         'btTokenId': value['btTokenId'],
         'consumerEmail': value['consumerEmail'],
+        'consumerFirstName': value['consumerFirstName'],
+        'consumerLastName': value['consumerLastName'],
         'cardLast4': value['cardLast4'],
         'cardBrand': value['cardBrand'],
         'paymentMethodId': value['paymentMethodId'],

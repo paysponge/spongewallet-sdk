@@ -32,6 +32,18 @@ export interface PostApiAgentsByIdEnrollmentsRequest {
      * @type {string}
      * @memberof PostApiAgentsByIdEnrollmentsRequest
      */
+    consumerFirstName?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdEnrollmentsRequest
+     */
+    consumerLastName?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiAgentsByIdEnrollmentsRequest
+     */
     cardLast4?: string;
     /**
      *

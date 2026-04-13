@@ -4588,6 +4588,12 @@
                   "consumerEmail": {
                     "type": "string"
                   },
+                  "consumerFirstName": {
+                    "type": "string"
+                  },
+                  "consumerLastName": {
+                    "type": "string"
+                  },
                   "cardLast4": {
                     "type": "string"
                   },
@@ -4617,6 +4623,12 @@
                   "consumerEmail": {
                     "type": "string"
                   },
+                  "consumerFirstName": {
+                    "type": "string"
+                  },
+                  "consumerLastName": {
+                    "type": "string"
+                  },
                   "cardLast4": {
                     "type": "string"
                   },
@@ -4644,6 +4656,12 @@
                     "type": "string"
                   },
                   "consumerEmail": {
+                    "type": "string"
+                  },
+                  "consumerFirstName": {
+                    "type": "string"
+                  },
+                  "consumerLastName": {
                     "type": "string"
                   },
                   "cardLast4": {
