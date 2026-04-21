@@ -12196,12 +12196,12 @@
         "operationId": "postApiWebhooksBridge"
       }
     },
-    "/api/rain/config": {
+    "/api/sponge-card/config": {
       "get": {
-        "operationId": "getApiRainConfig"
+        "operationId": "getApiSponge-cardConfig"
       }
     },
-    "/api/rain/customer": {
+    "/api/sponge-card/customer": {
       "get": {
         "parameters": [
           {
@@ -12234,7 +12234,7 @@
             }
           }
         ],
-        "operationId": "getApiRainCustomer"
+        "operationId": "getApiSponge-cardCustomer"
       },
       "post": {
         "requestBody": {
@@ -12584,7 +12584,7 @@
             }
           }
         },
-        "operationId": "postApiRainCustomer"
+        "operationId": "postApiSponge-cardCustomer"
       },
       "delete": {
         "parameters": [
@@ -12601,10 +12601,10 @@
             }
           }
         ],
-        "operationId": "deleteApiRainCustomer"
+        "operationId": "deleteApiSponge-cardCustomer"
       }
     },
-    "/api/rain/customer/refresh": {
+    "/api/sponge-card/customer/refresh": {
       "post": {
         "requestBody": {
           "required": true,
@@ -12662,10 +12662,10 @@
             }
           }
         },
-        "operationId": "postApiRainCustomerRefresh"
+        "operationId": "postApiSponge-cardCustomerRefresh"
       }
     },
-    "/api/rain/card": {
+    "/api/sponge-card/card": {
       "post": {
         "requestBody": {
           "required": true,
@@ -12849,10 +12849,10 @@
             }
           }
         },
-        "operationId": "postApiRainCard"
+        "operationId": "postApiSponge-cardCard"
       }
     },
-    "/api/rain/cards": {
+    "/api/sponge-card/cards": {
       "get": {
         "parameters": [
           {
@@ -12868,10 +12868,10 @@
             }
           }
         ],
-        "operationId": "getApiRainCards"
+        "operationId": "getApiSponge-cardCards"
       }
     },
-    "/api/rain/cards/{cardId}/secrets": {
+    "/api/sponge-card/cards/{cardId}/secrets": {
       "post": {
         "parameters": [
           {
@@ -12930,10 +12930,10 @@
             }
           }
         },
-        "operationId": "postApiRainCardsByCardIdSecrets"
+        "operationId": "postApiSponge-cardCardsByCardIdSecrets"
       }
     },
-    "/api/rain/balances": {
+    "/api/sponge-card/balances": {
       "get": {
         "parameters": [
           {
@@ -12949,10 +12949,10 @@
             }
           }
         ],
-        "operationId": "getApiRainBalances"
+        "operationId": "getApiSponge-cardBalances"
       }
     },
-    "/api/rain/contracts": {
+    "/api/sponge-card/contracts": {
       "get": {
         "parameters": [
           {
@@ -12968,10 +12968,10 @@
             }
           }
         ],
-        "operationId": "getApiRainContracts"
+        "operationId": "getApiSponge-cardContracts"
       }
     },
-    "/api/rain/contracts/{contractId}/balance": {
+    "/api/sponge-card/contracts/{contractId}/balance": {
       "get": {
         "parameters": [
           {
@@ -12995,10 +12995,10 @@
             }
           }
         ],
-        "operationId": "getApiRainContractsByContractIdBalance"
+        "operationId": "getApiSponge-cardContractsByContractIdBalance"
       }
     },
-    "/api/rain/contracts/{contractId}/fund": {
+    "/api/sponge-card/contracts/{contractId}/fund": {
       "post": {
         "parameters": [
           {
@@ -13084,10 +13084,10 @@
             }
           }
         },
-        "operationId": "postApiRainContractsByContractIdFund"
+        "operationId": "postApiSponge-cardContractsByContractIdFund"
       }
     },
-    "/api/rain/contracts/{contractId}/withdraw": {
+    "/api/sponge-card/contracts/{contractId}/withdraw": {
       "post": {
         "parameters": [
           {
@@ -13173,7 +13173,7 @@
             }
           }
         },
-        "operationId": "postApiRainContractsByContractIdWithdraw"
+        "operationId": "postApiSponge-cardContractsByContractIdWithdraw"
       }
     },
     "/api/card-access-requests/": {

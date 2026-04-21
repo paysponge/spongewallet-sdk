@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRainCardRequestToJSON, PostApiRainCardsByCardIdSecretsRequestToJSON, PostApiRainContractsByContractIdFundRequestToJSON, PostApiRainContractsByContractIdWithdrawRequestToJSON, PostApiRainCustomerRefreshRequestToJSON, PostApiRainCustomerRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -810,38 +810,6 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.deleteApiMasterKeysByIdRaw(requestParameters, initOverrides);
     }
     /**
-     * Creates request options for deleteApiRainCustomer without sending the request
-     */
-    async deleteApiRainCustomerRequestOpts(requestParameters) {
-        if (requestParameters['environment'] == null) {
-            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling deleteApiRainCustomer().');
-        }
-        const queryParameters = {};
-        if (requestParameters['environment'] != null) {
-            queryParameters['environment'] = requestParameters['environment'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/rain/customer`;
-        return {
-            path: urlPath,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async deleteApiRainCustomerRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.deleteApiRainCustomerRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async deleteApiRainCustomer(requestParameters, initOverrides) {
-        await this.deleteApiRainCustomerRaw(requestParameters, initOverrides);
-    }
-    /**
      * Creates request options for deleteApiSpendingLimitsById without sending the request
      */
     async deleteApiSpendingLimitsByIdRequestOpts(requestParameters) {
@@ -870,6 +838,38 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async deleteApiSpendingLimitsById(requestParameters, initOverrides) {
         await this.deleteApiSpendingLimitsByIdRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for deleteApiSpongeCardCustomer without sending the request
+     */
+    async deleteApiSpongeCardCustomerRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling deleteApiSpongeCardCustomer().');
+        }
+        const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/customer`;
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async deleteApiSpongeCardCustomerRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.deleteApiSpongeCardCustomerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async deleteApiSpongeCardCustomer(requestParameters, initOverrides) {
+        await this.deleteApiSpongeCardCustomerRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiAdminBetaUsers without sending the request
@@ -2903,199 +2903,6 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiPromoKv2Jm7DZOIDGi6D2FreemoneyRaw(requestParameters, initOverrides);
     }
     /**
-     * Creates request options for getApiRainBalances without sending the request
-     */
-    async getApiRainBalancesRequestOpts(requestParameters) {
-        if (requestParameters['environment'] == null) {
-            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainBalances().');
-        }
-        const queryParameters = {};
-        if (requestParameters['environment'] != null) {
-            queryParameters['environment'] = requestParameters['environment'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/rain/balances`;
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async getApiRainBalancesRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.getApiRainBalancesRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async getApiRainBalances(requestParameters, initOverrides) {
-        await this.getApiRainBalancesRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for getApiRainCards without sending the request
-     */
-    async getApiRainCardsRequestOpts(requestParameters) {
-        if (requestParameters['environment'] == null) {
-            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainCards().');
-        }
-        const queryParameters = {};
-        if (requestParameters['environment'] != null) {
-            queryParameters['environment'] = requestParameters['environment'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/rain/cards`;
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async getApiRainCardsRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.getApiRainCardsRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async getApiRainCards(requestParameters, initOverrides) {
-        await this.getApiRainCardsRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for getApiRainConfig without sending the request
-     */
-    async getApiRainConfigRequestOpts() {
-        const queryParameters = {};
-        const headerParameters = {};
-        let urlPath = `/api/rain/config`;
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async getApiRainConfigRaw(initOverrides) {
-        const requestOptions = await this.getApiRainConfigRequestOpts();
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async getApiRainConfig(initOverrides) {
-        await this.getApiRainConfigRaw(initOverrides);
-    }
-    /**
-     * Creates request options for getApiRainContracts without sending the request
-     */
-    async getApiRainContractsRequestOpts(requestParameters) {
-        if (requestParameters['environment'] == null) {
-            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainContracts().');
-        }
-        const queryParameters = {};
-        if (requestParameters['environment'] != null) {
-            queryParameters['environment'] = requestParameters['environment'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/rain/contracts`;
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async getApiRainContractsRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.getApiRainContractsRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async getApiRainContracts(requestParameters, initOverrides) {
-        await this.getApiRainContractsRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for getApiRainContractsByContractIdBalance without sending the request
-     */
-    async getApiRainContractsByContractIdBalanceRequestOpts(requestParameters) {
-        if (requestParameters['contractId'] == null) {
-            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling getApiRainContractsByContractIdBalance().');
-        }
-        if (requestParameters['environment'] == null) {
-            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainContractsByContractIdBalance().');
-        }
-        const queryParameters = {};
-        if (requestParameters['environment'] != null) {
-            queryParameters['environment'] = requestParameters['environment'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/rain/contracts/{contractId}/balance`;
-        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async getApiRainContractsByContractIdBalanceRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.getApiRainContractsByContractIdBalanceRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async getApiRainContractsByContractIdBalance(requestParameters, initOverrides) {
-        await this.getApiRainContractsByContractIdBalanceRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for getApiRainCustomer without sending the request
-     */
-    async getApiRainCustomerRequestOpts(requestParameters) {
-        if (requestParameters['environment'] == null) {
-            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiRainCustomer().');
-        }
-        const queryParameters = {};
-        if (requestParameters['environment'] != null) {
-            queryParameters['environment'] = requestParameters['environment'];
-        }
-        if (requestParameters['forceRefresh'] != null) {
-            queryParameters['forceRefresh'] = requestParameters['forceRefresh'];
-        }
-        const headerParameters = {};
-        let urlPath = `/api/rain/customer`;
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-    /**
-     */
-    async getApiRainCustomerRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.getApiRainCustomerRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async getApiRainCustomer(requestParameters, initOverrides) {
-        await this.getApiRainCustomerRaw(requestParameters, initOverrides);
-    }
-    /**
      * Creates request options for getApiSolanaTokens without sending the request
      */
     async getApiSolanaTokensRequestOpts(requestParameters) {
@@ -3197,6 +3004,199 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getApiSpendingLimitsByAgentId(requestParameters, initOverrides) {
         await this.getApiSpendingLimitsByAgentIdRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiSpongeCardBalances without sending the request
+     */
+    async getApiSpongeCardBalancesRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiSpongeCardBalances().');
+        }
+        const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/balances`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiSpongeCardBalancesRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiSpongeCardBalancesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiSpongeCardBalances(requestParameters, initOverrides) {
+        await this.getApiSpongeCardBalancesRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiSpongeCardCards without sending the request
+     */
+    async getApiSpongeCardCardsRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiSpongeCardCards().');
+        }
+        const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/cards`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiSpongeCardCardsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiSpongeCardCardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiSpongeCardCards(requestParameters, initOverrides) {
+        await this.getApiSpongeCardCardsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiSpongeCardConfig without sending the request
+     */
+    async getApiSpongeCardConfigRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/config`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiSpongeCardConfigRaw(initOverrides) {
+        const requestOptions = await this.getApiSpongeCardConfigRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiSpongeCardConfig(initOverrides) {
+        await this.getApiSpongeCardConfigRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiSpongeCardContracts without sending the request
+     */
+    async getApiSpongeCardContractsRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiSpongeCardContracts().');
+        }
+        const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/contracts`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiSpongeCardContractsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiSpongeCardContractsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiSpongeCardContracts(requestParameters, initOverrides) {
+        await this.getApiSpongeCardContractsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiSpongeCardContractsByContractIdBalance without sending the request
+     */
+    async getApiSpongeCardContractsByContractIdBalanceRequestOpts(requestParameters) {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling getApiSpongeCardContractsByContractIdBalance().');
+        }
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiSpongeCardContractsByContractIdBalance().');
+        }
+        const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/contracts/{contractId}/balance`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiSpongeCardContractsByContractIdBalanceRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiSpongeCardContractsByContractIdBalanceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiSpongeCardContractsByContractIdBalance(requestParameters, initOverrides) {
+        await this.getApiSpongeCardContractsByContractIdBalanceRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiSpongeCardCustomer without sending the request
+     */
+    async getApiSpongeCardCustomerRequestOpts(requestParameters) {
+        if (requestParameters['environment'] == null) {
+            throw new runtime.RequiredError('environment', 'Required parameter "environment" was null or undefined when calling getApiSpongeCardCustomer().');
+        }
+        const queryParameters = {};
+        if (requestParameters['environment'] != null) {
+            queryParameters['environment'] = requestParameters['environment'];
+        }
+        if (requestParameters['forceRefresh'] != null) {
+            queryParameters['forceRefresh'] = requestParameters['forceRefresh'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/customer`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiSpongeCardCustomerRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiSpongeCardCustomerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiSpongeCardCustomer(requestParameters, initOverrides) {
+        await this.getApiSpongeCardCustomerRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for getApiStripeOnrampSessionBySessionIdStatus without sending the request
@@ -6274,204 +6274,6 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiPolymarketRaw(requestParameters, initOverrides);
     }
     /**
-     * Creates request options for postApiRainCard without sending the request
-     */
-    async postApiRainCardRequestOpts(requestParameters) {
-        if (requestParameters['postApiRainCardRequest'] == null) {
-            throw new runtime.RequiredError('postApiRainCardRequest', 'Required parameter "postApiRainCardRequest" was null or undefined when calling postApiRainCard().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/rain/card`;
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiRainCardRequestToJSON(requestParameters['postApiRainCardRequest']),
-        };
-    }
-    /**
-     */
-    async postApiRainCardRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiRainCardRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiRainCard(requestParameters, initOverrides) {
-        await this.postApiRainCardRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for postApiRainCardsByCardIdSecrets without sending the request
-     */
-    async postApiRainCardsByCardIdSecretsRequestOpts(requestParameters) {
-        if (requestParameters['cardId'] == null) {
-            throw new runtime.RequiredError('cardId', 'Required parameter "cardId" was null or undefined when calling postApiRainCardsByCardIdSecrets().');
-        }
-        if (requestParameters['postApiRainCardsByCardIdSecretsRequest'] == null) {
-            throw new runtime.RequiredError('postApiRainCardsByCardIdSecretsRequest', 'Required parameter "postApiRainCardsByCardIdSecretsRequest" was null or undefined when calling postApiRainCardsByCardIdSecrets().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/rain/cards/{cardId}/secrets`;
-        urlPath = urlPath.replace(`{${"cardId"}}`, encodeURIComponent(String(requestParameters['cardId'])));
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiRainCardsByCardIdSecretsRequestToJSON(requestParameters['postApiRainCardsByCardIdSecretsRequest']),
-        };
-    }
-    /**
-     */
-    async postApiRainCardsByCardIdSecretsRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiRainCardsByCardIdSecretsRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiRainCardsByCardIdSecrets(requestParameters, initOverrides) {
-        await this.postApiRainCardsByCardIdSecretsRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for postApiRainContractsByContractIdFund without sending the request
-     */
-    async postApiRainContractsByContractIdFundRequestOpts(requestParameters) {
-        if (requestParameters['contractId'] == null) {
-            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling postApiRainContractsByContractIdFund().');
-        }
-        if (requestParameters['postApiRainContractsByContractIdFundRequest'] == null) {
-            throw new runtime.RequiredError('postApiRainContractsByContractIdFundRequest', 'Required parameter "postApiRainContractsByContractIdFundRequest" was null or undefined when calling postApiRainContractsByContractIdFund().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/rain/contracts/{contractId}/fund`;
-        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiRainContractsByContractIdFundRequestToJSON(requestParameters['postApiRainContractsByContractIdFundRequest']),
-        };
-    }
-    /**
-     */
-    async postApiRainContractsByContractIdFundRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiRainContractsByContractIdFundRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiRainContractsByContractIdFund(requestParameters, initOverrides) {
-        await this.postApiRainContractsByContractIdFundRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for postApiRainContractsByContractIdWithdraw without sending the request
-     */
-    async postApiRainContractsByContractIdWithdrawRequestOpts(requestParameters) {
-        if (requestParameters['contractId'] == null) {
-            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling postApiRainContractsByContractIdWithdraw().');
-        }
-        if (requestParameters['postApiRainContractsByContractIdWithdrawRequest'] == null) {
-            throw new runtime.RequiredError('postApiRainContractsByContractIdWithdrawRequest', 'Required parameter "postApiRainContractsByContractIdWithdrawRequest" was null or undefined when calling postApiRainContractsByContractIdWithdraw().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/rain/contracts/{contractId}/withdraw`;
-        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiRainContractsByContractIdWithdrawRequestToJSON(requestParameters['postApiRainContractsByContractIdWithdrawRequest']),
-        };
-    }
-    /**
-     */
-    async postApiRainContractsByContractIdWithdrawRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiRainContractsByContractIdWithdrawRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiRainContractsByContractIdWithdraw(requestParameters, initOverrides) {
-        await this.postApiRainContractsByContractIdWithdrawRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for postApiRainCustomer without sending the request
-     */
-    async postApiRainCustomerRequestOpts(requestParameters) {
-        if (requestParameters['postApiRainCustomerRequest'] == null) {
-            throw new runtime.RequiredError('postApiRainCustomerRequest', 'Required parameter "postApiRainCustomerRequest" was null or undefined when calling postApiRainCustomer().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/rain/customer`;
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiRainCustomerRequestToJSON(requestParameters['postApiRainCustomerRequest']),
-        };
-    }
-    /**
-     */
-    async postApiRainCustomerRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiRainCustomerRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiRainCustomer(requestParameters, initOverrides) {
-        await this.postApiRainCustomerRaw(requestParameters, initOverrides);
-    }
-    /**
-     * Creates request options for postApiRainCustomerRefresh without sending the request
-     */
-    async postApiRainCustomerRefreshRequestOpts(requestParameters) {
-        if (requestParameters['postApiRainCustomerRefreshRequest'] == null) {
-            throw new runtime.RequiredError('postApiRainCustomerRefreshRequest', 'Required parameter "postApiRainCustomerRefreshRequest" was null or undefined when calling postApiRainCustomerRefresh().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        let urlPath = `/api/rain/customer/refresh`;
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiRainCustomerRefreshRequestToJSON(requestParameters['postApiRainCustomerRefreshRequest']),
-        };
-    }
-    /**
-     */
-    async postApiRainCustomerRefreshRaw(requestParameters, initOverrides) {
-        const requestOptions = await this.postApiRainCustomerRefreshRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async postApiRainCustomerRefresh(requestParameters, initOverrides) {
-        await this.postApiRainCustomerRefreshRaw(requestParameters, initOverrides);
-    }
-    /**
      * Creates request options for postApiRpcByChainId without sending the request
      */
     async postApiRpcByChainIdRequestOpts(requestParameters) {
@@ -6660,6 +6462,204 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiSpendingLimits(requestParameters, initOverrides) {
         await this.postApiSpendingLimitsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardCard without sending the request
+     */
+    async postApiSpongeCardCardRequestOpts(requestParameters) {
+        if (requestParameters['postApiSpongeCardCardRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardCardRequest', 'Required parameter "postApiSpongeCardCardRequest" was null or undefined when calling postApiSpongeCardCard().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/card`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardCardRequestToJSON(requestParameters['postApiSpongeCardCardRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardCardRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardCard(requestParameters, initOverrides) {
+        await this.postApiSpongeCardCardRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardCardsByCardIdSecrets without sending the request
+     */
+    async postApiSpongeCardCardsByCardIdSecretsRequestOpts(requestParameters) {
+        if (requestParameters['cardId'] == null) {
+            throw new runtime.RequiredError('cardId', 'Required parameter "cardId" was null or undefined when calling postApiSpongeCardCardsByCardIdSecrets().');
+        }
+        if (requestParameters['postApiSpongeCardCardsByCardIdSecretsRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardCardsByCardIdSecretsRequest', 'Required parameter "postApiSpongeCardCardsByCardIdSecretsRequest" was null or undefined when calling postApiSpongeCardCardsByCardIdSecrets().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/cards/{cardId}/secrets`;
+        urlPath = urlPath.replace(`{${"cardId"}}`, encodeURIComponent(String(requestParameters['cardId'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardCardsByCardIdSecretsRequestToJSON(requestParameters['postApiSpongeCardCardsByCardIdSecretsRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardCardsByCardIdSecretsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardCardsByCardIdSecretsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardCardsByCardIdSecrets(requestParameters, initOverrides) {
+        await this.postApiSpongeCardCardsByCardIdSecretsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardContractsByContractIdFund without sending the request
+     */
+    async postApiSpongeCardContractsByContractIdFundRequestOpts(requestParameters) {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling postApiSpongeCardContractsByContractIdFund().');
+        }
+        if (requestParameters['postApiSpongeCardContractsByContractIdFundRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardContractsByContractIdFundRequest', 'Required parameter "postApiSpongeCardContractsByContractIdFundRequest" was null or undefined when calling postApiSpongeCardContractsByContractIdFund().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/contracts/{contractId}/fund`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardContractsByContractIdFundRequestToJSON(requestParameters['postApiSpongeCardContractsByContractIdFundRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardContractsByContractIdFundRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardContractsByContractIdFundRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardContractsByContractIdFund(requestParameters, initOverrides) {
+        await this.postApiSpongeCardContractsByContractIdFundRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardContractsByContractIdWithdraw without sending the request
+     */
+    async postApiSpongeCardContractsByContractIdWithdrawRequestOpts(requestParameters) {
+        if (requestParameters['contractId'] == null) {
+            throw new runtime.RequiredError('contractId', 'Required parameter "contractId" was null or undefined when calling postApiSpongeCardContractsByContractIdWithdraw().');
+        }
+        if (requestParameters['postApiSpongeCardContractsByContractIdWithdrawRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardContractsByContractIdWithdrawRequest', 'Required parameter "postApiSpongeCardContractsByContractIdWithdrawRequest" was null or undefined when calling postApiSpongeCardContractsByContractIdWithdraw().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/contracts/{contractId}/withdraw`;
+        urlPath = urlPath.replace(`{${"contractId"}}`, encodeURIComponent(String(requestParameters['contractId'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON(requestParameters['postApiSpongeCardContractsByContractIdWithdrawRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardContractsByContractIdWithdrawRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardContractsByContractIdWithdrawRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardContractsByContractIdWithdraw(requestParameters, initOverrides) {
+        await this.postApiSpongeCardContractsByContractIdWithdrawRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardCustomer without sending the request
+     */
+    async postApiSpongeCardCustomerRequestOpts(requestParameters) {
+        if (requestParameters['postApiSpongeCardCustomerRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardCustomerRequest', 'Required parameter "postApiSpongeCardCustomerRequest" was null or undefined when calling postApiSpongeCardCustomer().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/customer`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardCustomerRequestToJSON(requestParameters['postApiSpongeCardCustomerRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardCustomerRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardCustomerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardCustomer(requestParameters, initOverrides) {
+        await this.postApiSpongeCardCustomerRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardCustomerRefresh without sending the request
+     */
+    async postApiSpongeCardCustomerRefreshRequestOpts(requestParameters) {
+        if (requestParameters['postApiSpongeCardCustomerRefreshRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardCustomerRefreshRequest', 'Required parameter "postApiSpongeCardCustomerRefreshRequest" was null or undefined when calling postApiSpongeCardCustomerRefresh().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/customer/refresh`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardCustomerRefreshRequestToJSON(requestParameters['postApiSpongeCardCustomerRefreshRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardCustomerRefreshRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardCustomerRefreshRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardCustomerRefresh(requestParameters, initOverrides) {
+        await this.postApiSpongeCardCustomerRefreshRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiStripeOnrampSession without sending the request
@@ -7897,42 +7897,42 @@ export class DefaultApi extends runtime.BaseAPI {
 /**
  * @export
  */
-export const DeleteApiRainCustomerEnvironmentEnum = {
+export const DeleteApiSpongeCardCustomerEnvironmentEnum = {
     Dev: 'dev',
     Production: 'production'
 };
 /**
  * @export
  */
-export const GetApiRainBalancesEnvironmentEnum = {
+export const GetApiSpongeCardBalancesEnvironmentEnum = {
     Dev: 'dev',
     Production: 'production'
 };
 /**
  * @export
  */
-export const GetApiRainCardsEnvironmentEnum = {
+export const GetApiSpongeCardCardsEnvironmentEnum = {
     Dev: 'dev',
     Production: 'production'
 };
 /**
  * @export
  */
-export const GetApiRainContractsEnvironmentEnum = {
+export const GetApiSpongeCardContractsEnvironmentEnum = {
     Dev: 'dev',
     Production: 'production'
 };
 /**
  * @export
  */
-export const GetApiRainContractsByContractIdBalanceEnvironmentEnum = {
+export const GetApiSpongeCardContractsByContractIdBalanceEnvironmentEnum = {
     Dev: 'dev',
     Production: 'production'
 };
 /**
  * @export
  */
-export const GetApiRainCustomerEnvironmentEnum = {
+export const GetApiSpongeCardCustomerEnvironmentEnum = {
     Dev: 'dev',
     Production: 'production'
 };
