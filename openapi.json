@@ -12792,6 +12792,61 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "email": {
+                    "format": "email",
+                    "maxLength": 320,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "minLength": 1,
+                    "maxLength": 32,
+                    "type": "string"
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "name": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -12851,6 +12906,61 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "email": {
+                    "format": "email",
+                    "maxLength": 320,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "minLength": 1,
+                    "maxLength": 32,
+                    "type": "string"
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "name": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -12880,6 +12990,61 @@
                       "countryCode"
                     ],
                     "properties": {
+                      "line1": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "line2": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
+                      "city": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "region": {
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "minLength": 1,
+                        "maxLength": 15,
+                        "type": "string"
+                      },
+                      "countryCode": {
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "email": {
+                    "format": "email",
+                    "maxLength": 320,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "minLength": 1,
+                    "maxLength": 32,
+                    "type": "string"
+                  },
+                  "shipping": {
+                    "type": "object",
+                    "required": [
+                      "line1",
+                      "city",
+                      "region",
+                      "postalCode",
+                      "countryCode"
+                    ],
+                    "properties": {
+                      "name": {
+                        "maxLength": 100,
+                        "type": "string"
+                      },
                       "line1": {
                         "minLength": 1,
                         "maxLength": 100,

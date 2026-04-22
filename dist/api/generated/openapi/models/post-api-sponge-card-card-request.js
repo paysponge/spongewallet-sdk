@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PostApiSpongeCardCardRequestShippingFromJSON, PostApiSpongeCardCardRequestShippingToJSON, } from './post-api-sponge-card-card-request-shipping.js';
 import { PostApiSpongeCardCustomerRequestAddressFromJSON, PostApiSpongeCardCustomerRequestAddressToJSON, } from './post-api-sponge-card-customer-request-address.js';
 /**
  * @export
@@ -39,6 +40,9 @@ export function PostApiSpongeCardCardRequestFromJSONTyped(json, ignoreDiscrimina
     return {
         'environment': json['environment'],
         'billing': PostApiSpongeCardCustomerRequestAddressFromJSON(json['billing']),
+        'email': json['email'] == null ? undefined : json['email'],
+        'phone': json['phone'] == null ? undefined : json['phone'],
+        'shipping': json['shipping'] == null ? undefined : PostApiSpongeCardCardRequestShippingFromJSON(json['shipping']),
     };
 }
 export function PostApiSpongeCardCardRequestToJSON(json) {
@@ -51,6 +55,9 @@ export function PostApiSpongeCardCardRequestToJSONTyped(value, ignoreDiscriminat
     return {
         'environment': value['environment'],
         'billing': PostApiSpongeCardCustomerRequestAddressToJSON(value['billing']),
+        'email': value['email'],
+        'phone': value['phone'],
+        'shipping': PostApiSpongeCardCardRequestShippingToJSON(value['shipping']),
     };
 }
 //# sourceMappingURL=post-api-sponge-card-card-request.js.map

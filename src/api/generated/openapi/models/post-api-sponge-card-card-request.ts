@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { PostApiSpongeCardCardRequestShipping } from './post-api-sponge-card-card-request-shipping.js';
+import {
+    PostApiSpongeCardCardRequestShippingFromJSON,
+    PostApiSpongeCardCardRequestShippingFromJSONTyped,
+    PostApiSpongeCardCardRequestShippingToJSON,
+    PostApiSpongeCardCardRequestShippingToJSONTyped,
+} from './post-api-sponge-card-card-request-shipping.js';
 import type { PostApiSpongeCardCustomerRequestAddress } from './post-api-sponge-card-customer-request-address.js';
 import {
     PostApiSpongeCardCustomerRequestAddressFromJSON,
@@ -39,6 +46,24 @@ export interface PostApiSpongeCardCardRequest {
      * @memberof PostApiSpongeCardCardRequest
      */
     billing: PostApiSpongeCardCustomerRequestAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiSpongeCardCardRequest
+     */
+    email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiSpongeCardCardRequest
+     */
+    phone?: string;
+    /**
+     * 
+     * @type {PostApiSpongeCardCardRequestShipping}
+     * @memberof PostApiSpongeCardCardRequest
+     */
+    shipping?: PostApiSpongeCardCardRequestShipping;
 }
 
 
@@ -73,6 +98,9 @@ export function PostApiSpongeCardCardRequestFromJSONTyped(json: any, ignoreDiscr
         
         'environment': json['environment'],
         'billing': PostApiSpongeCardCustomerRequestAddressFromJSON(json['billing']),
+        'email': json['email'] == null ? undefined : json['email'],
+        'phone': json['phone'] == null ? undefined : json['phone'],
+        'shipping': json['shipping'] == null ? undefined : PostApiSpongeCardCardRequestShippingFromJSON(json['shipping']),
     };
 }
 
@@ -89,6 +117,9 @@ export function PostApiSpongeCardCardRequestToJSONTyped(value?: PostApiSpongeCar
         
         'environment': value['environment'],
         'billing': PostApiSpongeCardCustomerRequestAddressToJSON(value['billing']),
+        'email': value['email'],
+        'phone': value['phone'],
+        'shipping': PostApiSpongeCardCardRequestShippingToJSON(value['shipping']),
     };
 }
 

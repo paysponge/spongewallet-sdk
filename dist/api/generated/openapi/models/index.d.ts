@@ -82,6 +82,7 @@ export * from './post-api-siwe-generate-request.js';
 export * from './post-api-solana-sign-request.js';
 export * from './post-api-spending-limits-request.js';
 export * from './post-api-sponge-card-card-request.js';
+export * from './post-api-sponge-card-card-request-shipping.js';
 export * from './post-api-sponge-card-cards-by-card-id-secrets-request.js';
 export * from './post-api-sponge-card-contracts-by-contract-id-fund-request.js';
 export * from './post-api-sponge-card-contracts-by-contract-id-withdraw-request.js';

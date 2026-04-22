@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { PostApiSpongeCardCardRequestShipping } from './post-api-sponge-card-card-request-shipping.js';
 import type { PostApiSpongeCardCustomerRequestAddress } from './post-api-sponge-card-customer-request-address.js';
 /**
  *
@@ -28,6 +29,24 @@ export interface PostApiSpongeCardCardRequest {
      * @memberof PostApiSpongeCardCardRequest
      */
     billing: PostApiSpongeCardCustomerRequestAddress;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiSpongeCardCardRequest
+     */
+    email?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiSpongeCardCardRequest
+     */
+    phone?: string;
+    /**
+     *
+     * @type {PostApiSpongeCardCardRequestShipping}
+     * @memberof PostApiSpongeCardCardRequest
+     */
+    shipping?: PostApiSpongeCardCardRequestShipping;
 }
 /**
  * @export
