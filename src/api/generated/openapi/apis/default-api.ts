@@ -89,6 +89,7 @@ import type {
   PostApiSpongeCardCustomerRefreshRequest,
   PostApiSpongeCardCustomerRequest,
   PostApiStripeOnrampSessionRequest,
+  PostApiTasksRequest,
   PostApiTradesProposeRequest,
   PostApiTransactionsBridgeRequest,
   PostApiTransactionsPrepareRequest,
@@ -266,6 +267,8 @@ import {
     PostApiSpongeCardCustomerRequestToJSON,
     PostApiStripeOnrampSessionRequestFromJSON,
     PostApiStripeOnrampSessionRequestToJSON,
+    PostApiTasksRequestFromJSON,
+    PostApiTasksRequestToJSON,
     PostApiTradesProposeRequestFromJSON,
     PostApiTradesProposeRequestToJSON,
     PostApiTransactionsBridgeRequestFromJSON,
@@ -590,6 +593,12 @@ export interface DefaultApiGetApiOauthDeviceInfoByUserCodeRequest {
     userCode: string;
 }
 
+export interface DefaultApiGetApiPaymentEventsRequest {
+    after?: string;
+    limit?: string;
+    agentId?: string;
+}
+
 export interface DefaultApiGetApiPaymentLinksByPaymentLinkIdRequest {
     paymentLinkId: string;
     agentId?: string;
@@ -643,6 +652,16 @@ export interface DefaultApiGetApiSpongeCardCustomerRequest {
 
 export interface DefaultApiGetApiStripeOnrampSessionBySessionIdStatusRequest {
     sessionId: string;
+}
+
+export interface DefaultApiGetApiTasksRequest {
+    status?: string;
+    agentId?: string;
+}
+
+export interface DefaultApiGetApiTasksByTaskIdRequest {
+    taskId: string;
+    agentId?: string;
 }
 
 export interface DefaultApiGetApiTransactionsRequest {
@@ -1112,6 +1131,10 @@ export interface DefaultApiPostApiStripeOnrampSessionOperationRequest {
 
 export interface DefaultApiPostApiStripeOnrampSessionBySessionIdAbandonRequest {
     sessionId: string;
+}
+
+export interface DefaultApiPostApiTasksOperationRequest {
+    postApiTasksRequest: PostApiTasksRequest;
 }
 
 export interface DefaultApiPostApiTradesProposeOperationRequest {
@@ -3239,6 +3262,31 @@ export interface DefaultApiInterface {
     getApiOauthDeviceInfoByUserCode(requestParameters: DefaultApiGetApiOauthDeviceInfoByUserCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiPaymentEvents without sending the request
+     * @param {string} [after] 
+     * @param {string} [limit] 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiPaymentEventsRequestOpts(requestParameters: DefaultApiGetApiPaymentEventsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [after] 
+     * @param {string} [limit] 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiPaymentEventsRaw(requestParameters: DefaultApiGetApiPaymentEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiPaymentEvents(requestParameters: DefaultApiGetApiPaymentEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiPaymentLinksByPaymentLinkId without sending the request
      * @param {string} paymentLinkId 
      * @param {string} [agentId] 
@@ -3560,6 +3608,52 @@ export interface DefaultApiInterface {
     /**
      */
     getApiStripeOnrampSupported(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTasks without sending the request
+     * @param {string} [status] 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTasksRequestOpts(requestParameters: DefaultApiGetApiTasksRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [status] 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTasksRaw(requestParameters: DefaultApiGetApiTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTasks(requestParameters: DefaultApiGetApiTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTasksByTaskId without sending the request
+     * @param {string} taskId 
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTasksByTaskIdRequestOpts(requestParameters: DefaultApiGetApiTasksByTaskIdRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} taskId 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTasksByTaskIdRaw(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTasksByTaskId(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiTransactions without sending the request
@@ -5902,6 +5996,27 @@ export interface DefaultApiInterface {
     postApiStripeOnrampSessionBySessionIdAbandon(requestParameters: DefaultApiPostApiStripeOnrampSessionBySessionIdAbandonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for postApiTasks without sending the request
+     * @param {PostApiTasksRequest} postApiTasksRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTasksRequestOpts(requestParameters: DefaultApiPostApiTasksOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiTasksRequest} postApiTasksRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiTasksRaw(requestParameters: DefaultApiPostApiTasksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiTasks(requestParameters: DefaultApiPostApiTasksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for postApiTradesPropose without sending the request
      * @param {PostApiTradesProposeRequest} postApiTradesProposeRequest 
      * @throws {RequiredError}
@@ -6385,6 +6500,25 @@ export interface DefaultApiInterface {
     /**
      */
     postApiX402Payments(requestParameters: DefaultApiPostApiX402PaymentsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postInternalPaymentLinkWebhook without sending the request
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postInternalPaymentLinkWebhookRequestOpts(): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postInternalPaymentLinkWebhookRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postInternalPaymentLinkWebhook(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postOauthAuthorizeCallback without sending the request
@@ -10493,6 +10627,52 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiPaymentEvents without sending the request
+     */
+    async getApiPaymentEventsRequestOpts(requestParameters: DefaultApiGetApiPaymentEventsRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['after'] != null) {
+            queryParameters['after'] = requestParameters['after'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/payment-events`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiPaymentEventsRaw(requestParameters: DefaultApiGetApiPaymentEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiPaymentEventsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiPaymentEvents(requestParameters: DefaultApiGetApiPaymentEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiPaymentEventsRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiPaymentLinksByPaymentLinkId without sending the request
      */
     async getApiPaymentLinksByPaymentLinkIdRequestOpts(requestParameters: DefaultApiGetApiPaymentLinksByPaymentLinkIdRequest): Promise<runtime.RequestOpts> {
@@ -11159,6 +11339,94 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiStripeOnrampSupported(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiStripeOnrampSupportedRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTasks without sending the request
+     */
+    async getApiTasksRequestOpts(requestParameters: DefaultApiGetApiTasksRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/tasks`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTasksRaw(requestParameters: DefaultApiGetApiTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTasksRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTasks(requestParameters: DefaultApiGetApiTasksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTasksRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTasksByTaskId without sending the request
+     */
+    async getApiTasksByTaskIdRequestOpts(requestParameters: DefaultApiGetApiTasksByTaskIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['taskId'] == null) {
+            throw new runtime.RequiredError(
+                'taskId',
+                'Required parameter "taskId" was null or undefined when calling getApiTasksByTaskId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/tasks/{taskId}`;
+        urlPath = urlPath.replace(`{${"taskId"}}`, encodeURIComponent(String(requestParameters['taskId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTasksByTaskIdRaw(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTasksByTaskIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTasksByTaskId(requestParameters: DefaultApiGetApiTasksByTaskIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTasksByTaskIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -16145,6 +16413,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for postApiTasks without sending the request
+     */
+    async postApiTasksRequestOpts(requestParameters: DefaultApiPostApiTasksOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTasksRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTasksRequest',
+                'Required parameter "postApiTasksRequest" was null or undefined when calling postApiTasks().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/tasks`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTasksRequestToJSON(requestParameters['postApiTasksRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiTasksRaw(requestParameters: DefaultApiPostApiTasksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTasksRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiTasks(requestParameters: DefaultApiPostApiTasksOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTasksRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for postApiTradesPropose without sending the request
      */
     async postApiTradesProposeRequestOpts(requestParameters: DefaultApiPostApiTradesProposeOperationRequest): Promise<runtime.RequestOpts> {
@@ -17148,6 +17460,40 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiX402Payments(requestParameters: DefaultApiPostApiX402PaymentsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiX402PaymentsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postInternalPaymentLinkWebhook without sending the request
+     */
+    async postInternalPaymentLinkWebhookRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/internal/payment-link-webhook`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postInternalPaymentLinkWebhookRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postInternalPaymentLinkWebhookRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postInternalPaymentLinkWebhook(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postInternalPaymentLinkWebhookRaw(initOverrides);
     }
 
     /**

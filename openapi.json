@@ -7857,7 +7857,7 @@
         "operationId": "getApiMppSessions"
       }
     },
-    "/api/payment-links": {
+    "/api/tasks": {
       "post": {
         "requestBody": {
           "required": true,
@@ -7866,12 +7866,138 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "amount"
+                  "title",
+                  "default_amount"
                 ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "default_amount": {
+                    "minimum": 0.000001,
+                    "type": "number"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "default_amount"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "default_amount": {
+                    "minimum": 0.000001,
+                    "type": "number"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "default_amount"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "default_amount": {
+                    "minimum": 0.000001,
+                    "type": "number"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiTasks"
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTasks"
+      }
+    },
+    "/api/tasks/{taskId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTasksByTaskId"
+      }
+    },
+    "/api/payment-links": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
                 "properties": {
                   "amount": {
                     "minimum": 0.000001,
                     "type": "number"
+                  },
+                  "task_id": {
+                    "type": "string"
                   },
                   "description": {
                     "type": "string"
@@ -7899,13 +8025,13 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "amount"
-                ],
                 "properties": {
                   "amount": {
                     "minimum": 0.000001,
                     "type": "number"
+                  },
+                  "task_id": {
+                    "type": "string"
                   },
                   "description": {
                     "type": "string"
@@ -7933,13 +8059,13 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "amount"
-                ],
                 "properties": {
                   "amount": {
                     "minimum": 0.000001,
                     "type": "number"
+                  },
+                  "task_id": {
+                    "type": "string"
                   },
                   "description": {
                     "type": "string"
@@ -7990,6 +8116,37 @@
           }
         ],
         "operationId": "getApiPayment-linksByPaymentLinkId"
+      }
+    },
+    "/api/payment-events": {
+      "get": {
+        "parameters": [
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiPayment-events"
       }
     },
     "/api/x402/payments": {
@@ -9959,6 +10116,11 @@
           }
         ],
         "operationId": "getApiPayment-links-publicByPaymentLinkId"
+      }
+    },
+    "/internal/payment-link-webhook": {
+      "post": {
+        "operationId": "postInternalPayment-link-webhook"
       }
     },
     "/api/users/sync": {

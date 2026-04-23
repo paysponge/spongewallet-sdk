@@ -24,7 +24,13 @@ export interface PostApiPaymentLinksRequest {
      * @type {number}
      * @memberof PostApiPaymentLinksRequest
      */
-    amount: number;
+    amount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostApiPaymentLinksRequest
+     */
+    task_id?: string;
     /**
      * 
      * @type {string}
@@ -67,7 +73,6 @@ export interface PostApiPaymentLinksRequest {
  * Check if a given object implements the PostApiPaymentLinksRequest interface.
  */
 export function instanceOfPostApiPaymentLinksRequest(value: object): value is PostApiPaymentLinksRequest {
-    if (!('amount' in value) || value['amount'] === undefined) return false;
     return true;
 }
 
@@ -81,7 +86,8 @@ export function PostApiPaymentLinksRequestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'amount': json['amount'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'task_id': json['task_id'] == null ? undefined : json['task_id'],
         'description': json['description'] == null ? undefined : json['description'],
         'max_uses': json['max_uses'] == null ? undefined : json['max_uses'],
         'expires_in_minutes': json['expires_in_minutes'] == null ? undefined : json['expires_in_minutes'],
@@ -103,6 +109,7 @@ export function PostApiPaymentLinksRequestToJSONTyped(value?: PostApiPaymentLink
     return {
         
         'amount': value['amount'],
+        'task_id': value['task_id'],
         'description': value['description'],
         'max_uses': value['max_uses'],
         'expires_in_minutes': value['expires_in_minutes'],

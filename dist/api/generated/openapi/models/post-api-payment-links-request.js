@@ -15,8 +15,6 @@
  * Check if a given object implements the PostApiPaymentLinksRequest interface.
  */
 export function instanceOfPostApiPaymentLinksRequest(value) {
-    if (!('amount' in value) || value['amount'] === undefined)
-        return false;
     return true;
 }
 export function PostApiPaymentLinksRequestFromJSON(json) {
@@ -27,7 +25,8 @@ export function PostApiPaymentLinksRequestFromJSONTyped(json, ignoreDiscriminato
         return json;
     }
     return {
-        'amount': json['amount'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'task_id': json['task_id'] == null ? undefined : json['task_id'],
         'description': json['description'] == null ? undefined : json['description'],
         'max_uses': json['max_uses'] == null ? undefined : json['max_uses'],
         'expires_in_minutes': json['expires_in_minutes'] == null ? undefined : json['expires_in_minutes'],
@@ -45,6 +44,7 @@ export function PostApiPaymentLinksRequestToJSONTyped(value, ignoreDiscriminator
     }
     return {
         'amount': value['amount'],
+        'task_id': value['task_id'],
         'description': value['description'],
         'max_uses': value['max_uses'],
         'expires_in_minutes': value['expires_in_minutes'],

@@ -92,6 +92,7 @@ export * from './post-api-sponge-card-customer-refresh-request.js';
 export * from './post-api-sponge-card-customer-request.js';
 export * from './post-api-sponge-card-customer-request-address.js';
 export * from './post-api-stripe-onramp-session-request.js';
+export * from './post-api-tasks-request.js';
 export * from './post-api-trades-propose-request.js';
 export * from './post-api-transactions-bridge-request.js';
 export * from './post-api-transactions-prepare-request.js';

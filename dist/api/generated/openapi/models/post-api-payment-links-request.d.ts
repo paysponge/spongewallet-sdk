@@ -20,7 +20,13 @@ export interface PostApiPaymentLinksRequest {
      * @type {number}
      * @memberof PostApiPaymentLinksRequest
      */
-    amount: number;
+    amount?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof PostApiPaymentLinksRequest
+     */
+    task_id?: string;
     /**
      *
      * @type {string}
