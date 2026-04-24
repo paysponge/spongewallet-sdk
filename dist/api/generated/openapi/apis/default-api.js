@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { PostApiAgentKeysRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdRegenerateKeyRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAllowlistRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardSessionsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutAmazonSearchRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCheckoutStreamRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiExtensionPushSubscribeRequestToJSON, PostApiExtensionPushUnsubscribeRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -3418,6 +3418,38 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiSpongeCardDetailsRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiSpongeCardStatus without sending the request
+     */
+    async getApiSpongeCardStatusRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+        if (requestParameters['refresh'] != null) {
+            queryParameters['refresh'] = requestParameters['refresh'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/sponge-card/status`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiSpongeCardStatusRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiSpongeCardStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiSpongeCardStatus(requestParameters = {}, initOverrides) {
+        await this.getApiSpongeCardStatusRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiStripeOnrampSessionBySessionIdStatus without sending the request
      */
     async getApiStripeOnrampSessionBySessionIdStatusRequestOpts(requestParameters) {
@@ -5563,6 +5595,68 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiCardAccessRequestsRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for postApiCardSessions without sending the request
+     */
+    async postApiCardSessionsRequestOpts(requestParameters) {
+        if (requestParameters['postApiCardSessionsRequest'] == null) {
+            throw new runtime.RequiredError('postApiCardSessionsRequest', 'Required parameter "postApiCardSessionsRequest" was null or undefined when calling postApiCardSessions().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/card-sessions`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiCardSessionsRequestToJSON(requestParameters['postApiCardSessionsRequest']),
+        };
+    }
+    /**
+     */
+    async postApiCardSessionsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiCardSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiCardSessions(requestParameters, initOverrides) {
+        await this.postApiCardSessionsRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiCardUsage without sending the request
+     */
+    async postApiCardUsageRequestOpts(requestParameters) {
+        if (requestParameters['postApiCardUsageRequest'] == null) {
+            throw new runtime.RequiredError('postApiCardUsageRequest', 'Required parameter "postApiCardUsageRequest" was null or undefined when calling postApiCardUsage().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/card-usage`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiCardUsageRequestToJSON(requestParameters['postApiCardUsageRequest']),
+        };
+    }
+    /**
+     */
+    async postApiCardUsageRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiCardUsageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiCardUsage(requestParameters, initOverrides) {
+        await this.postApiCardUsageRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for postApiChatMessages without sending the request
      */
     async postApiChatMessagesRequestOpts(requestParameters) {
@@ -7008,6 +7102,37 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiSpongeCardContractsByContractIdWithdrawRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for postApiSpongeCardCreateCard without sending the request
+     */
+    async postApiSpongeCardCreateCardRequestOpts(requestParameters) {
+        if (requestParameters['postApiSpongeCardCreateCardRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardCreateCardRequest', 'Required parameter "postApiSpongeCardCreateCardRequest" was null or undefined when calling postApiSpongeCardCreateCard().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/create-card`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardCreateCardRequestToJSON(requestParameters['postApiSpongeCardCreateCardRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardCreateCardRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardCreateCardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardCreateCard(requestParameters, initOverrides) {
+        await this.postApiSpongeCardCreateCardRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for postApiSpongeCardCustomer without sending the request
      */
     async postApiSpongeCardCustomerRequestOpts(requestParameters) {
@@ -7130,6 +7255,68 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiSpongeCardFund(requestParameters, initOverrides) {
         await this.postApiSpongeCardFundRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardOnboard without sending the request
+     */
+    async postApiSpongeCardOnboardRequestOpts(requestParameters) {
+        if (requestParameters['postApiSpongeCardOnboardRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardOnboardRequest', 'Required parameter "postApiSpongeCardOnboardRequest" was null or undefined when calling postApiSpongeCardOnboard().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/onboard`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardOnboardRequestToJSON(requestParameters['postApiSpongeCardOnboardRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardOnboardRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardOnboardRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardOnboard(requestParameters, initOverrides) {
+        await this.postApiSpongeCardOnboardRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiSpongeCardTerms without sending the request
+     */
+    async postApiSpongeCardTermsRequestOpts(requestParameters) {
+        if (requestParameters['postApiSpongeCardTermsRequest'] == null) {
+            throw new runtime.RequiredError('postApiSpongeCardTermsRequest', 'Required parameter "postApiSpongeCardTermsRequest" was null or undefined when calling postApiSpongeCardTerms().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/sponge-card/terms`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardTermsRequestToJSON(requestParameters['postApiSpongeCardTermsRequest']),
+        };
+    }
+    /**
+     */
+    async postApiSpongeCardTermsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiSpongeCardTermsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiSpongeCardTerms(requestParameters, initOverrides) {
+        await this.postApiSpongeCardTermsRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiSpongeCardWithdraw without sending the request
@@ -7688,6 +7875,37 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiUsersSync(requestParameters, initOverrides) {
         await this.postApiUsersSyncRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiVirtualCards without sending the request
+     */
+    async postApiVirtualCardsRequestOpts(requestParameters) {
+        if (requestParameters['postApiVirtualCardsRequest'] == null) {
+            throw new runtime.RequiredError('postApiVirtualCardsRequest', 'Required parameter "postApiVirtualCardsRequest" was null or undefined when calling postApiVirtualCards().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/virtual-cards`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiVirtualCardsRequestToJSON(requestParameters['postApiVirtualCardsRequest']),
+        };
+    }
+    /**
+     */
+    async postApiVirtualCardsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiVirtualCardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiVirtualCards(requestParameters, initOverrides) {
+        await this.postApiVirtualCardsRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiWallets without sending the request

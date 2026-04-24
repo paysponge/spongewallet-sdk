@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiExtensionPushSubscribeRequest, PostApiExtensionPushUnsubscribeRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardSessionsRequest, PostApiCardUsageRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiExtensionPushSubscribeRequest, PostApiExtensionPushUnsubscribeRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -289,6 +289,10 @@ export interface DefaultApiGetApiSpongeCardCustomerRequest {
 export interface DefaultApiGetApiSpongeCardDetailsRequest {
     agentId?: string;
 }
+export interface DefaultApiGetApiSpongeCardStatusRequest {
+    agentId?: string;
+    refresh?: GetApiBridgeFiatCustomerForceRefreshParameter;
+}
 export interface DefaultApiGetApiStripeOnrampSessionBySessionIdStatusRequest {
     sessionId: string;
 }
@@ -525,6 +529,12 @@ export interface DefaultApiPostApiBridgeFiatWalletsByWalletIdVirtualAccountReque
 export interface DefaultApiPostApiCardAccessRequestsOperationRequest {
     postApiCardAccessRequestsRequest: PostApiCardAccessRequestsRequest;
 }
+export interface DefaultApiPostApiCardSessionsOperationRequest {
+    postApiCardSessionsRequest: PostApiCardSessionsRequest;
+}
+export interface DefaultApiPostApiCardUsageOperationRequest {
+    postApiCardUsageRequest: PostApiCardUsageRequest;
+}
 export interface DefaultApiPostApiChatMessagesOperationRequest {
     postApiChatMessagesRequest: PostApiChatMessagesRequest;
 }
@@ -664,6 +674,9 @@ export interface DefaultApiPostApiSpongeCardContractsByContractIdWithdrawOperati
     contractId: string;
     postApiSpongeCardContractsByContractIdWithdrawRequest: PostApiSpongeCardContractsByContractIdWithdrawRequest;
 }
+export interface DefaultApiPostApiSpongeCardCreateCardOperationRequest {
+    postApiSpongeCardCreateCardRequest: PostApiSpongeCardCreateCardRequest;
+}
 export interface DefaultApiPostApiSpongeCardCustomerOperationRequest {
     postApiSpongeCardCustomerRequest: PostApiSpongeCardCustomerRequest;
 }
@@ -675,6 +688,12 @@ export interface DefaultApiPostApiSpongeCardCustomerRefreshOperationRequest {
 }
 export interface DefaultApiPostApiSpongeCardFundOperationRequest {
     postApiSpongeCardFundRequest: PostApiSpongeCardFundRequest;
+}
+export interface DefaultApiPostApiSpongeCardOnboardOperationRequest {
+    postApiSpongeCardOnboardRequest: PostApiSpongeCardOnboardRequest;
+}
+export interface DefaultApiPostApiSpongeCardTermsOperationRequest {
+    postApiSpongeCardTermsRequest: PostApiSpongeCardTermsRequest;
 }
 export interface DefaultApiPostApiSpongeCardWithdrawOperationRequest {
     postApiSpongeCardWithdrawRequest: PostApiSpongeCardWithdrawRequest;
@@ -730,6 +749,9 @@ export interface DefaultApiPostApiTransfersTempoOperationRequest {
 }
 export interface DefaultApiPostApiUsersSyncOperationRequest {
     postApiUsersSyncRequest: PostApiUsersSyncRequest;
+}
+export interface DefaultApiPostApiVirtualCardsOperationRequest {
+    postApiVirtualCardsRequest: PostApiVirtualCardsRequest;
 }
 export interface DefaultApiPostApiWalletsOperationRequest {
     postApiWalletsRequest: PostApiWalletsRequest;
@@ -2863,6 +2885,26 @@ export interface DefaultApiInterface {
      */
     getApiSpongeCardDetails(requestParameters: DefaultApiGetApiSpongeCardDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiSpongeCardStatus without sending the request
+     * @param {string} [agentId]
+     * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [refresh]
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiSpongeCardStatusRequestOpts(requestParameters: DefaultApiGetApiSpongeCardStatusRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} [agentId]
+     * @param {GetApiBridgeFiatCustomerForceRefreshParameter} [refresh]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiSpongeCardStatusRaw(requestParameters: DefaultApiGetApiSpongeCardStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiSpongeCardStatus(requestParameters: DefaultApiGetApiSpongeCardStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiStripeOnrampSessionBySessionIdStatus without sending the request
      * @param {string} sessionId
      * @throws {RequiredError}
@@ -4119,6 +4161,42 @@ export interface DefaultApiInterface {
      */
     postApiCardAccessRequests(requestParameters: DefaultApiPostApiCardAccessRequestsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiCardSessions without sending the request
+     * @param {PostApiCardSessionsRequest} postApiCardSessionsRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCardSessionsRequestOpts(requestParameters: DefaultApiPostApiCardSessionsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiCardSessionsRequest} postApiCardSessionsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCardSessionsRaw(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiCardSessions(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiCardUsage without sending the request
+     * @param {PostApiCardUsageRequest} postApiCardUsageRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCardUsageRequestOpts(requestParameters: DefaultApiPostApiCardUsageOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiCardUsageRequest} postApiCardUsageRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCardUsageRaw(requestParameters: DefaultApiPostApiCardUsageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiCardUsage(requestParameters: DefaultApiPostApiCardUsageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiChatMessages without sending the request
      * @param {PostApiChatMessagesRequest} postApiChatMessagesRequest
      * @throws {RequiredError}
@@ -4957,6 +5035,24 @@ export interface DefaultApiInterface {
      */
     postApiSpongeCardContractsByContractIdWithdraw(requestParameters: DefaultApiPostApiSpongeCardContractsByContractIdWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiSpongeCardCreateCard without sending the request
+     * @param {PostApiSpongeCardCreateCardRequest} postApiSpongeCardCreateCardRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardCreateCardRequestOpts(requestParameters: DefaultApiPostApiSpongeCardCreateCardOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiSpongeCardCreateCardRequest} postApiSpongeCardCreateCardRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardCreateCardRaw(requestParameters: DefaultApiPostApiSpongeCardCreateCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardCreateCard(requestParameters: DefaultApiPostApiSpongeCardCreateCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiSpongeCardCustomer without sending the request
      * @param {PostApiSpongeCardCustomerRequest} postApiSpongeCardCustomerRequest
      * @throws {RequiredError}
@@ -5028,6 +5124,42 @@ export interface DefaultApiInterface {
     /**
      */
     postApiSpongeCardFund(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiSpongeCardOnboard without sending the request
+     * @param {PostApiSpongeCardOnboardRequest} postApiSpongeCardOnboardRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardOnboardRequestOpts(requestParameters: DefaultApiPostApiSpongeCardOnboardOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiSpongeCardOnboardRequest} postApiSpongeCardOnboardRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardOnboardRaw(requestParameters: DefaultApiPostApiSpongeCardOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardOnboard(requestParameters: DefaultApiPostApiSpongeCardOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiSpongeCardTerms without sending the request
+     * @param {PostApiSpongeCardTermsRequest} postApiSpongeCardTermsRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardTermsRequestOpts(requestParameters: DefaultApiPostApiSpongeCardTermsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiSpongeCardTermsRequest} postApiSpongeCardTermsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardTermsRaw(requestParameters: DefaultApiPostApiSpongeCardTermsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardTerms(requestParameters: DefaultApiPostApiSpongeCardTermsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiSpongeCardWithdraw without sending the request
      * @param {PostApiSpongeCardWithdrawRequest} postApiSpongeCardWithdrawRequest
@@ -5354,6 +5486,24 @@ export interface DefaultApiInterface {
     /**
      */
     postApiUsersSync(requestParameters: DefaultApiPostApiUsersSyncOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiVirtualCards without sending the request
+     * @param {PostApiVirtualCardsRequest} postApiVirtualCardsRequest
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiVirtualCardsRequestOpts(requestParameters: DefaultApiPostApiVirtualCardsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {PostApiVirtualCardsRequest} postApiVirtualCardsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiVirtualCardsRaw(requestParameters: DefaultApiPostApiVirtualCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiVirtualCards(requestParameters: DefaultApiPostApiVirtualCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiWallets without sending the request
      * @param {PostApiWalletsRequest} postApiWalletsRequest
@@ -6924,6 +7074,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiSpongeCardDetails(requestParameters?: DefaultApiGetApiSpongeCardDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiSpongeCardStatus without sending the request
+     */
+    getApiSpongeCardStatusRequestOpts(requestParameters: DefaultApiGetApiSpongeCardStatusRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiSpongeCardStatusRaw(requestParameters: DefaultApiGetApiSpongeCardStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiSpongeCardStatus(requestParameters?: DefaultApiGetApiSpongeCardStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiStripeOnrampSessionBySessionIdStatus without sending the request
      */
     getApiStripeOnrampSessionBySessionIdStatusRequestOpts(requestParameters: DefaultApiGetApiStripeOnrampSessionBySessionIdStatusRequest): Promise<runtime.RequestOpts>;
@@ -7564,6 +7724,26 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     postApiCardAccessRequests(requestParameters: DefaultApiPostApiCardAccessRequestsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiCardSessions without sending the request
+     */
+    postApiCardSessionsRequestOpts(requestParameters: DefaultApiPostApiCardSessionsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiCardSessionsRaw(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiCardSessions(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiCardUsage without sending the request
+     */
+    postApiCardUsageRequestOpts(requestParameters: DefaultApiPostApiCardUsageOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiCardUsageRaw(requestParameters: DefaultApiPostApiCardUsageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiCardUsage(requestParameters: DefaultApiPostApiCardUsageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiChatMessages without sending the request
      */
     postApiChatMessagesRequestOpts(requestParameters: DefaultApiPostApiChatMessagesOperationRequest): Promise<runtime.RequestOpts>;
@@ -8024,6 +8204,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     postApiSpongeCardContractsByContractIdWithdraw(requestParameters: DefaultApiPostApiSpongeCardContractsByContractIdWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for postApiSpongeCardCreateCard without sending the request
+     */
+    postApiSpongeCardCreateCardRequestOpts(requestParameters: DefaultApiPostApiSpongeCardCreateCardOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiSpongeCardCreateCardRaw(requestParameters: DefaultApiPostApiSpongeCardCreateCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardCreateCard(requestParameters: DefaultApiPostApiSpongeCardCreateCardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for postApiSpongeCardCustomer without sending the request
      */
     postApiSpongeCardCustomerRequestOpts(requestParameters: DefaultApiPostApiSpongeCardCustomerOperationRequest): Promise<runtime.RequestOpts>;
@@ -8063,6 +8253,26 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiSpongeCardFund(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiSpongeCardOnboard without sending the request
+     */
+    postApiSpongeCardOnboardRequestOpts(requestParameters: DefaultApiPostApiSpongeCardOnboardOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiSpongeCardOnboardRaw(requestParameters: DefaultApiPostApiSpongeCardOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardOnboard(requestParameters: DefaultApiPostApiSpongeCardOnboardOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiSpongeCardTerms without sending the request
+     */
+    postApiSpongeCardTermsRequestOpts(requestParameters: DefaultApiPostApiSpongeCardTermsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiSpongeCardTermsRaw(requestParameters: DefaultApiPostApiSpongeCardTermsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiSpongeCardTerms(requestParameters: DefaultApiPostApiSpongeCardTermsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiSpongeCardWithdraw without sending the request
      */
@@ -8243,6 +8453,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiUsersSync(requestParameters: DefaultApiPostApiUsersSyncOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for postApiVirtualCards without sending the request
+     */
+    postApiVirtualCardsRequestOpts(requestParameters: DefaultApiPostApiVirtualCardsOperationRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    postApiVirtualCardsRaw(requestParameters: DefaultApiPostApiVirtualCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    postApiVirtualCards(requestParameters: DefaultApiPostApiVirtualCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiWallets without sending the request
      */
