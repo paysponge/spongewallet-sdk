@@ -91,6 +91,8 @@ export * from './post-api-sponge-card-contracts-by-contract-id-withdraw-request.
 export * from './post-api-sponge-card-customer-refresh-request.js';
 export * from './post-api-sponge-card-customer-request.js';
 export * from './post-api-sponge-card-customer-request-address.js';
+export * from './post-api-sponge-card-fund-request.js';
+export * from './post-api-sponge-card-withdraw-request.js';
 export * from './post-api-stripe-onramp-session-request.js';
 export * from './post-api-tasks-request.js';
 export * from './post-api-trades-propose-request.js';

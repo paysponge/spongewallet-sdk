@@ -13582,6 +13582,161 @@
         "operationId": "postApiSponge-cardContractsByContractIdWithdraw"
       }
     },
+    "/api/sponge-card/details": {
+      "get": {
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiSponge-cardDetails"
+      }
+    },
+    "/api/sponge-card/fund": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  },
+                  "chain": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  },
+                  "chain": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d+)?$",
+                    "type": "string"
+                  },
+                  "chain": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiSponge-cardFund"
+      }
+    },
+    "/api/sponge-card/withdraw": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
+                    "type": "string"
+                  },
+                  "chain": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
+                    "type": "string"
+                  },
+                  "chain": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "pattern": "^\\d+(\\.\\d{1,2})?$",
+                    "type": "string"
+                  },
+                  "chain": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiSponge-cardWithdraw"
+      }
+    },
     "/api/card-access-requests/": {
       "post": {
         "requestBody": {

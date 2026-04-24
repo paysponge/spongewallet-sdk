@@ -88,6 +88,8 @@ import type {
   PostApiSpongeCardContractsByContractIdWithdrawRequest,
   PostApiSpongeCardCustomerRefreshRequest,
   PostApiSpongeCardCustomerRequest,
+  PostApiSpongeCardFundRequest,
+  PostApiSpongeCardWithdrawRequest,
   PostApiStripeOnrampSessionRequest,
   PostApiTasksRequest,
   PostApiTradesProposeRequest,
@@ -265,6 +267,10 @@ import {
     PostApiSpongeCardCustomerRefreshRequestToJSON,
     PostApiSpongeCardCustomerRequestFromJSON,
     PostApiSpongeCardCustomerRequestToJSON,
+    PostApiSpongeCardFundRequestFromJSON,
+    PostApiSpongeCardFundRequestToJSON,
+    PostApiSpongeCardWithdrawRequestFromJSON,
+    PostApiSpongeCardWithdrawRequestToJSON,
     PostApiStripeOnrampSessionRequestFromJSON,
     PostApiStripeOnrampSessionRequestToJSON,
     PostApiTasksRequestFromJSON,
@@ -648,6 +654,10 @@ export interface DefaultApiGetApiSpongeCardContractsByContractIdBalanceRequest {
 export interface DefaultApiGetApiSpongeCardCustomerRequest {
     environment: GetApiSpongeCardCustomerEnvironmentEnum;
     forceRefresh?: GetApiBridgeFiatCustomerForceRefreshParameter;
+}
+
+export interface DefaultApiGetApiSpongeCardDetailsRequest {
+    agentId?: string;
 }
 
 export interface DefaultApiGetApiStripeOnrampSessionBySessionIdStatusRequest {
@@ -1123,6 +1133,14 @@ export interface DefaultApiPostApiSpongeCardCustomerConsentRequest {
 
 export interface DefaultApiPostApiSpongeCardCustomerRefreshOperationRequest {
     postApiSpongeCardCustomerRefreshRequest: PostApiSpongeCardCustomerRefreshRequest;
+}
+
+export interface DefaultApiPostApiSpongeCardFundOperationRequest {
+    postApiSpongeCardFundRequest: PostApiSpongeCardFundRequest;
+}
+
+export interface DefaultApiPostApiSpongeCardWithdrawOperationRequest {
+    postApiSpongeCardWithdrawRequest: PostApiSpongeCardWithdrawRequest;
 }
 
 export interface DefaultApiPostApiStripeOnrampSessionOperationRequest {
@@ -3551,6 +3569,27 @@ export interface DefaultApiInterface {
     getApiSpongeCardCustomer(requestParameters: DefaultApiGetApiSpongeCardCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiSpongeCardDetails without sending the request
+     * @param {string} [agentId] 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiSpongeCardDetailsRequestOpts(requestParameters: DefaultApiGetApiSpongeCardDetailsRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} [agentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiSpongeCardDetailsRaw(requestParameters: DefaultApiGetApiSpongeCardDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiSpongeCardDetails(requestParameters: DefaultApiGetApiSpongeCardDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiStripeOnrampSessionBySessionIdStatus without sending the request
      * @param {string} sessionId 
      * @throws {RequiredError}
@@ -5952,6 +5991,48 @@ export interface DefaultApiInterface {
     /**
      */
     postApiSpongeCardCustomerRefresh(requestParameters: DefaultApiPostApiSpongeCardCustomerRefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiSpongeCardFund without sending the request
+     * @param {PostApiSpongeCardFundRequest} postApiSpongeCardFundRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardFundRequestOpts(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiSpongeCardFundRequest} postApiSpongeCardFundRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardFundRaw(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiSpongeCardFund(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiSpongeCardWithdraw without sending the request
+     * @param {PostApiSpongeCardWithdrawRequest} postApiSpongeCardWithdrawRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardWithdrawRequestOpts(requestParameters: DefaultApiPostApiSpongeCardWithdrawOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiSpongeCardWithdrawRequest} postApiSpongeCardWithdrawRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiSpongeCardWithdrawRaw(requestParameters: DefaultApiPostApiSpongeCardWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiSpongeCardWithdraw(requestParameters: DefaultApiPostApiSpongeCardWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiStripeOnrampSession without sending the request
@@ -11232,6 +11313,44 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiSpongeCardDetails without sending the request
+     */
+    async getApiSpongeCardDetailsRequestOpts(requestParameters: DefaultApiGetApiSpongeCardDetailsRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['agentId'] != null) {
+            queryParameters['agentId'] = requestParameters['agentId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/sponge-card/details`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiSpongeCardDetailsRaw(requestParameters: DefaultApiGetApiSpongeCardDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiSpongeCardDetailsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiSpongeCardDetails(requestParameters: DefaultApiGetApiSpongeCardDetailsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiSpongeCardDetailsRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiStripeOnrampSessionBySessionIdStatus without sending the request
      */
     async getApiStripeOnrampSessionBySessionIdStatusRequestOpts(requestParameters: DefaultApiGetApiStripeOnrampSessionBySessionIdStatusRequest): Promise<runtime.RequestOpts> {
@@ -16324,6 +16443,94 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiSpongeCardCustomerRefresh(requestParameters: DefaultApiPostApiSpongeCardCustomerRefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiSpongeCardCustomerRefreshRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiSpongeCardFund without sending the request
+     */
+    async postApiSpongeCardFundRequestOpts(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiSpongeCardFundRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiSpongeCardFundRequest',
+                'Required parameter "postApiSpongeCardFundRequest" was null or undefined when calling postApiSpongeCardFund().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/sponge-card/fund`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardFundRequestToJSON(requestParameters['postApiSpongeCardFundRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiSpongeCardFundRaw(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiSpongeCardFundRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiSpongeCardFund(requestParameters: DefaultApiPostApiSpongeCardFundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiSpongeCardFundRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiSpongeCardWithdraw without sending the request
+     */
+    async postApiSpongeCardWithdrawRequestOpts(requestParameters: DefaultApiPostApiSpongeCardWithdrawOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiSpongeCardWithdrawRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiSpongeCardWithdrawRequest',
+                'Required parameter "postApiSpongeCardWithdrawRequest" was null or undefined when calling postApiSpongeCardWithdraw().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/sponge-card/withdraw`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiSpongeCardWithdrawRequestToJSON(requestParameters['postApiSpongeCardWithdrawRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiSpongeCardWithdrawRaw(requestParameters: DefaultApiPostApiSpongeCardWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiSpongeCardWithdrawRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiSpongeCardWithdraw(requestParameters: DefaultApiPostApiSpongeCardWithdrawOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiSpongeCardWithdrawRaw(requestParameters, initOverrides);
     }
 
     /**
