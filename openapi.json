@@ -1547,6 +1547,22 @@
                         "type": "string"
                       }
                     }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "clientPublicKey"
+                    ],
+                    "properties": {
+                      "type": {
+                        "const": "authenticated",
+                        "type": "string"
+                      },
+                      "clientPublicKey": {
+                        "type": "string"
+                      }
+                    }
                   }
                 ]
               }
@@ -1593,6 +1609,22 @@
                         "type": "string"
                       }
                     }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "clientPublicKey"
+                    ],
+                    "properties": {
+                      "type": {
+                        "const": "authenticated",
+                        "type": "string"
+                      },
+                      "clientPublicKey": {
+                        "type": "string"
+                      }
+                    }
                   }
                 ]
               }
@@ -1633,6 +1665,22 @@
                     "properties": {
                       "type": {
                         "const": "email_otp",
+                        "type": "string"
+                      },
+                      "clientPublicKey": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "clientPublicKey"
+                    ],
+                    "properties": {
+                      "type": {
+                        "const": "authenticated",
                         "type": "string"
                       },
                       "clientPublicKey": {
