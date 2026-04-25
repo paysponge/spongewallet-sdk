@@ -96,6 +96,12 @@ export interface PostApiAgentsByIdPaymentMethodsRequest {
     email?: string;
     /**
      * 
+     * @type {string}
+     * @memberof PostApiAgentsByIdPaymentMethodsRequest
+     */
+    phone?: string;
+    /**
+     * 
      * @type {PostApiAgentsByIdPaymentMethodsRequestShippingAddress}
      * @memberof PostApiAgentsByIdPaymentMethodsRequest
      */
@@ -143,6 +149,7 @@ export function PostApiAgentsByIdPaymentMethodsRequestFromJSONTyped(json: any, i
         'cardholderName': json['cardholderName'] == null ? undefined : json['cardholderName'],
         'billingAddress': json['billingAddress'] == null ? undefined : PostApiAgentsByIdPaymentMethodsRequestBillingAddressFromJSON(json['billingAddress']),
         'email': json['email'] == null ? undefined : json['email'],
+        'phone': json['phone'] == null ? undefined : json['phone'],
         'shippingAddress': json['shippingAddress'] == null ? undefined : PostApiAgentsByIdPaymentMethodsRequestShippingAddressFromJSON(json['shippingAddress']),
         'cardProvider': json['cardProvider'] == null ? undefined : json['cardProvider'],
         'setAsDefault': json['setAsDefault'] == null ? undefined : json['setAsDefault'],
@@ -170,6 +177,7 @@ export function PostApiAgentsByIdPaymentMethodsRequestToJSONTyped(value?: PostAp
         'cardholderName': value['cardholderName'],
         'billingAddress': PostApiAgentsByIdPaymentMethodsRequestBillingAddressToJSON(value['billingAddress']),
         'email': value['email'],
+        'phone': value['phone'],
         'shippingAddress': PostApiAgentsByIdPaymentMethodsRequestShippingAddressToJSON(value['shippingAddress']),
         'cardProvider': value['cardProvider'],
         'setAsDefault': value['setAsDefault'],

@@ -1041,14 +1041,60 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     ),
   },
   {
-    name: "get_virtual_card",
+    name: "get_card",
     description:
-      "Issue a virtual card for making a payment. Returns fresh card credentials (number, expiry, CVC) " +
-      "scoped to a specific amount and merchant. Requires an enrolled card (set up by the user in the dashboard).\n\n" +
+      "Fetch the user's card details. Routes to the right card source automatically:\n\n" +
+      "- **Sponge Card (Rain)** — credit card backed by on-chain collateral. Returns encrypted PAN/CVC plus a per-call symmetric key for client-side AES-128-GCM decryption.\n" +
+      "- **Basis Theory vaulted card** — a card the user vaulted via the dashboard. Returns a short-lived BT session (`session_key` + `retrieve_url`) that you must immediately fetch over HTTP.\n\n" +
+      "If the user has only one source enrolled, returns that card directly. If both sources are enrolled and `card_type` is omitted, returns `{ status: \"selection_required\", available_cards: [...] }` so you can ask the user which to use, then re-call with `card_type` set.\n\n" +
+      "For per-transaction virtual cards (issued on demand for a specific merchant + amount), use `issue_virtual_card` instead.",
+    input_schema: {
+      type: "object",
+      properties: {
+        card_type: {
+          type: "string",
+          enum: ["rain", "basis_theory_vaulted"],
+          description: "Explicit card source. Omit to auto-detect.",
+        },
+        payment_method_id: {
+          type: "string",
+          description: "Specific Basis Theory payment method id. BT path only.",
+        },
+        amount: {
+          type: "string",
+          description: "Transaction amount for spending-limit checks. BT path only.",
+        },
+        currency: { type: "string", description: "ISO 4217 currency code (default: USD). BT path only." },
+        merchant_name: { type: "string", description: "Merchant name. BT path only — recorded in audit log." },
+        merchant_url: { type: "string", description: "Merchant URL. BT path only — recorded in audit log." },
+      },
+      required: [],
+    },
+    cli_output: fieldsOutput(
+      [
+        { key: "status", label: "Status" },
+        { key: "card_type", label: "Card type" },
+        { key: "card_last4", label: "Card last 4" },
+        { key: "last4", label: "Sponge Card last 4" },
+        { key: "spending_power_cents", label: "Spending power (cents)" },
+        { key: "email", label: "Email" },
+        { key: "phone", label: "Phone" },
+        { key: "retrieve_url", label: "Retrieve URL" },
+        { key: "expires_at", label: "Expires at" },
+      ],
+      "Card",
+    ),
+  },
+  {
+    name: "issue_virtual_card",
+    description:
+      "Issue a per-transaction virtual card for a specific merchant and amount. Returns fresh card credentials (number, expiry, CVC) " +
+      "scoped to that purchase. Requires an enrolled card (set up by the user in the dashboard).\n\n" +
       "Use this when you need card details to pay for something — e.g., signing up for a paid service, " +
       "buying a subscription, or entering payment info on any website. " +
       "For purchases via web_purchase, virtual card credentials are handled automatically — " +
-      "use this tool directly only when you need the raw card details (e.g., to fill in a payment form yourself).",
+      "use this tool directly only when you need the raw card details (e.g., to fill in a payment form yourself).\n\n" +
+      "To retrieve an already-vaulted card (not per-transaction), use `get_card` instead.",
     input_schema: {
       type: "object",
       properties: {
@@ -1072,46 +1118,6 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
         { key: "instruction_id", label: "Instruction ID" },
       ],
       "Virtual card",
-    ),
-  },
-  {
-    name: "get_card_session",
-    description:
-      "Get a secure session to retrieve full card details (PAN, expiry, CVC) from a vaulted payment method.\n\n" +
-      "Returns a short-lived session key and a retrieve URL. You MUST immediately fetch the card data yourself using the session key before it expires.\n\n" +
-      "IMPORTANT: Use the BT-API-KEY header (NOT Authorization: Bearer) to authenticate.\n\n" +
-      "Step 1: Call this tool to get session_key and retrieve_url.\n" +
-      "Step 2: Immediately make this HTTP request (e.g. via paid_fetch or web_fetch):\n\n" +
-      "  GET {retrieve_url}\n" +
-      "  BT-API-KEY: {session_key}\n\n" +
-      "Step 3: Parse the JSON response — the card data is in:\n" +
-      "  - data.number (full card number)\n" +
-      "  - data.expiration_month\n" +
-      "  - data.expiration_year\n" +
-      "  - data.cvc\n\n" +
-      "The session expires quickly — do not delay between steps 1 and 2.",
-    input_schema: {
-      type: "object",
-      properties: {
-        amount: { type: "string", description: "Transaction amount (e.g., '99.99'). Required only if spending limits are configured." },
-        currency: { type: "string", description: "ISO 4217 currency code (default: USD)" },
-        merchant_name: { type: "string", description: "Merchant name" },
-        merchant_url: { type: "string", description: "Merchant website URL" },
-        payment_method_id: { type: "string", description: "Specific payment method ID (uses default if omitted)" },
-      },
-      required: [],
-    },
-    cli_output: fieldsOutput(
-      [
-        { key: "session_key", label: "Session key" },
-        { key: "retrieve_url", label: "Retrieve URL" },
-        { key: "token_id", label: "Token ID" },
-        { key: "expires_at", label: "Expires at" },
-        { key: "card_brand", label: "Card brand" },
-        { key: "card_last4", label: "Card last 4" },
-        { key: "payment_method_id", label: "Payment method ID" },
-      ],
-      "Card session",
     ),
   },
   {

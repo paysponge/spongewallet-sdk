@@ -1175,7 +1175,7 @@ function registerCuratedCommands(
       });
     });
 
-  shared(cardCmd.command("virtual").description("Issue a virtual card"))
+  shared(cardCmd.command("virtual").description("Issue a per-transaction virtual card"))
     .requiredOption("--amount <amount>", "transaction amount")
     .option("--currency <code>", "ISO currency code")
     .requiredOption("--merchant-name <name>", "merchant name")
@@ -1184,7 +1184,7 @@ function registerCuratedCommands(
     .option("--description <text>", "purchase description")
     .option("--enrollment-id <id>", "specific enrollment ID")
     .action(async (opts: Record<string, unknown>) => {
-      await executeToolCommand(opts, "get_virtual_card", {
+      await executeToolCommand(opts, "issue_virtual_card", {
         amount: opts.amount,
         currency: opts.currency,
         merchant_name: opts.merchantName,
@@ -1192,6 +1192,24 @@ function registerCuratedCommands(
         merchant_country_code: opts.merchantCountryCode,
         description: opts.description,
         enrollment_id: opts.enrollmentId,
+      });
+    });
+
+  shared(cardCmd.command("get").description("Fetch the user's card (Sponge Card or vaulted card)"))
+    .option("--card-type <type>", "explicit card source: 'rain' or 'basis_theory_vaulted'")
+    .option("--payment-method-id <id>", "specific Basis Theory payment method ID")
+    .option("--amount <amount>", "transaction amount for spending-limit checks (BT path only)")
+    .option("--currency <code>", "ISO currency code (BT path only)")
+    .option("--merchant-name <name>", "merchant name (BT path only)")
+    .option("--merchant-url <url>", "merchant URL (BT path only)")
+    .action(async (opts: Record<string, unknown>) => {
+      await executeToolCommand(opts, "get_card", {
+        card_type: opts.cardType,
+        payment_method_id: opts.paymentMethodId,
+        amount: opts.amount,
+        currency: opts.currency,
+        merchant_name: opts.merchantName,
+        merchant_url: opts.merchantUrl,
       });
     });
 

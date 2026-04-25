@@ -49,8 +49,8 @@ import type {
   PostApiBridgeFiatTransferTemplatesRequest,
   PostApiBridgeFiatTransfersRequest,
   PostApiCardAccessRequestsRequest,
-  PostApiCardSessionsRequest,
   PostApiCardUsageRequest,
+  PostApiCardsRequest,
   PostApiChatMessagesRequest,
   PostApiChatRateLimitReportRequest,
   PostApiCheckoutAmazonSearchRequest,
@@ -199,10 +199,10 @@ import {
     PostApiBridgeFiatTransfersRequestToJSON,
     PostApiCardAccessRequestsRequestFromJSON,
     PostApiCardAccessRequestsRequestToJSON,
-    PostApiCardSessionsRequestFromJSON,
-    PostApiCardSessionsRequestToJSON,
     PostApiCardUsageRequestFromJSON,
     PostApiCardUsageRequestToJSON,
+    PostApiCardsRequestFromJSON,
+    PostApiCardsRequestToJSON,
     PostApiChatMessagesRequestFromJSON,
     PostApiChatMessagesRequestToJSON,
     PostApiChatRateLimitReportRequestFromJSON,
@@ -1014,12 +1014,12 @@ export interface DefaultApiPostApiCardAccessRequestsOperationRequest {
     postApiCardAccessRequestsRequest: PostApiCardAccessRequestsRequest;
 }
 
-export interface DefaultApiPostApiCardSessionsOperationRequest {
-    postApiCardSessionsRequest: PostApiCardSessionsRequest;
-}
-
 export interface DefaultApiPostApiCardUsageOperationRequest {
     postApiCardUsageRequest: PostApiCardUsageRequest;
+}
+
+export interface DefaultApiPostApiCardsOperationRequest {
+    postApiCardsRequest: PostApiCardsRequest;
 }
 
 export interface DefaultApiPostApiChatMessagesOperationRequest {
@@ -5270,27 +5270,6 @@ export interface DefaultApiInterface {
     postApiCardAccessRequests(requestParameters: DefaultApiPostApiCardAccessRequestsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Creates request options for postApiCardSessions without sending the request
-     * @param {PostApiCardSessionsRequest} postApiCardSessionsRequest 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCardSessionsRequestOpts(requestParameters: DefaultApiPostApiCardSessionsOperationRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {PostApiCardSessionsRequest} postApiCardSessionsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiCardSessionsRaw(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    postApiCardSessions(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
      * Creates request options for postApiCardUsage without sending the request
      * @param {PostApiCardUsageRequest} postApiCardUsageRequest 
      * @throws {RequiredError}
@@ -5310,6 +5289,27 @@ export interface DefaultApiInterface {
     /**
      */
     postApiCardUsage(requestParameters: DefaultApiPostApiCardUsageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiCards without sending the request
+     * @param {PostApiCardsRequest} postApiCardsRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCardsRequestOpts(requestParameters: DefaultApiPostApiCardsOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {PostApiCardsRequest} postApiCardsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiCardsRaw(requestParameters: DefaultApiPostApiCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiCards(requestParameters: DefaultApiPostApiCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiChatMessages without sending the request
@@ -15122,50 +15122,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
-     * Creates request options for postApiCardSessions without sending the request
-     */
-    async postApiCardSessionsRequestOpts(requestParameters: DefaultApiPostApiCardSessionsOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['postApiCardSessionsRequest'] == null) {
-            throw new runtime.RequiredError(
-                'postApiCardSessionsRequest',
-                'Required parameter "postApiCardSessionsRequest" was null or undefined when calling postApiCardSessions().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/card-sessions`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiCardSessionsRequestToJSON(requestParameters['postApiCardSessionsRequest']),
-        };
-    }
-
-    /**
-     */
-    async postApiCardSessionsRaw(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiCardSessionsRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async postApiCardSessions(requestParameters: DefaultApiPostApiCardSessionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiCardSessionsRaw(requestParameters, initOverrides);
-    }
-
-    /**
      * Creates request options for postApiCardUsage without sending the request
      */
     async postApiCardUsageRequestOpts(requestParameters: DefaultApiPostApiCardUsageOperationRequest): Promise<runtime.RequestOpts> {
@@ -15207,6 +15163,50 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiCardUsage(requestParameters: DefaultApiPostApiCardUsageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiCardUsageRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiCards without sending the request
+     */
+    async postApiCardsRequestOpts(requestParameters: DefaultApiPostApiCardsOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiCardsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiCardsRequest',
+                'Required parameter "postApiCardsRequest" was null or undefined when calling postApiCards().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/cards`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiCardsRequestToJSON(requestParameters['postApiCardsRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiCardsRaw(requestParameters: DefaultApiPostApiCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiCardsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiCards(requestParameters: DefaultApiPostApiCardsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiCardsRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -12,41 +12,50 @@
  * Do not edit the class manually.
  */
 /**
- * Check if a given object implements the PostApiCardSessionsRequest interface.
+ * @export
  */
-export function instanceOfPostApiCardSessionsRequest(value) {
+export const PostApiCardsRequestCardTypeEnum = {
+    Rain: 'rain',
+    BasisTheoryVaulted: 'basis_theory_vaulted'
+};
+/**
+ * Check if a given object implements the PostApiCardsRequest interface.
+ */
+export function instanceOfPostApiCardsRequest(value) {
     return true;
 }
-export function PostApiCardSessionsRequestFromJSON(json) {
-    return PostApiCardSessionsRequestFromJSONTyped(json, false);
+export function PostApiCardsRequestFromJSON(json) {
+    return PostApiCardsRequestFromJSONTyped(json, false);
 }
-export function PostApiCardSessionsRequestFromJSONTyped(json, ignoreDiscriminator) {
+export function PostApiCardsRequestFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return {
+        'card_type': json['card_type'] == null ? undefined : json['card_type'],
+        'payment_method_id': json['payment_method_id'] == null ? undefined : json['payment_method_id'],
         'amount': json['amount'] == null ? undefined : json['amount'],
         'currency': json['currency'] == null ? undefined : json['currency'],
         'merchant_name': json['merchant_name'] == null ? undefined : json['merchant_name'],
         'merchant_url': json['merchant_url'] == null ? undefined : json['merchant_url'],
-        'payment_method_id': json['payment_method_id'] == null ? undefined : json['payment_method_id'],
         'agentId': json['agentId'] == null ? undefined : json['agentId'],
     };
 }
-export function PostApiCardSessionsRequestToJSON(json) {
-    return PostApiCardSessionsRequestToJSONTyped(json, false);
+export function PostApiCardsRequestToJSON(json) {
+    return PostApiCardsRequestToJSONTyped(json, false);
 }
-export function PostApiCardSessionsRequestToJSONTyped(value, ignoreDiscriminator = false) {
+export function PostApiCardsRequestToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return {
+        'card_type': value['card_type'],
+        'payment_method_id': value['payment_method_id'],
         'amount': value['amount'],
         'currency': value['currency'],
         'merchant_name': value['merchant_name'],
         'merchant_url': value['merchant_url'],
-        'payment_method_id': value['payment_method_id'],
         'agentId': value['agentId'],
     };
 }
-//# sourceMappingURL=post-api-card-sessions-request.js.map
+//# sourceMappingURL=post-api-cards-request.js.map

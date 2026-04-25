@@ -79,6 +79,12 @@ export interface PostApiAgentsByIdPaymentMethodsRequest {
     email?: string;
     /**
      *
+     * @type {string}
+     * @memberof PostApiAgentsByIdPaymentMethodsRequest
+     */
+    phone?: string;
+    /**
+     *
      * @type {PostApiAgentsByIdPaymentMethodsRequestShippingAddress}
      * @memberof PostApiAgentsByIdPaymentMethodsRequest
      */

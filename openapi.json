@@ -4302,6 +4302,9 @@
                   "email": {
                     "type": "string"
                   },
+                  "phone": {
+                    "type": "string"
+                  },
                   "shippingAddress": {
                     "type": "object",
                     "properties": {
@@ -4395,6 +4398,9 @@
                   "email": {
                     "type": "string"
                   },
+                  "phone": {
+                    "type": "string"
+                  },
                   "shippingAddress": {
                     "type": "object",
                     "properties": {
@@ -4486,6 +4492,9 @@
                     }
                   },
                   "email": {
+                    "type": "string"
+                  },
+                  "phone": {
                     "type": "string"
                   },
                   "shippingAddress": {
@@ -6914,6 +6923,112 @@
         "operationId": "getApiCredit-cards"
       }
     },
+    "/api/cards": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "card_type": {
+                    "type": "string",
+                    "enum": [
+                      "rain",
+                      "basis_theory_vaulted"
+                    ]
+                  },
+                  "payment_method_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "merchant_name": {
+                    "type": "string"
+                  },
+                  "merchant_url": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "card_type": {
+                    "type": "string",
+                    "enum": [
+                      "rain",
+                      "basis_theory_vaulted"
+                    ]
+                  },
+                  "payment_method_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "merchant_name": {
+                    "type": "string"
+                  },
+                  "merchant_url": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "card_type": {
+                    "type": "string",
+                    "enum": [
+                      "rain",
+                      "basis_theory_vaulted"
+                    ]
+                  },
+                  "payment_method_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "merchant_name": {
+                    "type": "string"
+                  },
+                  "merchant_url": {
+                    "type": "string"
+                  },
+                  "agentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiCards"
+      }
+    },
     "/api/virtual-cards": {
       "post": {
         "requestBody": {
@@ -7177,91 +7292,6 @@
           }
         },
         "operationId": "postApiVirtual-cards"
-      }
-    },
-    "/api/card-sessions": {
-      "post": {
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "amount": {
-                    "type": "string"
-                  },
-                  "currency": {
-                    "type": "string"
-                  },
-                  "merchant_name": {
-                    "type": "string"
-                  },
-                  "merchant_url": {
-                    "type": "string"
-                  },
-                  "payment_method_id": {
-                    "type": "string"
-                  },
-                  "agentId": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "amount": {
-                    "type": "string"
-                  },
-                  "currency": {
-                    "type": "string"
-                  },
-                  "merchant_name": {
-                    "type": "string"
-                  },
-                  "merchant_url": {
-                    "type": "string"
-                  },
-                  "payment_method_id": {
-                    "type": "string"
-                  },
-                  "agentId": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "amount": {
-                    "type": "string"
-                  },
-                  "currency": {
-                    "type": "string"
-                  },
-                  "merchant_name": {
-                    "type": "string"
-                  },
-                  "merchant_url": {
-                    "type": "string"
-                  },
-                  "payment_method_id": {
-                    "type": "string"
-                  },
-                  "agentId": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "postApiCard-sessions"
       }
     },
     "/api/card-usage": {
