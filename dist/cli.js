@@ -141,6 +141,7 @@ async function printOnboardingSummary(args) {
         `Credentials: ${getCredentialsPath(opts.credentialsPath)}`,
     ];
     if (registration) {
+        info.push(`API Key:     ${registration.apiKey}`);
         info.push(`Claim URL:   ${registration.verificationUriComplete}`);
         info.push(`Claim Code:  ${registration.claimCode}`);
     }
