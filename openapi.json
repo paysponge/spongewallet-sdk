@@ -3964,6 +3964,36 @@
         "operationId": "putApiAgent-requestsByIdRespond"
       }
     },
+    "/api/agent-requests/{id}/takeover": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgent-requestsByIdTakeover"
+      }
+    },
+    "/api/agent-requests/{id}/takeover/end": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "postApiAgent-requestsByIdTakeoverEnd"
+      }
+    },
     "/api/rpc/{chainId}": {
       "post": {
         "parameters": [

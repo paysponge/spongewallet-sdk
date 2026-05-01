@@ -816,6 +816,14 @@ export interface DefaultApiPostApiAgentRequestsByIdCvcSessionRequest {
     id: string;
 }
 
+export interface DefaultApiPostApiAgentRequestsByIdTakeoverRequest {
+    id: string;
+}
+
+export interface DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest {
+    id: string;
+}
+
 export interface DefaultApiPostApiAgentsOperationRequest {
     postApiAgentsRequest: PostApiAgentsRequest;
 }
@@ -4338,6 +4346,48 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentRequestsByIdCvcSession(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentRequestsByIdTakeover without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsByIdTakeoverRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsByIdTakeoverRaw(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentRequestsByIdTakeover(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentRequestsByIdTakeoverEnd without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsByIdTakeoverEndRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentRequestsByIdTakeoverEndRaw(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentRequestsByIdTakeoverEnd(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgents without sending the request
@@ -13137,6 +13187,90 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentRequestsByIdCvcSession(requestParameters: DefaultApiPostApiAgentRequestsByIdCvcSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentRequestsByIdCvcSessionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentRequestsByIdTakeover without sending the request
+     */
+    async postApiAgentRequestsByIdTakeoverRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentRequestsByIdTakeover().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agent-requests/{id}/takeover`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiAgentRequestsByIdTakeoverRaw(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentRequestsByIdTakeoverRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentRequestsByIdTakeover(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentRequestsByIdTakeoverRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentRequestsByIdTakeoverEnd without sending the request
+     */
+    async postApiAgentRequestsByIdTakeoverEndRequestOpts(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentRequestsByIdTakeoverEnd().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/agent-requests/{id}/takeover/end`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async postApiAgentRequestsByIdTakeoverEndRaw(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentRequestsByIdTakeoverEndRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentRequestsByIdTakeoverEnd(requestParameters: DefaultApiPostApiAgentRequestsByIdTakeoverEndRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentRequestsByIdTakeoverEndRaw(requestParameters, initOverrides);
     }
 
     /**

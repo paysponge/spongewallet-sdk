@@ -4181,6 +4181,66 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.postApiAgentRequestsByIdCvcSessionRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for postApiAgentRequestsByIdTakeover without sending the request
+     */
+    async postApiAgentRequestsByIdTakeoverRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling postApiAgentRequestsByIdTakeover().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agent-requests/{id}/takeover`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiAgentRequestsByIdTakeoverRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAgentRequestsByIdTakeoverRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAgentRequestsByIdTakeover(requestParameters, initOverrides) {
+        await this.postApiAgentRequestsByIdTakeoverRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiAgentRequestsByIdTakeoverEnd without sending the request
+     */
+    async postApiAgentRequestsByIdTakeoverEndRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling postApiAgentRequestsByIdTakeoverEnd().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/agent-requests/{id}/takeover/end`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiAgentRequestsByIdTakeoverEndRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiAgentRequestsByIdTakeoverEndRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiAgentRequestsByIdTakeoverEnd(requestParameters, initOverrides) {
+        await this.postApiAgentRequestsByIdTakeoverEndRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for postApiAgents without sending the request
      */
     async postApiAgentsRequestOpts(requestParameters) {
