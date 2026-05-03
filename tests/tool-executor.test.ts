@@ -121,6 +121,65 @@ describe("ToolExecutor", () => {
     });
   });
 
+  it("routes discover_services to /api/discover", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue({ services: [] }),
+      post: vi.fn(),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("discover_services", {
+      query: "web search",
+      category: "search",
+      limit: 5,
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.get).toHaveBeenCalledWith("/api/discover", {
+      type: undefined,
+      limit: "5",
+      offset: undefined,
+      query: "web search",
+      category: "search",
+    });
+  });
+
+  it("routes get_service to /api/discover/:serviceId", async () => {
+    const http = {
+      get: vi.fn().mockResolvedValue({ id: "ctg_123" }),
+      post: vi.fn(),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("get_service", {
+      service_id: "ctg_123",
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.get).toHaveBeenCalledWith("/api/discover/ctg_123");
+  });
+
+  it("routes polymarket to /api/polymarket", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ ok: true }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("polymarket", {
+      action: "search_markets",
+      query: "Sixers Celtics",
+      limit: 5,
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith("/api/polymarket", {
+      action: "search_markets",
+      query: "Sixers Celtics",
+      limit: 5,
+    });
+  });
+
   it("routes store_key to /api/agent-keys", async () => {
     const http = {
       get: vi.fn(),

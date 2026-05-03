@@ -330,6 +330,24 @@ export class SpongeWallet {
         return this.publicTools.mppFetch(options);
     }
     /**
+     * Discover paid API services.
+     */
+    async discoverServices(options = {}) {
+        return this.publicTools.discoverServices(options);
+    }
+    /**
+     * Get endpoint and pricing details for a discovered paid API service.
+     */
+    async getService(serviceId) {
+        return this.publicTools.getService(serviceId);
+    }
+    /**
+     * Run Polymarket actions for account status, market discovery, trading, funding, and withdrawals.
+     */
+    async polymarket(options) {
+        return this.publicTools.polymarket(options);
+    }
+    /**
      * Trade perps and spot on Hyperliquid DEX
      *
      * @example

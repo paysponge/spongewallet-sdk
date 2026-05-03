@@ -67,7 +67,49 @@ describe("CLI command tree", () => {
 
     expect(advanced).toBeDefined();
     expect(commandNames(advanced!)).toContain("get-balance");
+    expect(commandNames(advanced!)).toContain("discover-services");
+    expect(commandNames(advanced!)).toContain("get-service");
+    expect(commandNames(advanced!)).toContain("polymarket");
     expect(commandNames(advanced!)).toContain("generate-siwe");
+  });
+
+  it("exposes discovery commands under pay", () => {
+    const program = buildCliProgram();
+    const pay = program.commands.find((entry) => entry.name() === "pay");
+
+    expect(pay).toBeDefined();
+    expect(commandNames(pay!)).toEqual(expect.arrayContaining([
+      "discover",
+      "service",
+      "fetch",
+      "x402",
+      "mpp",
+    ]));
+  });
+
+  it("exposes Polymarket commands under market", () => {
+    const program = buildCliProgram();
+    const market = program.commands.find((entry) => entry.name() === "market");
+    const polymarket = market?.commands.find((entry) => entry.name() === "polymarket");
+
+    expect(polymarket).toBeDefined();
+    expect(commandNames(polymarket!)).toEqual(expect.arrayContaining([
+      "status",
+      "enable",
+      "search",
+      "get",
+      "price",
+      "positions",
+      "orders",
+      "balance",
+      "order",
+      "cancel",
+      "deposit",
+      "deposit-from-wallet",
+      "withdraw",
+      "redeem",
+      "raw",
+    ]));
   });
 
   it("keeps wallet workflows as direct top-level commands", () => {

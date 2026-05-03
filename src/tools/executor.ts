@@ -211,6 +211,18 @@ export class ToolExecutor {
           body: args.body,
           chain: args.chain,
         });
+      case "discover_services":
+        return this.http.get<unknown>("/api/discover", {
+          type: typeof args.type === "number" ? String(args.type) : args.type as string | undefined,
+          limit: typeof args.limit === "number" ? String(args.limit) : args.limit as string | undefined,
+          offset: typeof args.offset === "number" ? String(args.offset) : args.offset as string | undefined,
+          query: args.query as string | undefined,
+          category: args.category as string | undefined,
+        });
+      case "get_service":
+        return this.http.get<unknown>(
+          `/api/discover/${encodeURIComponent(String(args.service_id))}`,
+        );
       case "x402_fetch":
         return this.http.post<unknown>("/api/x402/fetch", {
           url: args.url,
@@ -227,6 +239,8 @@ export class ToolExecutor {
           headers: args.headers,
           body: args.body,
         });
+      case "polymarket":
+        return this.http.post<unknown>("/api/polymarket", args);
       case "store_key":
         return this.http.post<unknown>("/api/agent-keys", {
           service: args.service,

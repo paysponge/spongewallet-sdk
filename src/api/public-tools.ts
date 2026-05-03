@@ -82,6 +82,50 @@ export interface MppFetchOptions {
   chain?: "tempo" | "tempo-testnet";
 }
 
+export interface DiscoverServicesOptions {
+  type?: string;
+  limit?: number;
+  offset?: number;
+  query?: string;
+  category?: string;
+}
+
+export interface PolymarketOptions {
+  action:
+    | "enable"
+    | "signup"
+    | "status"
+    | "order"
+    | "positions"
+    | "orders"
+    | "balance_allowance"
+    | "refresh_balance_allowance"
+    | "get_order"
+    | "cancel"
+    | "search_markets"
+    | "get_market"
+    | "get_market_price"
+    | "set_allowances"
+    | "deposit"
+    | "deposit_from_wallet"
+    | "withdraw"
+    | "withdraw_native"
+    | "redeem";
+  market_slug?: string;
+  token_id?: string;
+  outcome?: "yes" | "no";
+  side?: "buy" | "sell";
+  size?: number;
+  type?: "limit" | "market";
+  price?: number;
+  order_type?: "GTC" | "GTD" | "FOK" | "FAK";
+  order_id?: string;
+  query?: string;
+  limit?: number;
+  amount?: string;
+  condition_id?: string;
+}
+
 export class PublicToolsApi {
   constructor(private readonly http: HttpClient) {}
 
@@ -224,5 +268,23 @@ export class PublicToolsApi {
       ...rest,
       method,
     });
+  }
+
+  async discoverServices(options: DiscoverServicesOptions = {}): Promise<unknown> {
+    return this.http.get<unknown>("/api/discover", {
+      type: options.type,
+      limit: options.limit?.toString(),
+      offset: options.offset?.toString(),
+      query: options.query,
+      category: options.category,
+    });
+  }
+
+  async getService(serviceId: string): Promise<unknown> {
+    return this.http.get<unknown>(`/api/discover/${encodeURIComponent(serviceId)}`);
+  }
+
+  async polymarket(options: PolymarketOptions): Promise<unknown> {
+    return this.http.post<unknown>("/api/polymarket", options);
   }
 }

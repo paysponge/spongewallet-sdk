@@ -107,5 +107,20 @@ export class PublicToolsApi {
             method,
         });
     }
+    async discoverServices(options = {}) {
+        return this.http.get("/api/discover", {
+            type: options.type,
+            limit: options.limit?.toString(),
+            offset: options.offset?.toString(),
+            query: options.query,
+            category: options.category,
+        });
+    }
+    async getService(serviceId) {
+        return this.http.get(`/api/discover/${encodeURIComponent(serviceId)}`);
+    }
+    async polymarket(options) {
+        return this.http.post("/api/polymarket", options);
+    }
 }
 //# sourceMappingURL=public-tools.js.map

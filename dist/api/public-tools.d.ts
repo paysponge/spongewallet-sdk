@@ -46,6 +46,29 @@ export interface MppFetchOptions {
     body?: unknown;
     chain?: "tempo" | "tempo-testnet";
 }
+export interface DiscoverServicesOptions {
+    type?: string;
+    limit?: number;
+    offset?: number;
+    query?: string;
+    category?: string;
+}
+export interface PolymarketOptions {
+    action: "enable" | "signup" | "status" | "order" | "positions" | "orders" | "balance_allowance" | "refresh_balance_allowance" | "get_order" | "cancel" | "search_markets" | "get_market" | "get_market_price" | "set_allowances" | "deposit" | "deposit_from_wallet" | "withdraw" | "withdraw_native" | "redeem";
+    market_slug?: string;
+    token_id?: string;
+    outcome?: "yes" | "no";
+    side?: "buy" | "sell";
+    size?: number;
+    type?: "limit" | "market";
+    price?: number;
+    order_type?: "GTC" | "GTD" | "FOK" | "FAK";
+    order_id?: string;
+    query?: string;
+    limit?: number;
+    amount?: string;
+    condition_id?: string;
+}
 export declare class PublicToolsApi {
     private readonly http;
     constructor(http: HttpClient);
@@ -62,5 +85,8 @@ export declare class PublicToolsApi {
     paidFetch(options: PaidFetchOptions): Promise<unknown>;
     x402Fetch(options: X402FetchOptions): Promise<unknown>;
     mppFetch(options: MppFetchOptions): Promise<unknown>;
+    discoverServices(options?: DiscoverServicesOptions): Promise<unknown>;
+    getService(serviceId: string): Promise<unknown>;
+    polymarket(options: PolymarketOptions): Promise<unknown>;
 }
 //# sourceMappingURL=public-tools.d.ts.map

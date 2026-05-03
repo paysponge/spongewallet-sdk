@@ -190,6 +190,10 @@ npx spongewallet balance
 npx spongewallet send base 0xabc... USDC 10
 npx spongewallet swap tempo pathUSD USDC.e 1
 npx spongewallet tx status base 0x123...
+npx spongewallet pay discover "web search"
+npx spongewallet pay service <service-id>
+npx spongewallet market polymarket search "Sixers Celtics"
+npx spongewallet market polymarket order nba-phi-bos-2026-05-02 yes buy 3 --price 0.40
 
 # Raw tool commands remain available under "advanced"
 npx spongewallet advanced get-balance --chain base

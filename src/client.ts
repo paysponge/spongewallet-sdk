@@ -448,6 +448,67 @@ export class SpongeWallet {
   }
 
   /**
+   * Discover paid API services.
+   */
+  async discoverServices(options: {
+    type?: string;
+    limit?: number;
+    offset?: number;
+    query?: string;
+    category?: string;
+  } = {}) {
+    return this.publicTools.discoverServices(options);
+  }
+
+  /**
+   * Get endpoint and pricing details for a discovered paid API service.
+   */
+  async getService(serviceId: string) {
+    return this.publicTools.getService(serviceId);
+  }
+
+  /**
+   * Run Polymarket actions for account status, market discovery, trading, funding, and withdrawals.
+   */
+  async polymarket(options: {
+    action:
+      | "enable"
+      | "signup"
+      | "status"
+      | "order"
+      | "positions"
+      | "orders"
+      | "balance_allowance"
+      | "refresh_balance_allowance"
+      | "get_order"
+      | "cancel"
+      | "search_markets"
+      | "get_market"
+      | "get_market_price"
+      | "set_allowances"
+      | "deposit"
+      | "deposit_from_wallet"
+      | "withdraw"
+      | "withdraw_native"
+      | "redeem";
+    market_slug?: string;
+    token_id?: string;
+    outcome?: "yes" | "no";
+    side?: "buy" | "sell";
+    size?: number;
+    type?: "limit" | "market";
+    price?: number;
+    order_type?: "GTC" | "GTD" | "FOK" | "FAK";
+    order_id?: string;
+    query?: string;
+    limit?: number;
+    amount?: string;
+    condition_id?: string;
+  }) {
+    return this.publicTools.polymarket(options);
+  }
+
+  /**
    * Trade perps and spot on Hyperliquid DEX
    *
    * @example

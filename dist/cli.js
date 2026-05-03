@@ -748,6 +748,36 @@ function registerCuratedCommands(program, shared) {
         });
     });
     const payCmd = program.command("pay").description("Paid API and payment helpers");
+    shared(payCmd.command("discover").description("Discover paid API services"))
+        .usage("[query] [options]")
+        .argument("[query]", "service search query")
+        .option("--query <query>", "service search query")
+        .option("--category <category>", "service category filter")
+        .option("--type <type>", "service type filter")
+        .option("--limit <n>", "maximum results", parseInt)
+        .option("--offset <n>", "result offset", parseInt)
+        .addHelpText("after", "\nExamples:\n  spongewallet pay discover \"web search\"\n  spongewallet pay discover --category search --limit 5\n")
+        .action(async (queryArg, opts) => {
+        const wallet = await connectWallet(opts);
+        const data = await wallet.discoverServices({
+            query: queryArg ?? opts.query,
+            category: opts.category,
+            type: opts.type,
+            limit: opts.limit,
+            offset: opts.offset,
+        });
+        displayToolResult(getToolDefinition("discover_services"), data);
+    });
+    shared(payCmd.command("service").description("Get paid API service endpoint details"))
+        .usage("[serviceId] [options]")
+        .argument("[serviceId]", "service ID returned by discover")
+        .option("--service-id <id>", "service ID returned by discover")
+        .addHelpText("after", "\nExamples:\n  spongewallet pay service ctg_123\n")
+        .action(async (serviceIdArg, opts, command) => {
+        const wallet = await connectWallet(opts);
+        const data = await wallet.getService(requiredInput(command, opts, serviceIdArg, "serviceId", "--service-id"));
+        displayToolResult(getToolDefinition("get_service"), data);
+    });
     shared(payCmd.command("fetch").description("Fetch with automatic paid API handling"))
         .requiredOption("--url <url>", "target URL")
         .addOption(new Option("--chain <chain>", "preferred spend chain").choices(PAY_CHAIN_VALUES))
@@ -967,6 +997,205 @@ function registerCuratedCommands(program, shared) {
         });
     });
     const marketCmd = program.command("market").description("Trading venue integrations");
+    const polymarketCmd = marketCmd.command("polymarket").description("Trade or inspect Polymarket");
+    shared(polymarketCmd.command("status").description("Show Polymarket account status"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "status" });
+    });
+    shared(polymarketCmd.command("enable").description("Provision or link Polymarket trading"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "enable" });
+    });
+    shared(polymarketCmd.command("search").description("Search Polymarket markets"))
+        .usage("[query] [limit] [options]")
+        .argument("[query]", "market search query")
+        .argument("[limit]", "result limit")
+        .option("--query <query>", "market search query")
+        .option("--limit <n>", "result limit", parseInt)
+        .addHelpText("after", "\nExamples:\n  spongewallet market polymarket search \"Sixers Celtics\"\n  spongewallet market polymarket search \"NBA\" 20\n")
+        .action(async (queryArg, limitArg, opts, command) => {
+        await executePolymarketAction(opts, {
+            action: "search_markets",
+            query: requiredInput(command, opts, queryArg, "query", "--query"),
+            limit: limitArg !== undefined ? parseInt(limitArg, 10) : opts.limit,
+        });
+    });
+    shared(polymarketCmd.command("get").description("Get Polymarket market metadata"))
+        .usage("[marketSlug] [options]")
+        .argument("[marketSlug]", "market or event slug")
+        .option("--market-slug <slug>", "market or event slug")
+        .option("--token-id <id>", "CLOB token ID")
+        .addHelpText("after", "\nExamples:\n  spongewallet market polymarket get nba-phi-bos-2026-05-02\n")
+        .action(async (marketSlugArg, opts, command) => {
+        if (!marketSlugArg && !opts.marketSlug && !opts.tokenId) {
+            requiredInput(command, opts, marketSlugArg, "marketSlug", "--market-slug");
+        }
+        await executePolymarketAction(opts, {
+            action: "get_market",
+            market_slug: marketSlugArg ?? opts.marketSlug,
+            token_id: opts.tokenId,
+        });
+    });
+    shared(polymarketCmd.command("price").description("Get Polymarket market price"))
+        .usage("[marketSlug] [options]")
+        .argument("[marketSlug]", "market or event slug")
+        .option("--market-slug <slug>", "market or event slug")
+        .option("--token-id <id>", "CLOB token ID")
+        .addHelpText("after", "\nExamples:\n  spongewallet market polymarket price nba-phi-bos-2026-05-02\n")
+        .action(async (marketSlugArg, opts, command) => {
+        if (!marketSlugArg && !opts.marketSlug && !opts.tokenId) {
+            requiredInput(command, opts, marketSlugArg, "marketSlug", "--market-slug");
+        }
+        await executePolymarketAction(opts, {
+            action: "get_market_price",
+            market_slug: marketSlugArg ?? opts.marketSlug,
+            token_id: opts.tokenId,
+        });
+    });
+    shared(polymarketCmd.command("positions").description("List Polymarket positions"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "positions" });
+    });
+    shared(polymarketCmd.command("orders").description("List open Polymarket orders"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "orders" });
+    });
+    shared(polymarketCmd.command("balance").description("Show Polymarket balance and allowance"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "balance_allowance" });
+    });
+    shared(polymarketCmd.command("refresh-balance").description("Refresh Polymarket balance and allowance"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "refresh_balance_allowance" });
+    });
+    shared(polymarketCmd.command("order").description("Place a Polymarket order"))
+        .usage("[marketSlug] [outcome] [side] [size] [options]")
+        .argument("[marketSlug]", "market or event slug")
+        .argument("[outcome]", "yes or no")
+        .argument("[side]", "buy or sell")
+        .argument("[size]", "order size in shares")
+        .option("--market-slug <slug>", "market or event slug")
+        .option("--token-id <id>", "CLOB token ID")
+        .addOption(new Option("--outcome <outcome>", "outcome").choices(["yes", "no"]))
+        .addOption(new Option("--side <side>", "order side").choices(["buy", "sell"]))
+        .option("--size <shares>", "order size in shares")
+        .addOption(new Option("--type <type>", "execution type").choices(["limit", "market"]).default("limit"))
+        .option("--price <price>", "limit price from 0 to 1", parseFloat)
+        .addOption(new Option("--order-type <type>", "CLOB order type").choices(["GTC", "GTD", "FOK", "FAK"]))
+        .addHelpText("after", "\nExamples:\n  spongewallet market polymarket order nba-phi-bos-2026-05-02 yes buy 3 --price 0.40\n  spongewallet market polymarket order --token-id 123 --outcome yes --side buy --size 3 --type market\n")
+        .action(async (marketSlugArg, outcomeArg, sideArg, sizeArg, opts, command) => {
+        if (!marketSlugArg && !opts.marketSlug && !opts.tokenId) {
+            requiredInput(command, opts, marketSlugArg, "marketSlug", "--market-slug");
+        }
+        await executePolymarketAction(opts, {
+            action: "order",
+            market_slug: marketSlugArg ?? opts.marketSlug,
+            token_id: opts.tokenId,
+            outcome: requiredInput(command, opts, outcomeArg, "outcome", "--outcome"),
+            side: requiredInput(command, opts, sideArg, "side", "--side"),
+            size: Number(requiredInput(command, opts, sizeArg, "size", "--size")),
+            type: opts.type,
+            price: opts.price,
+            order_type: opts.orderType,
+        });
+    });
+    shared(polymarketCmd.command("get-order").description("Get a Polymarket order"))
+        .argument("[orderId]", "order ID")
+        .option("--order-id <id>", "order ID")
+        .action(async (orderIdArg, opts, command) => {
+        await executePolymarketAction(opts, {
+            action: "get_order",
+            order_id: requiredInput(command, opts, orderIdArg, "orderId", "--order-id"),
+        });
+    });
+    shared(polymarketCmd.command("cancel").description("Cancel a Polymarket order"))
+        .argument("[orderId]", "order ID")
+        .option("--order-id <id>", "order ID")
+        .action(async (orderIdArg, opts, command) => {
+        await executePolymarketAction(opts, {
+            action: "cancel",
+            order_id: requiredInput(command, opts, orderIdArg, "orderId", "--order-id"),
+        });
+    });
+    shared(polymarketCmd.command("set-allowances").description("Approve Polymarket contracts for trading"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "set_allowances" });
+    });
+    shared(polymarketCmd.command("deposit").description("Make Safe-held USDC.e available for trading"))
+        .action(async (opts) => {
+        await executePolymarketAction(opts, { action: "deposit" });
+    });
+    shared(polymarketCmd.command("deposit-from-wallet").description("Move Polygon wallet USDC.e into Polymarket Safe"))
+        .argument("[amount]", "USDC.e amount")
+        .option("--amount <amount>", "USDC.e amount")
+        .action(async (amountArg, opts, command) => {
+        await executePolymarketAction(opts, {
+            action: "deposit_from_wallet",
+            amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
+        });
+    });
+    shared(polymarketCmd.command("withdraw").description("Withdraw USDC.e to Polygon wallet"))
+        .argument("[amount]", "USDC.e amount")
+        .option("--amount <amount>", "USDC.e amount")
+        .action(async (amountArg, opts, command) => {
+        await executePolymarketAction(opts, {
+            action: "withdraw",
+            amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
+        });
+    });
+    shared(polymarketCmd.command("withdraw-native").description("Withdraw Polygon-native USDC to Polygon wallet"))
+        .argument("[amount]", "USDC amount")
+        .option("--amount <amount>", "USDC amount")
+        .action(async (amountArg, opts, command) => {
+        await executePolymarketAction(opts, {
+            action: "withdraw_native",
+            amount: requiredInput(command, opts, amountArg, "amount", "--amount"),
+        });
+    });
+    shared(polymarketCmd.command("redeem").description("Redeem settled winning Polymarket positions"))
+        .argument("[conditionId]", "optional condition ID")
+        .option("--condition-id <id>", "optional condition ID")
+        .action(async (conditionIdArg, opts) => {
+        await executePolymarketAction(opts, {
+            action: "redeem",
+            condition_id: conditionIdArg ?? opts.conditionId,
+        });
+    });
+    shared(polymarketCmd.command("raw").description("Call a raw Polymarket action"))
+        .requiredOption("--action <action>", "Polymarket action")
+        .option("--market-slug <slug>", "market or event slug")
+        .option("--token-id <id>", "CLOB token ID")
+        .option("--outcome <outcome>", "yes or no")
+        .option("--side <side>", "buy or sell")
+        .option("--size <shares>", "order size in shares", parseFloat)
+        .option("--type <type>", "limit or market")
+        .option("--price <price>", "limit price from 0 to 1", parseFloat)
+        .option("--order-type <type>", "CLOB order type")
+        .option("--order-id <id>", "order ID")
+        .option("--query <query>", "market search query")
+        .option("--limit <n>", "result limit", parseInt)
+        .option("--amount <amount>", "amount")
+        .option("--condition-id <id>", "condition ID")
+        .option("--json <json>", "additional args as JSON", parseJsonObject)
+        .action(async (opts) => {
+        await executePolymarketAction(opts, {
+            ...opts.json,
+            action: String(opts.action),
+            market_slug: opts.marketSlug,
+            token_id: opts.tokenId,
+            outcome: opts.outcome,
+            side: opts.side,
+            size: opts.size,
+            type: opts.type,
+            price: opts.price,
+            order_type: opts.orderType,
+            order_id: opts.orderId,
+            query: opts.query,
+            limit: opts.limit,
+            amount: opts.amount,
+            condition_id: opts.conditionId,
+        });
+    });
     const hyperliquidCmd = marketCmd.command("hyperliquid").description("Trade or inspect Hyperliquid");
     shared(hyperliquidCmd.command("status").description("Show Hyperliquid account status"))
         .action(async (opts) => {
@@ -1103,6 +1332,11 @@ async function executeHyperliquidAction(opts, input) {
     const wallet = await connectWallet(opts);
     const data = await wallet.hyperliquid(input);
     displayToolResult(getToolDefinition("hyperliquid"), data);
+}
+async function executePolymarketAction(opts, input) {
+    const wallet = await connectWallet(opts);
+    const data = await wallet.polymarket(input);
+    displayToolResult(getToolDefinition("polymarket"), data);
 }
 async function executeToolCommand(opts, toolName, input) {
     const wallet = await connectWallet(opts);

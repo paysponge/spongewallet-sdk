@@ -558,6 +558,50 @@ export const TOOL_DEFINITIONS = [
         cli_output: httpResponseOutput("Paid fetch"),
     },
     {
+        name: "discover_services",
+        description: "Discover paid API services by query, category, or type. Use this before paid_fetch, x402_fetch, or mpp_fetch when you do not already know the exact endpoint, HTTP method, parameters, and pricing.",
+        input_schema: {
+            type: "object",
+            properties: {
+                query: {
+                    type: "string",
+                    description: "Search query, e.g. 'web search' or 'Parallel MPP search'",
+                },
+                category: {
+                    type: "string",
+                    description: "Optional service category filter, e.g. 'search'",
+                },
+                type: {
+                    type: "string",
+                    description: "Optional service type filter",
+                },
+                limit: {
+                    type: "number",
+                    description: "Maximum number of services to return",
+                },
+                offset: {
+                    type: "number",
+                    description: "Result offset for pagination",
+                },
+            },
+            required: [],
+        },
+    },
+    {
+        name: "get_service",
+        description: "Get endpoint, parameter, method, and pricing details for a service returned by discover_services. Use this before fetching a paid API when endpoint details are not already known.",
+        input_schema: {
+            type: "object",
+            properties: {
+                service_id: {
+                    type: "string",
+                    description: "The service ID returned by discover_services",
+                },
+            },
+            required: ["service_id"],
+        },
+    },
+    {
         name: "x402_fetch",
         description: "Make an HTTP request with automatic x402 payment handling. " +
             "Handles the entire x402 payment flow: makes the request, if 402 Payment Required is returned " +
@@ -1207,6 +1251,97 @@ export const TOOL_DEFINITIONS = [
             { key: "signature", label: "Signature" },
             { key: "base64SiweMessage", label: "Base64 message" },
         ], "SIWE signature"),
+    },
+    {
+        name: "polymarket",
+        description: "Use Polymarket prediction markets. Supports account setup/status, market search and pricing, positions, orders, limit/market orders, funding, withdrawals, and redemption.",
+        input_schema: {
+            type: "object",
+            properties: {
+                action: {
+                    type: "string",
+                    enum: [
+                        "enable",
+                        "signup",
+                        "status",
+                        "order",
+                        "positions",
+                        "orders",
+                        "balance_allowance",
+                        "refresh_balance_allowance",
+                        "get_order",
+                        "cancel",
+                        "search_markets",
+                        "get_market",
+                        "get_market_price",
+                        "set_allowances",
+                        "deposit",
+                        "deposit_from_wallet",
+                        "withdraw",
+                        "withdraw_native",
+                        "redeem",
+                    ],
+                    description: "Polymarket action to run",
+                },
+                market_slug: {
+                    type: "string",
+                    description: "Market or event slug from Polymarket",
+                },
+                token_id: {
+                    type: "string",
+                    description: "CLOB token ID for a specific outcome",
+                },
+                outcome: {
+                    type: "string",
+                    enum: ["yes", "no"],
+                    description: "Outcome to buy or sell",
+                },
+                side: {
+                    type: "string",
+                    enum: ["buy", "sell"],
+                    description: "Order side",
+                },
+                size: {
+                    type: "number",
+                    description: "Order size in shares. For a dollar budget, divide dollars by price first.",
+                },
+                type: {
+                    type: "string",
+                    enum: ["limit", "market"],
+                    description: "Execution type. Defaults to limit.",
+                },
+                price: {
+                    type: "number",
+                    description: "Limit price from 0 to 1. Required for limit orders.",
+                },
+                order_type: {
+                    type: "string",
+                    enum: ["GTC", "GTD", "FOK", "FAK"],
+                    description: "CLOB order type. Market orders support FOK or FAK.",
+                },
+                order_id: {
+                    type: "string",
+                    description: "Order ID for get_order or cancel",
+                },
+                query: {
+                    type: "string",
+                    description: "Search query for search_markets",
+                },
+                limit: {
+                    type: "number",
+                    description: "Search result limit",
+                },
+                amount: {
+                    type: "string",
+                    description: "USDC.e amount for deposit_from_wallet, withdraw, or withdraw_native",
+                },
+                condition_id: {
+                    type: "string",
+                    description: "Optional condition ID for redeem",
+                },
+            },
+            required: ["action"],
+        },
     },
 ];
 //# sourceMappingURL=definitions.js.map

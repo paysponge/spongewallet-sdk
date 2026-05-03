@@ -364,6 +364,39 @@ export declare class SpongeWallet {
         chain?: "tempo" | "tempo-testnet";
     }): Promise<unknown>;
     /**
+     * Discover paid API services.
+     */
+    discoverServices(options?: {
+        type?: string;
+        limit?: number;
+        offset?: number;
+        query?: string;
+        category?: string;
+    }): Promise<unknown>;
+    /**
+     * Get endpoint and pricing details for a discovered paid API service.
+     */
+    getService(serviceId: string): Promise<unknown>;
+    /**
+     * Run Polymarket actions for account status, market discovery, trading, funding, and withdrawals.
+     */
+    polymarket(options: {
+        action: "enable" | "signup" | "status" | "order" | "positions" | "orders" | "balance_allowance" | "refresh_balance_allowance" | "get_order" | "cancel" | "search_markets" | "get_market" | "get_market_price" | "set_allowances" | "deposit" | "deposit_from_wallet" | "withdraw" | "withdraw_native" | "redeem";
+        market_slug?: string;
+        token_id?: string;
+        outcome?: "yes" | "no";
+        side?: "buy" | "sell";
+        size?: number;
+        type?: "limit" | "market";
+        price?: number;
+        order_type?: "GTC" | "GTD" | "FOK" | "FAK";
+        order_id?: string;
+        query?: string;
+        limit?: number;
+        amount?: string;
+        condition_id?: string;
+    }): Promise<unknown>;
+    /**
      * Trade perps and spot on Hyperliquid DEX
      *
      * @example

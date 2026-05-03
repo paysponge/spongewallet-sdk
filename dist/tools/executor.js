@@ -199,6 +199,16 @@ export class ToolExecutor {
                     body: args.body,
                     chain: args.chain,
                 });
+            case "discover_services":
+                return this.http.get("/api/discover", {
+                    type: typeof args.type === "number" ? String(args.type) : args.type,
+                    limit: typeof args.limit === "number" ? String(args.limit) : args.limit,
+                    offset: typeof args.offset === "number" ? String(args.offset) : args.offset,
+                    query: args.query,
+                    category: args.category,
+                });
+            case "get_service":
+                return this.http.get(`/api/discover/${encodeURIComponent(String(args.service_id))}`);
             case "x402_fetch":
                 return this.http.post("/api/x402/fetch", {
                     url: args.url,
@@ -215,6 +225,8 @@ export class ToolExecutor {
                     headers: args.headers,
                     body: args.body,
                 });
+            case "polymarket":
+                return this.http.post("/api/polymarket", args);
             case "store_key":
                 return this.http.post("/api/agent-keys", {
                     service: args.service,
