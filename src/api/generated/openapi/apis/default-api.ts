@@ -62,8 +62,6 @@ import type {
   PostApiCoinbaseOnrampUrlRequest,
   PostApiCreditCardsRequest,
   PostApiEmailCheckAvailabilityRequest,
-  PostApiExtensionPushSubscribeRequest,
-  PostApiExtensionPushUnsubscribeRequest,
   PostApiFaucetRequestRequest,
   PostApiFlowsRequest,
   PostApiHyperliquidRequest,
@@ -229,10 +227,6 @@ import {
     PostApiCreditCardsRequestToJSON,
     PostApiEmailCheckAvailabilityRequestFromJSON,
     PostApiEmailCheckAvailabilityRequestToJSON,
-    PostApiExtensionPushSubscribeRequestFromJSON,
-    PostApiExtensionPushSubscribeRequestToJSON,
-    PostApiExtensionPushUnsubscribeRequestFromJSON,
-    PostApiExtensionPushUnsubscribeRequestToJSON,
     PostApiFaucetRequestRequestFromJSON,
     PostApiFaucetRequestRequestToJSON,
     PostApiFlowsRequestFromJSON,
@@ -645,10 +639,6 @@ export interface DefaultApiGetApiDiscoverRequest {
 export interface DefaultApiGetApiDiscoverByServiceIdRequest {
     serviceId: string;
     agentId?: string;
-}
-
-export interface DefaultApiGetApiExtensionPushPublicKeyRequest {
-    token: string;
 }
 
 export interface DefaultApiGetApiFaucetByChainIdRequest {
@@ -1115,16 +1105,6 @@ export interface DefaultApiPostApiCreditCardsOperationRequest {
 
 export interface DefaultApiPostApiEmailCheckAvailabilityOperationRequest {
     postApiEmailCheckAvailabilityRequest: PostApiEmailCheckAvailabilityRequest;
-}
-
-export interface DefaultApiPostApiExtensionPushSubscribeOperationRequest {
-    token: string;
-    postApiExtensionPushSubscribeRequest: PostApiExtensionPushSubscribeRequest;
-}
-
-export interface DefaultApiPostApiExtensionPushUnsubscribeOperationRequest {
-    token: string;
-    postApiExtensionPushUnsubscribeRequest: PostApiExtensionPushUnsubscribeRequest;
 }
 
 export interface DefaultApiPostApiFaucetRequestOperationRequest {
@@ -3403,27 +3383,6 @@ export interface DefaultApiInterface {
     /**
      */
     getApiEmailSignupBonusStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for getApiExtensionPushPublicKey without sending the request
-     * @param {string} token 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiExtensionPushPublicKeyRequestOpts(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {string} token 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiExtensionPushPublicKeyRaw(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    getApiExtensionPushPublicKey(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiFaucetByChainId without sending the request
@@ -5890,52 +5849,6 @@ export interface DefaultApiInterface {
     /**
      */
     postApiEmailSyncFromPrivy(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for postApiExtensionPushSubscribe without sending the request
-     * @param {string} token 
-     * @param {PostApiExtensionPushSubscribeRequest} postApiExtensionPushSubscribeRequest 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushSubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {string} token 
-     * @param {PostApiExtensionPushSubscribeRequest} postApiExtensionPushSubscribeRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushSubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    postApiExtensionPushSubscribe(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Creates request options for postApiExtensionPushUnsubscribe without sending the request
-     * @param {string} token 
-     * @param {PostApiExtensionPushUnsubscribeRequest} postApiExtensionPushUnsubscribeRequest 
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushUnsubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest): Promise<runtime.RequestOpts>;
-
-    /**
-     * 
-     * @param {string} token 
-     * @param {PostApiExtensionPushUnsubscribeRequest} postApiExtensionPushUnsubscribeRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushUnsubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    postApiExtensionPushUnsubscribe(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiFaucetRequest without sending the request
@@ -11463,51 +11376,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
-     * Creates request options for getApiExtensionPushPublicKey without sending the request
-     */
-    async getApiExtensionPushPublicKeyRequestOpts(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['token'] == null) {
-            throw new runtime.RequiredError(
-                'token',
-                'Required parameter "token" was null or undefined when calling getApiExtensionPushPublicKey().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['token'] != null) {
-            queryParameters['token'] = requestParameters['token'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/extension/push/public-key`;
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async getApiExtensionPushPublicKeyRaw(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.getApiExtensionPushPublicKeyRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async getApiExtensionPushPublicKey(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.getApiExtensionPushPublicKeyRaw(requestParameters, initOverrides);
-    }
-
-    /**
      * Creates request options for getApiFaucetByChainId without sending the request
      */
     async getApiFaucetByChainIdRequestOpts(requestParameters: DefaultApiGetApiFaucetByChainIdRequest): Promise<runtime.RequestOpts> {
@@ -16629,116 +16497,6 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiEmailSyncFromPrivy(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiEmailSyncFromPrivyRaw(initOverrides);
-    }
-
-    /**
-     * Creates request options for postApiExtensionPushSubscribe without sending the request
-     */
-    async postApiExtensionPushSubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['token'] == null) {
-            throw new runtime.RequiredError(
-                'token',
-                'Required parameter "token" was null or undefined when calling postApiExtensionPushSubscribe().'
-            );
-        }
-
-        if (requestParameters['postApiExtensionPushSubscribeRequest'] == null) {
-            throw new runtime.RequiredError(
-                'postApiExtensionPushSubscribeRequest',
-                'Required parameter "postApiExtensionPushSubscribeRequest" was null or undefined when calling postApiExtensionPushSubscribe().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['token'] != null) {
-            queryParameters['token'] = requestParameters['token'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/extension/push/subscribe`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiExtensionPushSubscribeRequestToJSON(requestParameters['postApiExtensionPushSubscribeRequest']),
-        };
-    }
-
-    /**
-     */
-    async postApiExtensionPushSubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiExtensionPushSubscribeRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async postApiExtensionPushSubscribe(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiExtensionPushSubscribeRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Creates request options for postApiExtensionPushUnsubscribe without sending the request
-     */
-    async postApiExtensionPushUnsubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['token'] == null) {
-            throw new runtime.RequiredError(
-                'token',
-                'Required parameter "token" was null or undefined when calling postApiExtensionPushUnsubscribe().'
-            );
-        }
-
-        if (requestParameters['postApiExtensionPushUnsubscribeRequest'] == null) {
-            throw new runtime.RequiredError(
-                'postApiExtensionPushUnsubscribeRequest',
-                'Required parameter "postApiExtensionPushUnsubscribeRequest" was null or undefined when calling postApiExtensionPushUnsubscribe().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['token'] != null) {
-            queryParameters['token'] = requestParameters['token'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/extension/push/unsubscribe`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PostApiExtensionPushUnsubscribeRequestToJSON(requestParameters['postApiExtensionPushUnsubscribeRequest']),
-        };
-    }
-
-    /**
-     */
-    async postApiExtensionPushUnsubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiExtensionPushUnsubscribeRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async postApiExtensionPushUnsubscribe(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiExtensionPushUnsubscribeRaw(requestParameters, initOverrides);
     }
 
     /**

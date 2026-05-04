@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiExtensionPushSubscribeRequest, PostApiExtensionPushUnsubscribeRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiBridgeFiatCustomerForceRefreshParameter, PostApiAgentKeysRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdRegenerateKeyRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAllowlistRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutAmazonSearchRequest, PostApiCheckoutRequest, PostApiCheckoutStreamRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -227,9 +227,6 @@ export interface DefaultApiGetApiDiscoverRequest {
 export interface DefaultApiGetApiDiscoverByServiceIdRequest {
     serviceId: string;
     agentId?: string;
-}
-export interface DefaultApiGetApiExtensionPushPublicKeyRequest {
-    token: string;
 }
 export interface DefaultApiGetApiFaucetByChainIdRequest {
     chainId: string;
@@ -597,14 +594,6 @@ export interface DefaultApiPostApiCreditCardsOperationRequest {
 }
 export interface DefaultApiPostApiEmailCheckAvailabilityOperationRequest {
     postApiEmailCheckAvailabilityRequest: PostApiEmailCheckAvailabilityRequest;
-}
-export interface DefaultApiPostApiExtensionPushSubscribeOperationRequest {
-    token: string;
-    postApiExtensionPushSubscribeRequest: PostApiExtensionPushSubscribeRequest;
-}
-export interface DefaultApiPostApiExtensionPushUnsubscribeOperationRequest {
-    token: string;
-    postApiExtensionPushUnsubscribeRequest: PostApiExtensionPushUnsubscribeRequest;
 }
 export interface DefaultApiPostApiFaucetRequestOperationRequest {
     postApiFaucetRequestRequest: PostApiFaucetRequestRequest;
@@ -2530,24 +2519,6 @@ export interface DefaultApiInterface {
     /**
      */
     getApiEmailSignupBonusStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for getApiExtensionPushPublicKey without sending the request
-     * @param {string} token
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiExtensionPushPublicKeyRequestOpts(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {string} token
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getApiExtensionPushPublicKeyRaw(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    getApiExtensionPushPublicKey(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiFaucetByChainId without sending the request
      * @param {string} chainId
@@ -4678,46 +4649,6 @@ export interface DefaultApiInterface {
     /**
      */
     postApiEmailSyncFromPrivy(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiExtensionPushSubscribe without sending the request
-     * @param {string} token
-     * @param {PostApiExtensionPushSubscribeRequest} postApiExtensionPushSubscribeRequest
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushSubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {string} token
-     * @param {PostApiExtensionPushSubscribeRequest} postApiExtensionPushSubscribeRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushSubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiExtensionPushSubscribe(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiExtensionPushUnsubscribe without sending the request
-     * @param {string} token
-     * @param {PostApiExtensionPushUnsubscribeRequest} postApiExtensionPushUnsubscribeRequest
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushUnsubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     *
-     * @param {string} token
-     * @param {PostApiExtensionPushUnsubscribeRequest} postApiExtensionPushUnsubscribeRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    postApiExtensionPushUnsubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiExtensionPushUnsubscribe(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiFaucetRequest without sending the request
      * @param {PostApiFaucetRequestRequest} postApiFaucetRequestRequest
@@ -7168,16 +7099,6 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiEmailSignupBonusStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Creates request options for getApiExtensionPushPublicKey without sending the request
-     */
-    getApiExtensionPushPublicKeyRequestOpts(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    getApiExtensionPushPublicKeyRaw(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    getApiExtensionPushPublicKey(requestParameters: DefaultApiGetApiExtensionPushPublicKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
      * Creates request options for getApiFaucetByChainId without sending the request
      */
     getApiFaucetByChainIdRequestOpts(requestParameters: DefaultApiGetApiFaucetByChainIdRequest): Promise<runtime.RequestOpts>;
@@ -8297,26 +8218,6 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     postApiEmailSyncFromPrivy(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiExtensionPushSubscribe without sending the request
-     */
-    postApiExtensionPushSubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    postApiExtensionPushSubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiExtensionPushSubscribe(requestParameters: DefaultApiPostApiExtensionPushSubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Creates request options for postApiExtensionPushUnsubscribe without sending the request
-     */
-    postApiExtensionPushUnsubscribeRequestOpts(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest): Promise<runtime.RequestOpts>;
-    /**
-     */
-    postApiExtensionPushUnsubscribeRaw(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    postApiExtensionPushUnsubscribe(requestParameters: DefaultApiPostApiExtensionPushUnsubscribeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiFaucetRequest without sending the request
      */
