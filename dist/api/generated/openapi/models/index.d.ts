@@ -15,8 +15,10 @@ export * from './post-api-agents-by-id-instructions-by-instruction-id-credential
 export * from './post-api-agents-by-id-instructions-by-instruction-id-credentials-request-shipping-address.js';
 export * from './post-api-agents-by-id-instructions-by-instruction-id-verify-passkey-request.js';
 export * from './post-api-agents-by-id-instructions-request.js';
+export * from './post-api-agents-by-id-link-payment-methods-link-request.js';
 export * from './post-api-agents-by-id-link-payment-methods-request.js';
 export * from './post-api-agents-by-id-link-payment-methods-request-billing.js';
+export * from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
 export * from './post-api-agents-by-id-payment-methods-request.js';
 export * from './post-api-agents-by-id-payment-methods-request-billing-address.js';
 export * from './post-api-agents-by-id-payment-methods-request-shipping-address.js';

@@ -29,6 +29,7 @@ import type {
   PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest,
   PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest,
   PostApiAgentsByIdInstructionsRequest,
+  PostApiAgentsByIdLinkPaymentMethodsLinkRequest,
   PostApiAgentsByIdLinkPaymentMethodsRequest,
   PostApiAgentsByIdPaymentMethodsRequest,
   PostApiAgentsByIdPolymarketFundRequest,
@@ -162,6 +163,8 @@ import {
     PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON,
     PostApiAgentsByIdInstructionsRequestFromJSON,
     PostApiAgentsByIdInstructionsRequestToJSON,
+    PostApiAgentsByIdLinkPaymentMethodsLinkRequestFromJSON,
+    PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON,
     PostApiAgentsByIdLinkPaymentMethodsRequestFromJSON,
     PostApiAgentsByIdLinkPaymentMethodsRequestToJSON,
     PostApiAgentsByIdPaymentMethodsRequestFromJSON,
@@ -941,6 +944,11 @@ export interface DefaultApiPostApiAgentsByIdInstructionsByInstructionIdVerifyPas
 export interface DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest {
     id: string;
     postApiAgentsByIdLinkPaymentMethodsRequest: PostApiAgentsByIdLinkPaymentMethodsRequest;
+}
+
+export interface DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest {
+    id: string;
+    postApiAgentsByIdLinkPaymentMethodsLinkRequest: PostApiAgentsByIdLinkPaymentMethodsLinkRequest;
 }
 
 export interface DefaultApiPostApiAgentsByIdPaymentMethodsOperationRequest {
@@ -4969,6 +4977,29 @@ export interface DefaultApiInterface {
     /**
      */
     postApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for postApiAgentsByIdLinkPaymentMethodsLink without sending the request
+     * @param {string} id 
+     * @param {PostApiAgentsByIdLinkPaymentMethodsLinkRequest} postApiAgentsByIdLinkPaymentMethodsLinkRequest 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdLinkPaymentMethodsLinkRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PostApiAgentsByIdLinkPaymentMethodsLinkRequest} postApiAgentsByIdLinkPaymentMethodsLinkRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    postApiAgentsByIdLinkPaymentMethodsLinkRaw(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    postApiAgentsByIdLinkPaymentMethodsLink(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiAgentsByIdPaymentMethods without sending the request
@@ -14681,6 +14712,58 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async postApiAgentsByIdLinkPaymentMethods(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postApiAgentsByIdLinkPaymentMethodsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postApiAgentsByIdLinkPaymentMethodsLink without sending the request
+     */
+    async postApiAgentsByIdLinkPaymentMethodsLinkRequestOpts(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling postApiAgentsByIdLinkPaymentMethodsLink().'
+            );
+        }
+
+        if (requestParameters['postApiAgentsByIdLinkPaymentMethodsLinkRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiAgentsByIdLinkPaymentMethodsLinkRequest',
+                'Required parameter "postApiAgentsByIdLinkPaymentMethodsLinkRequest" was null or undefined when calling postApiAgentsByIdLinkPaymentMethodsLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/agents/{id}/link-payment-methods/link`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON(requestParameters['postApiAgentsByIdLinkPaymentMethodsLinkRequest']),
+        };
+    }
+
+    /**
+     */
+    async postApiAgentsByIdLinkPaymentMethodsLinkRaw(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiAgentsByIdLinkPaymentMethodsLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async postApiAgentsByIdLinkPaymentMethodsLink(requestParameters: DefaultApiPostApiAgentsByIdLinkPaymentMethodsLinkOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiAgentsByIdLinkPaymentMethodsLinkRaw(requestParameters, initOverrides);
     }
 
     /**

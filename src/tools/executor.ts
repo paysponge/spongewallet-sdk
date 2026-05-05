@@ -262,6 +262,17 @@ export class ToolExecutor {
           label: args.label,
           metadata: args.metadata,
         });
+      case "add_link_payment_method":
+        return this.http.post<unknown>(
+          `/api/agents/${encodeURIComponent(this.agentId)}/link-payment-methods/link`,
+          {
+            linkPaymentMethodId: args.linkPaymentMethodId ?? args.link_payment_method_id,
+            setAsDefault: args.setAsDefault ?? args.set_as_default,
+            clientName: args.clientName ?? args.client_name,
+            billing: args.billing,
+            shipping: args.shipping,
+          },
+        );
       case "get_key_list":
         return this.http.get<unknown>("/api/agent-keys", {});
       case "get_key_value":

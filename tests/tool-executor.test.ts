@@ -262,6 +262,45 @@ describe("ToolExecutor", () => {
     });
   });
 
+  it("routes add_link_payment_method to agent Link endpoint", async () => {
+    const http = {
+      get: vi.fn(),
+      post: vi.fn().mockResolvedValue({ status: "saved" }),
+    };
+    const executor = new ToolExecutor(http as any, "agent-1");
+
+    const result = await executor.execute("add_link_payment_method", {
+      link_payment_method_id: "pm_123",
+      set_as_default: true,
+      shipping: {
+        name: "Jane Doe",
+        line1: "123 Main St",
+        city: "San Francisco",
+        state: "CA",
+        postalCode: "94105",
+        country: "US",
+        phone: "+14155550123",
+      },
+    });
+
+    expect(result.status).toBe("success");
+    expect(http.post).toHaveBeenCalledWith("/api/agents/agent-1/link-payment-methods/link", {
+      linkPaymentMethodId: "pm_123",
+      setAsDefault: true,
+      clientName: undefined,
+      billing: undefined,
+      shipping: {
+        name: "Jane Doe",
+        line1: "123 Main St",
+        city: "San Francisco",
+        state: "CA",
+        postalCode: "94105",
+        country: "US",
+        phone: "+14155550123",
+      },
+    });
+  });
+
   it("routes get_key_value to /api/agent-keys/value", async () => {
     const http = {
       get: vi.fn().mockResolvedValue({ key: { service: "openai", key: "sk" } }),

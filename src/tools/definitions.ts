@@ -1087,6 +1087,50 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
     ),
   },
   {
+    name: "add_link_payment_method",
+    description:
+      "Connect Link and save a Link payment method for checkout. " +
+      "Call without shipping to start Link login if needed. " +
+      "After approval, call again with shipping to save the only payment method or pass link_payment_method_id if multiple methods are available.",
+    input_schema: {
+      type: "object",
+      properties: {
+        link_payment_method_id: {
+          type: "string",
+          description: "Link payment method ID to save. Required only if multiple Link methods are available.",
+        },
+        set_as_default: {
+          type: "boolean",
+          description: "Whether to make this the default Link payment method. Defaults to true.",
+        },
+        client_name: {
+          type: "string",
+          description: "Optional Link connection label shown during auth.",
+        },
+        billing: {
+          type: "object",
+          description: "Optional billing address to store with the Link payment method.",
+        },
+        shipping: {
+          type: "object",
+          description: "Required when saving the Link payment method. Not required to start Link login.",
+          properties: {
+            name: { type: "string" },
+            line1: { type: "string" },
+            line2: { type: "string" },
+            city: { type: "string" },
+            state: { type: "string" },
+            postalCode: { type: "string" },
+            country: { type: "string" },
+            phone: { type: "string" },
+          },
+          required: ["name", "line1", "city", "state", "postalCode", "country", "phone"],
+        },
+      },
+      required: [],
+    },
+  },
+  {
     name: "get_card",
     description:
       "Fetch the user's card details. Routes to the right card source automatically:\n\n" +

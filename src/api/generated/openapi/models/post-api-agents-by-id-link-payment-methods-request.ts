@@ -20,6 +20,13 @@ import {
     PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON,
     PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSONTyped,
 } from './post-api-agents-by-id-link-payment-methods-request-billing.js';
+import type { PostApiAgentsByIdLinkPaymentMethodsRequestShipping } from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
+import {
+    PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON,
+    PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSONTyped,
+    PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON,
+    PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSONTyped,
+} from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
 
 /**
  * 
@@ -71,10 +78,10 @@ export interface PostApiAgentsByIdLinkPaymentMethodsRequest {
     billing?: PostApiAgentsByIdLinkPaymentMethodsRequestBilling;
     /**
      * 
-     * @type {PostApiAgentsByIdLinkPaymentMethodsRequestBilling}
+     * @type {PostApiAgentsByIdLinkPaymentMethodsRequestShipping}
      * @memberof PostApiAgentsByIdLinkPaymentMethodsRequest
      */
-    shipping?: PostApiAgentsByIdLinkPaymentMethodsRequestBilling;
+    shipping: PostApiAgentsByIdLinkPaymentMethodsRequestShipping;
     /**
      * 
      * @type {boolean}
@@ -88,6 +95,7 @@ export interface PostApiAgentsByIdLinkPaymentMethodsRequest {
  */
 export function instanceOfPostApiAgentsByIdLinkPaymentMethodsRequest(value: object): value is PostApiAgentsByIdLinkPaymentMethodsRequest {
     if (!('linkPaymentMethodId' in value) || value['linkPaymentMethodId'] === undefined) return false;
+    if (!('shipping' in value) || value['shipping'] === undefined) return false;
     return true;
 }
 
@@ -108,7 +116,7 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestFromJSONTyped(json: an
         'email': json['email'] == null ? undefined : json['email'],
         'phone': json['phone'] == null ? undefined : json['phone'],
         'billing': json['billing'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['billing']),
-        'shipping': json['shipping'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['shipping']),
+        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON(json['shipping']),
         'setAsDefault': json['setAsDefault'] == null ? undefined : json['setAsDefault'],
     };
 }
@@ -131,7 +139,7 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestToJSONTyped(value?: Po
         'email': value['email'],
         'phone': value['phone'],
         'billing': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['billing']),
-        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['shipping']),
+        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON(value['shipping']),
         'setAsDefault': value['setAsDefault'],
     };
 }

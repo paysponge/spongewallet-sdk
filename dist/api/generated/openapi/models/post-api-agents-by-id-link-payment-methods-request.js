@@ -12,11 +12,14 @@
  * Do not edit the class manually.
  */
 import { PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON, PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON, } from './post-api-agents-by-id-link-payment-methods-request-billing.js';
+import { PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON, PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON, } from './post-api-agents-by-id-link-payment-methods-request-shipping.js';
 /**
  * Check if a given object implements the PostApiAgentsByIdLinkPaymentMethodsRequest interface.
  */
 export function instanceOfPostApiAgentsByIdLinkPaymentMethodsRequest(value) {
     if (!('linkPaymentMethodId' in value) || value['linkPaymentMethodId'] === undefined)
+        return false;
+    if (!('shipping' in value) || value['shipping'] === undefined)
         return false;
     return true;
 }
@@ -35,7 +38,7 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestFromJSONTyped(json, ig
         'email': json['email'] == null ? undefined : json['email'],
         'phone': json['phone'] == null ? undefined : json['phone'],
         'billing': json['billing'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['billing']),
-        'shipping': json['shipping'] == null ? undefined : PostApiAgentsByIdLinkPaymentMethodsRequestBillingFromJSON(json['shipping']),
+        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestShippingFromJSON(json['shipping']),
         'setAsDefault': json['setAsDefault'] == null ? undefined : json['setAsDefault'],
     };
 }
@@ -54,7 +57,7 @@ export function PostApiAgentsByIdLinkPaymentMethodsRequestToJSONTyped(value, ign
         'email': value['email'],
         'phone': value['phone'],
         'billing': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['billing']),
-        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestBillingToJSON(value['shipping']),
+        'shipping': PostApiAgentsByIdLinkPaymentMethodsRequestShippingToJSON(value['shipping']),
         'setAsDefault': value['setAsDefault'],
     };
 }
