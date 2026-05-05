@@ -37,6 +37,12 @@ export interface PostApiPersonaKycInquiryRequest {
      * @memberof PostApiPersonaKycInquiryRequest
      */
     restart?: boolean;
+    /**
+     * 
+     * @type {PostApiPersonaKycInquiryRequestSourceEnum}
+     * @memberof PostApiPersonaKycInquiryRequest
+     */
+    source?: PostApiPersonaKycInquiryRequestSourceEnum;
 }
 
 
@@ -48,6 +54,15 @@ export const PostApiPersonaKycInquiryRequestEnvironmentEnum = {
     Production: 'production'
 } as const;
 export type PostApiPersonaKycInquiryRequestEnvironmentEnum = typeof PostApiPersonaKycInquiryRequestEnvironmentEnum[keyof typeof PostApiPersonaKycInquiryRequestEnvironmentEnum];
+
+/**
+ * @export
+ */
+export const PostApiPersonaKycInquiryRequestSourceEnum = {
+    Rain: 'rain',
+    Bridge: 'bridge'
+} as const;
+export type PostApiPersonaKycInquiryRequestSourceEnum = typeof PostApiPersonaKycInquiryRequestSourceEnum[keyof typeof PostApiPersonaKycInquiryRequestSourceEnum];
 
 
 /**
@@ -70,6 +85,7 @@ export function PostApiPersonaKycInquiryRequestFromJSONTyped(json: any, ignoreDi
         'environment': json['environment'] == null ? undefined : json['environment'],
         'redirectUri': json['redirectUri'] == null ? undefined : json['redirectUri'],
         'restart': json['restart'] == null ? undefined : json['restart'],
+        'source': json['source'] == null ? undefined : json['source'],
     };
 }
 
@@ -87,6 +103,7 @@ export function PostApiPersonaKycInquiryRequestToJSONTyped(value?: PostApiPerson
         'environment': value['environment'],
         'redirectUri': value['redirectUri'],
         'restart': value['restart'],
+        'source': value['source'],
     };
 }
 

@@ -33,6 +33,12 @@ export interface PostApiPersonaKycInquiryRequest {
      * @memberof PostApiPersonaKycInquiryRequest
      */
     restart?: boolean;
+    /**
+     *
+     * @type {PostApiPersonaKycInquiryRequestSourceEnum}
+     * @memberof PostApiPersonaKycInquiryRequest
+     */
+    source?: PostApiPersonaKycInquiryRequestSourceEnum;
 }
 /**
  * @export
@@ -42,6 +48,14 @@ export declare const PostApiPersonaKycInquiryRequestEnvironmentEnum: {
     readonly Production: "production";
 };
 export type PostApiPersonaKycInquiryRequestEnvironmentEnum = typeof PostApiPersonaKycInquiryRequestEnvironmentEnum[keyof typeof PostApiPersonaKycInquiryRequestEnvironmentEnum];
+/**
+ * @export
+ */
+export declare const PostApiPersonaKycInquiryRequestSourceEnum: {
+    readonly Rain: "rain";
+    readonly Bridge: "bridge";
+};
+export type PostApiPersonaKycInquiryRequestSourceEnum = typeof PostApiPersonaKycInquiryRequestSourceEnum[keyof typeof PostApiPersonaKycInquiryRequestSourceEnum];
 /**
  * Check if a given object implements the PostApiPersonaKycInquiryRequest interface.
  */

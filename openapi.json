@@ -14032,6 +14032,13 @@
                   },
                   "restart": {
                     "type": "boolean"
+                  },
+                  "source": {
+                    "type": "string",
+                    "enum": [
+                      "rain",
+                      "bridge"
+                    ]
                   }
                 }
               }
@@ -14052,6 +14059,13 @@
                   },
                   "restart": {
                     "type": "boolean"
+                  },
+                  "source": {
+                    "type": "string",
+                    "enum": [
+                      "rain",
+                      "bridge"
+                    ]
                   }
                 }
               }
@@ -14072,6 +14086,13 @@
                   },
                   "restart": {
                     "type": "boolean"
+                  },
+                  "source": {
+                    "type": "string",
+                    "enum": [
+                      "rain",
+                      "bridge"
+                    ]
                   }
                 }
               }

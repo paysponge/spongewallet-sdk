@@ -19,6 +19,13 @@ export const PostApiPersonaKycInquiryRequestEnvironmentEnum = {
     Production: 'production'
 };
 /**
+ * @export
+ */
+export const PostApiPersonaKycInquiryRequestSourceEnum = {
+    Rain: 'rain',
+    Bridge: 'bridge'
+};
+/**
  * Check if a given object implements the PostApiPersonaKycInquiryRequest interface.
  */
 export function instanceOfPostApiPersonaKycInquiryRequest(value) {
@@ -35,6 +42,7 @@ export function PostApiPersonaKycInquiryRequestFromJSONTyped(json, ignoreDiscrim
         'environment': json['environment'] == null ? undefined : json['environment'],
         'redirectUri': json['redirectUri'] == null ? undefined : json['redirectUri'],
         'restart': json['restart'] == null ? undefined : json['restart'],
+        'source': json['source'] == null ? undefined : json['source'],
     };
 }
 export function PostApiPersonaKycInquiryRequestToJSON(json) {
@@ -48,6 +56,7 @@ export function PostApiPersonaKycInquiryRequestToJSONTyped(value, ignoreDiscrimi
         'environment': value['environment'],
         'redirectUri': value['redirectUri'],
         'restart': value['restart'],
+        'source': value['source'],
     };
 }
 //# sourceMappingURL=post-api-persona-kyc-inquiry-request.js.map
