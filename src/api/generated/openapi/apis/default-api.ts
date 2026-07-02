@@ -921,6 +921,10 @@ export interface DefaultApiGetApiTradingContentArticlesRequest {
     limit?: string;
 }
 
+export interface DefaultApiGetApiTradingContentArticlesByIdPricingRequest {
+    id: string;
+}
+
 export interface DefaultApiGetApiTradingContentCandlesRequest {
     instrument: string;
     anchorAt: string;
@@ -5304,6 +5308,27 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingContentArticles(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates request options for getApiTradingContentArticlesByIdPricing without sending the request
+     * @param {string} id 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesByIdPricingRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesByIdPricingRaw(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingContentArticlesByIdPricing(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for getApiTradingContentCandles without sending the request
@@ -16732,6 +16757,48 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getApiTradingContentArticles(requestParameters: DefaultApiGetApiTradingContentArticlesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getApiTradingContentArticlesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getApiTradingContentArticlesByIdPricing without sending the request
+     */
+    async getApiTradingContentArticlesByIdPricingRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getApiTradingContentArticlesByIdPricing().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/content/articles/{id}/pricing`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingContentArticlesByIdPricingRaw(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingContentArticlesByIdPricingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingContentArticlesByIdPricing(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingContentArticlesByIdPricingRaw(requestParameters, initOverrides);
     }
 
     /**

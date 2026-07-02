@@ -389,6 +389,9 @@ export interface DefaultApiGetApiTradingContentArticlesRequest {
     direction?: GetApiTradingContentArticlesDirectionEnum;
     limit?: string;
 }
+export interface DefaultApiGetApiTradingContentArticlesByIdPricingRequest {
+    id: string;
+}
 export interface DefaultApiGetApiTradingContentCandlesRequest {
     instrument: string;
     anchorAt: string;
@@ -4077,6 +4080,24 @@ export interface DefaultApiInterface {
     /**
      */
     getApiTradingContentArticles(requestParameters: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentArticlesByIdPricing without sending the request
+     * @param {string} id
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesByIdPricingRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingContentArticlesByIdPricingRaw(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentArticlesByIdPricing(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingContentCandles without sending the request
      * @param {string} instrument
@@ -9830,6 +9851,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      */
     getApiTradingContentArticles(requestParameters?: DefaultApiGetApiTradingContentArticlesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getApiTradingContentArticlesByIdPricing without sending the request
+     */
+    getApiTradingContentArticlesByIdPricingRequestOpts(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingContentArticlesByIdPricingRaw(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingContentArticlesByIdPricing(requestParameters: DefaultApiGetApiTradingContentArticlesByIdPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for getApiTradingContentCandles without sending the request
      */

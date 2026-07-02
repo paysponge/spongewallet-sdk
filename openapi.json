@@ -14750,6 +14750,21 @@
         "operationId": "getApiTradingContentArticles"
       }
     },
+    "/api/trading/content/articles/{id}/pricing": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingContentArticlesByIdPricing"
+      }
+    },
     "/api/trading/content/signals": {
       "get": {
         "parameters": [

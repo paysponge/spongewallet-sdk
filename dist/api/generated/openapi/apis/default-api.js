@@ -4905,6 +4905,36 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingContentArticlesRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingContentArticlesByIdPricing without sending the request
+     */
+    async getApiTradingContentArticlesByIdPricingRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiTradingContentArticlesByIdPricing().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/content/articles/{id}/pricing`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingContentArticlesByIdPricingRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingContentArticlesByIdPricingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingContentArticlesByIdPricing(requestParameters, initOverrides) {
+        await this.getApiTradingContentArticlesByIdPricingRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTradingContentCandles without sending the request
      */
     async getApiTradingContentCandlesRequestOpts(requestParameters) {
