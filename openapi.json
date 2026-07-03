@@ -14714,7 +14714,8 @@
               "type": "string",
               "enum": [
                 "youtube",
-                "substack"
+                "substack",
+                "rss"
               ]
             }
           },
@@ -14784,7 +14785,8 @@
               "type": "string",
               "enum": [
                 "youtube",
-                "substack"
+                "substack",
+                "rss"
               ]
             }
           },
@@ -14914,7 +14916,8 @@
                     "type": "string",
                     "enum": [
                       "youtube",
-                      "substack"
+                      "substack",
+                      "rss"
                     ]
                   },
                   "name": {
@@ -14951,7 +14954,8 @@
                     "type": "string",
                     "enum": [
                       "youtube",
-                      "substack"
+                      "substack",
+                      "rss"
                     ]
                   },
                   "name": {
@@ -14988,7 +14992,8 @@
                     "type": "string",
                     "enum": [
                       "youtube",
-                      "substack"
+                      "substack",
+                      "rss"
                     ]
                   },
                   "name": {

@@ -16,7 +16,8 @@
  */
 export const PostApiTradingAdminContentFeedsRequestMediumEnum = {
     Youtube: 'youtube',
-    Substack: 'substack'
+    Substack: 'substack',
+    Rss: 'rss'
 };
 /**
  * Check if a given object implements the PostApiTradingAdminContentFeedsRequest interface.

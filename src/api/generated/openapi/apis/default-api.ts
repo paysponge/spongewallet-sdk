@@ -5283,7 +5283,7 @@ export interface DefaultApiInterface {
     /**
      * Creates request options for getApiTradingContentArticles without sending the request
      * @param {string} [feedId] 
-     * @param {'youtube' | 'substack'} [medium] 
+     * @param {'youtube' | 'substack' | 'rss'} [medium] 
      * @param {string} [instrument] 
      * @param {'long' | 'short'} [direction] 
      * @param {string} [limit] 
@@ -5295,7 +5295,7 @@ export interface DefaultApiInterface {
     /**
      * 
      * @param {string} [feedId] 
-     * @param {'youtube' | 'substack'} [medium] 
+     * @param {'youtube' | 'substack' | 'rss'} [medium] 
      * @param {string} [instrument] 
      * @param {'long' | 'short'} [direction] 
      * @param {string} [limit] 
@@ -5398,7 +5398,7 @@ export interface DefaultApiInterface {
     /**
      * Creates request options for getApiTradingContentSignals without sending the request
      * @param {string} [feedId] 
-     * @param {'youtube' | 'substack'} [medium] 
+     * @param {'youtube' | 'substack' | 'rss'} [medium] 
      * @param {string} [instrument] 
      * @param {'long' | 'short'} [direction] 
      * @param {string} [limit] 
@@ -5411,7 +5411,7 @@ export interface DefaultApiInterface {
     /**
      * 
      * @param {string} [feedId] 
-     * @param {'youtube' | 'substack'} [medium] 
+     * @param {'youtube' | 'substack' | 'rss'} [medium] 
      * @param {string} [instrument] 
      * @param {'long' | 'short'} [direction] 
      * @param {string} [limit] 
@@ -26924,7 +26924,8 @@ export type GetApiTradingAdminContentSourcesStatusEnum = typeof GetApiTradingAdm
  */
 export const GetApiTradingContentArticlesMediumEnum = {
     Youtube: 'youtube',
-    Substack: 'substack'
+    Substack: 'substack',
+    Rss: 'rss'
 } as const;
 export type GetApiTradingContentArticlesMediumEnum = typeof GetApiTradingContentArticlesMediumEnum[keyof typeof GetApiTradingContentArticlesMediumEnum];
 /**
@@ -26948,7 +26949,8 @@ export type GetApiTradingContentCandlesDirectionEnum = typeof GetApiTradingConte
  */
 export const GetApiTradingContentSignalsMediumEnum = {
     Youtube: 'youtube',
-    Substack: 'substack'
+    Substack: 'substack',
+    Rss: 'rss'
 } as const;
 export type GetApiTradingContentSignalsMediumEnum = typeof GetApiTradingContentSignalsMediumEnum[keyof typeof GetApiTradingContentSignalsMediumEnum];
 /**

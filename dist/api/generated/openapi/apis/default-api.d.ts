@@ -4057,7 +4057,7 @@ export interface DefaultApiInterface {
     /**
      * Creates request options for getApiTradingContentArticles without sending the request
      * @param {string} [feedId]
-     * @param {'youtube' | 'substack'} [medium]
+     * @param {'youtube' | 'substack' | 'rss'} [medium]
      * @param {string} [instrument]
      * @param {'long' | 'short'} [direction]
      * @param {string} [limit]
@@ -4068,7 +4068,7 @@ export interface DefaultApiInterface {
     /**
      *
      * @param {string} [feedId]
-     * @param {'youtube' | 'substack'} [medium]
+     * @param {'youtube' | 'substack' | 'rss'} [medium]
      * @param {string} [instrument]
      * @param {'long' | 'short'} [direction]
      * @param {string} [limit]
@@ -4157,7 +4157,7 @@ export interface DefaultApiInterface {
     /**
      * Creates request options for getApiTradingContentSignals without sending the request
      * @param {string} [feedId]
-     * @param {'youtube' | 'substack'} [medium]
+     * @param {'youtube' | 'substack' | 'rss'} [medium]
      * @param {string} [instrument]
      * @param {'long' | 'short'} [direction]
      * @param {string} [limit]
@@ -4169,7 +4169,7 @@ export interface DefaultApiInterface {
     /**
      *
      * @param {string} [feedId]
-     * @param {'youtube' | 'substack'} [medium]
+     * @param {'youtube' | 'substack' | 'rss'} [medium]
      * @param {string} [instrument]
      * @param {'long' | 'short'} [direction]
      * @param {string} [limit]
@@ -12125,6 +12125,7 @@ export type GetApiTradingAdminContentSourcesStatusEnum = typeof GetApiTradingAdm
 export declare const GetApiTradingContentArticlesMediumEnum: {
     readonly Youtube: "youtube";
     readonly Substack: "substack";
+    readonly Rss: "rss";
 };
 export type GetApiTradingContentArticlesMediumEnum = typeof GetApiTradingContentArticlesMediumEnum[keyof typeof GetApiTradingContentArticlesMediumEnum];
 /**
@@ -12149,6 +12150,7 @@ export type GetApiTradingContentCandlesDirectionEnum = typeof GetApiTradingConte
 export declare const GetApiTradingContentSignalsMediumEnum: {
     readonly Youtube: "youtube";
     readonly Substack: "substack";
+    readonly Rss: "rss";
 };
 export type GetApiTradingContentSignalsMediumEnum = typeof GetApiTradingContentSignalsMediumEnum[keyof typeof GetApiTradingContentSignalsMediumEnum];
 /**

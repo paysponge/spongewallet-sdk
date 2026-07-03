@@ -57,7 +57,8 @@ export interface PostApiTradingAdminContentFeedsRequest {
  */
 export const PostApiTradingAdminContentFeedsRequestMediumEnum = {
     Youtube: 'youtube',
-    Substack: 'substack'
+    Substack: 'substack',
+    Rss: 'rss'
 } as const;
 export type PostApiTradingAdminContentFeedsRequestMediumEnum = typeof PostApiTradingAdminContentFeedsRequestMediumEnum[keyof typeof PostApiTradingAdminContentFeedsRequestMediumEnum];
 

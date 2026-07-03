@@ -12045,7 +12045,8 @@ export const GetApiTradingAdminContentSourcesStatusEnum = {
  */
 export const GetApiTradingContentArticlesMediumEnum = {
     Youtube: 'youtube',
-    Substack: 'substack'
+    Substack: 'substack',
+    Rss: 'rss'
 };
 /**
  * @export
@@ -12066,7 +12067,8 @@ export const GetApiTradingContentCandlesDirectionEnum = {
  */
 export const GetApiTradingContentSignalsMediumEnum = {
     Youtube: 'youtube',
-    Substack: 'substack'
+    Substack: 'substack',
+    Rss: 'rss'
 };
 /**
  * @export

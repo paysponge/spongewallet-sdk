@@ -52,6 +52,7 @@ export interface PostApiTradingAdminContentFeedsRequest {
 export declare const PostApiTradingAdminContentFeedsRequestMediumEnum: {
     readonly Youtube: "youtube";
     readonly Substack: "substack";
+    readonly Rss: "rss";
 };
 export type PostApiTradingAdminContentFeedsRequestMediumEnum = typeof PostApiTradingAdminContentFeedsRequestMediumEnum[keyof typeof PostApiTradingAdminContentFeedsRequestMediumEnum];
 /**
