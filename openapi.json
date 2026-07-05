@@ -15301,6 +15301,228 @@
         "operationId": "postApiTradingAdminContentSourcesByIdRetry"
       }
     },
+    "/api/trading/x/connect/init": {
+      "post": {
+        "operationId": "postApiTradingXConnectInit"
+      }
+    },
+    "/api/trading/x/connect/complete": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "state"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "state"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "state"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postApiTradingXConnectComplete"
+      }
+    },
+    "/api/trading/x/connection": {
+      "get": {
+        "operationId": "getApiTradingXConnection"
+      },
+      "delete": {
+        "operationId": "deleteApiTradingXConnection"
+      }
+    },
+    "/api/trading/x/following/refresh": {
+      "post": {
+        "operationId": "postApiTradingXFollowingRefresh"
+      }
+    },
+    "/api/trading/x/following": {
+      "get": {
+        "operationId": "getApiTradingXFollowing"
+      }
+    },
+    "/api/trading/x/following/{id}": {
+      "patch": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "selected"
+                ],
+                "properties": {
+                  "selected": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "selected"
+                ],
+                "properties": {
+                  "selected": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "selected"
+                ],
+                "properties": {
+                  "selected": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "patchApiTradingXFollowingById"
+      }
+    },
+    "/api/trading/x/runs": {
+      "post": {
+        "operationId": "postApiTradingXRuns"
+      },
+      "get": {
+        "operationId": "getApiTradingXRuns"
+      }
+    },
+    "/api/trading/x/runs/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingXRunsById"
+      }
+    },
+    "/api/trading/x/ideas": {
+      "get": {
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingXIdeas"
+      }
+    },
+    "/api/trading/x/baskets": {
+      "get": {
+        "operationId": "getApiTradingXBaskets"
+      }
+    },
+    "/api/trading/x/baskets/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingXBasketsById"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "deleteApiTradingXBasketsById"
+      }
+    },
     "/api/users/sync": {
       "post": {
         "requestBody": {

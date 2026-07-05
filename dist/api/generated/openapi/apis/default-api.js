@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON, PatchApiTradingAdminContentFeedsByIdRequestToJSON, PostApiAgentKeysRequestToJSON, PostApiAgentRequestsPlansRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidDepositRequestToJSON, PostApiAgentsByIdHyperliquidLinkRequestToJSON, PostApiAgentsByIdHyperliquidOrderRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdPolymarketWithdrawRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdStripePaymentMethodsRequestToJSON, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAgentsTradingTerminalRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTradingAdminContentDiscoverRequestToJSON, PostApiTradingAdminContentFeedsCatalogRequestToJSON, PostApiTradingAdminContentFeedsRequestToJSON, PostApiTradingAdminContentProcessRequestToJSON, PostApiTradingAdminKillSwitchRequestToJSON, PostApiTradingAdminStrategiesByIdReplayRequestToJSON, PostApiTradingAdminTestRunRequestToJSON, PostApiTradingManualStrategiesCloseRequestToJSON, PostApiTradingNotificationsReadAllRequestToJSON, PostApiTradingStrategiesByIdKillRequestToJSON, PostApiTradingStrategiesByIdPreviewStartRequestToJSON, PostApiTradingStrategiesByIdTestRunRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON, PatchApiTradingAdminContentFeedsByIdRequestToJSON, PatchApiTradingXFollowingByIdRequestToJSON, PostApiAgentKeysRequestToJSON, PostApiAgentRequestsPlansRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidDepositRequestToJSON, PostApiAgentsByIdHyperliquidLinkRequestToJSON, PostApiAgentsByIdHyperliquidOrderRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdPolymarketWithdrawRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdStripePaymentMethodsRequestToJSON, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAgentsTradingTerminalRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTradingAdminContentDiscoverRequestToJSON, PostApiTradingAdminContentFeedsCatalogRequestToJSON, PostApiTradingAdminContentFeedsRequestToJSON, PostApiTradingAdminContentProcessRequestToJSON, PostApiTradingAdminKillSwitchRequestToJSON, PostApiTradingAdminStrategiesByIdReplayRequestToJSON, PostApiTradingAdminTestRunRequestToJSON, PostApiTradingManualStrategiesCloseRequestToJSON, PostApiTradingNotificationsReadAllRequestToJSON, PostApiTradingStrategiesByIdKillRequestToJSON, PostApiTradingStrategiesByIdPreviewStartRequestToJSON, PostApiTradingStrategiesByIdTestRunRequestToJSON, PostApiTradingXConnectCompleteRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -1477,6 +1477,62 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async deleteApiTradingStrategiesById(requestParameters, initOverrides) {
         await this.deleteApiTradingStrategiesByIdRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for deleteApiTradingXBasketsById without sending the request
+     */
+    async deleteApiTradingXBasketsByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling deleteApiTradingXBasketsById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/baskets/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async deleteApiTradingXBasketsByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.deleteApiTradingXBasketsByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async deleteApiTradingXBasketsById(requestParameters, initOverrides) {
+        await this.deleteApiTradingXBasketsByIdRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for deleteApiTradingXConnection without sending the request
+     */
+    async deleteApiTradingXConnectionRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/connection`;
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async deleteApiTradingXConnectionRaw(initOverrides) {
+        const requestOptions = await this.deleteApiTradingXConnectionRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async deleteApiTradingXConnection(initOverrides) {
+        await this.deleteApiTradingXConnectionRaw(initOverrides);
     }
     /**
      * Creates request options for getApiAdminBetaUsers without sending the request
@@ -5468,6 +5524,202 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingWorkspaceRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingXBaskets without sending the request
+     */
+    async getApiTradingXBasketsRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/baskets`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXBasketsRaw(initOverrides) {
+        const requestOptions = await this.getApiTradingXBasketsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXBaskets(initOverrides) {
+        await this.getApiTradingXBasketsRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingXBasketsById without sending the request
+     */
+    async getApiTradingXBasketsByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiTradingXBasketsById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/baskets/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXBasketsByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingXBasketsByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXBasketsById(requestParameters, initOverrides) {
+        await this.getApiTradingXBasketsByIdRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingXConnection without sending the request
+     */
+    async getApiTradingXConnectionRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/connection`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXConnectionRaw(initOverrides) {
+        const requestOptions = await this.getApiTradingXConnectionRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXConnection(initOverrides) {
+        await this.getApiTradingXConnectionRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingXFollowing without sending the request
+     */
+    async getApiTradingXFollowingRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/following`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXFollowingRaw(initOverrides) {
+        const requestOptions = await this.getApiTradingXFollowingRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXFollowing(initOverrides) {
+        await this.getApiTradingXFollowingRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingXIdeas without sending the request
+     */
+    async getApiTradingXIdeasRequestOpts(requestParameters) {
+        const queryParameters = {};
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        if (requestParameters['cursor'] != null) {
+            queryParameters['cursor'] = requestParameters['cursor'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/ideas`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXIdeasRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingXIdeasRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXIdeas(requestParameters = {}, initOverrides) {
+        await this.getApiTradingXIdeasRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingXRuns without sending the request
+     */
+    async getApiTradingXRunsRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/runs`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXRunsRaw(initOverrides) {
+        const requestOptions = await this.getApiTradingXRunsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXRuns(initOverrides) {
+        await this.getApiTradingXRunsRaw(initOverrides);
+    }
+    /**
+     * Creates request options for getApiTradingXRunsById without sending the request
+     */
+    async getApiTradingXRunsByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getApiTradingXRunsById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/runs/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXRunsByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingXRunsByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXRunsById(requestParameters, initOverrides) {
+        await this.getApiTradingXRunsByIdRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTransactions without sending the request
      */
     async getApiTransactionsRequestOpts(requestParameters) {
@@ -5992,6 +6244,41 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async patchApiTradingStrategiesById(requestParameters, initOverrides) {
         await this.patchApiTradingStrategiesByIdRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for patchApiTradingXFollowingById without sending the request
+     */
+    async patchApiTradingXFollowingByIdRequestOpts(requestParameters) {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling patchApiTradingXFollowingById().');
+        }
+        if (requestParameters['patchApiTradingXFollowingByIdRequest'] == null) {
+            throw new runtime.RequiredError('patchApiTradingXFollowingByIdRequest', 'Required parameter "patchApiTradingXFollowingByIdRequest" was null or undefined when calling patchApiTradingXFollowingById().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/trading/x/following/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PatchApiTradingXFollowingByIdRequestToJSON(requestParameters['patchApiTradingXFollowingByIdRequest']),
+        };
+    }
+    /**
+     */
+    async patchApiTradingXFollowingByIdRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.patchApiTradingXFollowingByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async patchApiTradingXFollowingById(requestParameters, initOverrides) {
+        await this.patchApiTradingXFollowingByIdRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiAdminBetaUsersByIdPrefund without sending the request
@@ -10756,6 +11043,115 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async postApiTradingStrategiesPreviewDraft(initOverrides) {
         await this.postApiTradingStrategiesPreviewDraftRaw(initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingXConnectComplete without sending the request
+     */
+    async postApiTradingXConnectCompleteRequestOpts(requestParameters) {
+        if (requestParameters['postApiTradingXConnectCompleteRequest'] == null) {
+            throw new runtime.RequiredError('postApiTradingXConnectCompleteRequest', 'Required parameter "postApiTradingXConnectCompleteRequest" was null or undefined when calling postApiTradingXConnectComplete().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        let urlPath = `/api/trading/x/connect/complete`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostApiTradingXConnectCompleteRequestToJSON(requestParameters['postApiTradingXConnectCompleteRequest']),
+        };
+    }
+    /**
+     */
+    async postApiTradingXConnectCompleteRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingXConnectCompleteRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingXConnectComplete(requestParameters, initOverrides) {
+        await this.postApiTradingXConnectCompleteRaw(requestParameters, initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingXConnectInit without sending the request
+     */
+    async postApiTradingXConnectInitRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/connect/init`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiTradingXConnectInitRaw(initOverrides) {
+        const requestOptions = await this.postApiTradingXConnectInitRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingXConnectInit(initOverrides) {
+        await this.postApiTradingXConnectInitRaw(initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingXFollowingRefresh without sending the request
+     */
+    async postApiTradingXFollowingRefreshRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/following/refresh`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiTradingXFollowingRefreshRaw(initOverrides) {
+        const requestOptions = await this.postApiTradingXFollowingRefreshRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingXFollowingRefresh(initOverrides) {
+        await this.postApiTradingXFollowingRefreshRaw(initOverrides);
+    }
+    /**
+     * Creates request options for postApiTradingXRuns without sending the request
+     */
+    async postApiTradingXRunsRequestOpts() {
+        const queryParameters = {};
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/runs`;
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async postApiTradingXRunsRaw(initOverrides) {
+        const requestOptions = await this.postApiTradingXRunsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async postApiTradingXRuns(initOverrides) {
+        await this.postApiTradingXRunsRaw(initOverrides);
     }
     /**
      * Creates request options for postApiTransactionsBaseSwap without sending the request

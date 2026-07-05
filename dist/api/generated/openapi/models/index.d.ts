@@ -4,6 +4,7 @@ export * from './get-api-agents-by-id-hyperliquid-address200-response-any-of1.js
 export * from './get-api-agents-by-id-hyperliquid-address404-response.js';
 export * from './get-api-bridge-fiat-customer-force-refresh-parameter.js';
 export * from './patch-api-trading-admin-content-feeds-by-id-request.js';
+export * from './patch-api-trading-x-following-by-id-request.js';
 export * from './post-api-agent-keys-request.js';
 export * from './post-api-agent-requests-plans-request.js';
 export * from './post-api-agent-requests-plans-request-steps-inner.js';
@@ -137,6 +138,7 @@ export * from './post-api-trading-strategies-by-id-kill-request.js';
 export * from './post-api-trading-strategies-by-id-preview-start-request.js';
 export * from './post-api-trading-strategies-by-id-test-run-request.js';
 export * from './post-api-trading-strategies-by-id-test-run-request-sample-event.js';
+export * from './post-api-trading-x-connect-complete-request.js';
 export * from './post-api-transactions-bridge-request.js';
 export * from './post-api-transactions-prepare-request.js';
 export * from './post-api-transactions-swap-execute-request.js';
