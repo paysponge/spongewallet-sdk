@@ -139,6 +139,7 @@ export * from './post-api-trading-strategies-by-id-preview-start-request.js';
 export * from './post-api-trading-strategies-by-id-test-run-request.js';
 export * from './post-api-trading-strategies-by-id-test-run-request-sample-event.js';
 export * from './post-api-trading-x-connect-complete-request.js';
+export * from './post-api-trading-x-runs-request.js';
 export * from './post-api-transactions-bridge-request.js';
 export * from './post-api-transactions-prepare-request.js';
 export * from './post-api-transactions-swap-execute-request.js';

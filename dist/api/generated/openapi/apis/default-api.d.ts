@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import type { GetApiAgentsByIdHyperliquidAddress200Response, GetApiBridgeFiatCustomerForceRefreshParameter, PatchApiTradingAdminContentFeedsByIdRequest, PatchApiTradingXFollowingByIdRequest, PostApiAgentKeysRequest, PostApiAgentRequestsPlansRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidDepositRequest, PostApiAgentsByIdHyperliquidLinkRequest, PostApiAgentsByIdHyperliquidOrderRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdStripePaymentMethodsRequest, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAgentsTradingTerminalRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTradingAdminContentDiscoverRequest, PostApiTradingAdminContentFeedsCatalogRequest, PostApiTradingAdminContentFeedsRequest, PostApiTradingAdminContentProcessRequest, PostApiTradingAdminKillSwitchRequest, PostApiTradingAdminStrategiesByIdReplayRequest, PostApiTradingAdminTestRunRequest, PostApiTradingManualStrategiesCloseRequest, PostApiTradingNotificationsReadAllRequest, PostApiTradingStrategiesByIdKillRequest, PostApiTradingStrategiesByIdPreviewStartRequest, PostApiTradingStrategiesByIdTestRunRequest, PostApiTradingXConnectCompleteRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
+import type { GetApiAgentsByIdHyperliquidAddress200Response, GetApiBridgeFiatCustomerForceRefreshParameter, PatchApiTradingAdminContentFeedsByIdRequest, PatchApiTradingXFollowingByIdRequest, PostApiAgentKeysRequest, PostApiAgentRequestsPlansRequest, PostApiAgentsByIdAmazonAccountsCopyRequest, PostApiAgentsByIdAmazonAccountsRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequest, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequest, PostApiAgentsByIdEnrollmentsRequest, PostApiAgentsByIdHyperliquidCancelOrderRequest, PostApiAgentsByIdHyperliquidClosePositionRequest, PostApiAgentsByIdHyperliquidDepositRequest, PostApiAgentsByIdHyperliquidLinkRequest, PostApiAgentsByIdHyperliquidOrderRequest, PostApiAgentsByIdHyperliquidTransferRequest, PostApiAgentsByIdHyperliquidWithdrawRequest, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequest, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequest, PostApiAgentsByIdInstructionsRequest, PostApiAgentsByIdLinkPaymentMethodsCredentialRequest, PostApiAgentsByIdLinkPaymentMethodsLinkRequest, PostApiAgentsByIdLinkPaymentMethodsRequest, PostApiAgentsByIdPaymentMethodsRequest, PostApiAgentsByIdPolymarketFundRequest, PostApiAgentsByIdPolymarketRedeemRequest, PostApiAgentsByIdPolymarketWithdrawRequest, PostApiAgentsByIdShippingAddressesRequest, PostApiAgentsByIdStripePaymentMethodsRequest, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequest, PostApiAgentsByIdVirtualCardRequest, PostApiAgentsRegisterRequest, PostApiAgentsRequest, PostApiAgentsTradingTerminalRequest, PostApiAllowlistRequest, PostApiAmazonCheckoutAmazonSearchRequest, PostApiAmazonCheckoutRequest, PostApiAmazonCheckoutStreamRequest, PostApiBankExternalAccountsRequest, PostApiBankOnboardRequest, PostApiBankSendRequest, PostApiBankVirtualAccountRequest, PostApiBridgeFiatCustomerKycLinkRequest, PostApiBridgeFiatCustomerPersonaRequest, PostApiBridgeFiatCustomerSandboxRequest, PostApiBridgeFiatExternalAccountsRequest, PostApiBridgeFiatLiquidationAddressesRequest, PostApiBridgeFiatTransferTemplatesRequest, PostApiBridgeFiatTransfersRequest, PostApiCardAccessRequestsRequest, PostApiCardUsageRequest, PostApiCardsRequest, PostApiChatMessagesRequest, PostApiChatRateLimitReportRequest, PostApiCheckoutRequest, PostApiCoinbaseOnrampCallbackRequest, PostApiCoinbaseOnrampUrlRequest, PostApiCreditCardsRequest, PostApiEmailCheckAvailabilityRequest, PostApiFaucetRequestRequest, PostApiFlowsRequest, PostApiHyperliquidRequest, PostApiInvitesRedeemRequest, PostApiInvitesRegisterDirectRequest, PostApiInvitesValidateRequest, PostApiLinkCliAuthLoginRequest, PostApiMasterKeysRequest, PostApiMppFetchRequest, PostApiMppSessionCloseRequest, PostApiMppSessionRequestRequest, PostApiMppSessionStartRequest, PostApiOauthDeviceApproveRequest, PostApiOauthDeviceAuthorizationRequest, PostApiOauthDeviceDenyRequest, PostApiOauthDeviceTokenRequest, PostApiOnrampCryptoRequest, PostApiPaidFetchRequest, PostApiPaymentLinksRequest, PostApiPersonaKycInquiryRequest, PostApiPlansApproveRequest, PostApiPlansSubmitRequest, PostApiPolymarketRequest, PostApiRpcByChainIdRequest, PostApiSignupBonusClaimRequest, PostApiSiweGenerateRequest, PostApiSolanaSignRequest, PostApiSpendingLimitsRequest, PostApiSpongeCardCardRequest, PostApiSpongeCardCardsByCardIdSecretsRequest, PostApiSpongeCardContractsByContractIdFundRequest, PostApiSpongeCardContractsByContractIdWithdrawRequest, PostApiSpongeCardCreateCardRequest, PostApiSpongeCardCustomerRefreshRequest, PostApiSpongeCardCustomerRequest, PostApiSpongeCardFundRequest, PostApiSpongeCardOnboardRequest, PostApiSpongeCardTermsRequest, PostApiSpongeCardWithdrawRequest, PostApiStripeOnrampSessionRequest, PostApiTasksRequest, PostApiTradesProposeRequest, PostApiTradingAdminContentDiscoverRequest, PostApiTradingAdminContentFeedsCatalogRequest, PostApiTradingAdminContentFeedsRequest, PostApiTradingAdminContentProcessRequest, PostApiTradingAdminKillSwitchRequest, PostApiTradingAdminStrategiesByIdReplayRequest, PostApiTradingAdminTestRunRequest, PostApiTradingManualStrategiesCloseRequest, PostApiTradingNotificationsReadAllRequest, PostApiTradingStrategiesByIdKillRequest, PostApiTradingStrategiesByIdPreviewStartRequest, PostApiTradingStrategiesByIdTestRunRequest, PostApiTradingXConnectCompleteRequest, PostApiTradingXRunsRequest, PostApiTransactionsBridgeRequest, PostApiTransactionsPrepareRequest, PostApiTransactionsSwapExecuteRequest, PostApiTransactionsSwapRequest, PostApiTransactionsTransferRequest, PostApiTransfersEvmRequest, PostApiTransfersSolanaRequest, PostApiTransfersTempoRequest, PostApiUsersSyncRequest, PostApiVirtualCardsRequest, PostApiWalletsByIdExportKeyRequest, PostApiWalletsByIdWithdrawRequest, PostApiWalletsMigrateQuorumRequest, PostApiWalletsPricesRequest, PostApiWalletsRequest, PostApiX402FetchRequest, PostApiX402PaymentsRequest, PostOauthAuthorizeCallbackRequest, PostOauthRegisterRequest, PostOauthRevokeRequest, PostOauthTokenRequest, PutApiAgentRequestsByIdApproveRequest, PutApiAgentRequestsByIdRespondRequest, PutApiAgentRequestsPlansByPlanIdRejectRequest, PutApiAgentsByIdRequest, PutApiFlowsByIdRequest, PutApiSpendingLimitsByIdRequest } from '../models/index.js';
 export interface DefaultApiDeleteApiAgentKeysRequest {
     service: string;
     agentId?: string;
@@ -465,6 +465,9 @@ export interface DefaultApiGetApiTradingXIdeasRequest {
 }
 export interface DefaultApiGetApiTradingXRunsByIdRequest {
     id: string;
+}
+export interface DefaultApiGetApiTradingXSentimentRequest {
+    symbol: string;
 }
 export interface DefaultApiGetApiTransactionsRequest {
     agentId?: string;
@@ -1017,6 +1020,9 @@ export interface DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest {
 }
 export interface DefaultApiPostApiTradingXConnectCompleteOperationRequest {
     postApiTradingXConnectCompleteRequest: PostApiTradingXConnectCompleteRequest;
+}
+export interface DefaultApiPostApiTradingXRunsOperationRequest {
+    postApiTradingXRunsRequest: PostApiTradingXRunsRequest;
 }
 export interface DefaultApiPostApiTransactionsBaseSwapRequest {
     postApiTransactionsSwapRequest: PostApiTransactionsSwapRequest;
@@ -4591,6 +4597,24 @@ export interface DefaultApiInterface {
      */
     getApiTradingXRunsById(requestParameters: DefaultApiGetApiTradingXRunsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingXSentiment without sending the request
+     * @param {string} symbol
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingXSentimentRequestOpts(requestParameters: DefaultApiGetApiTradingXSentimentRequest): Promise<runtime.RequestOpts>;
+    /**
+     *
+     * @param {string} symbol
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingXSentimentRaw(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingXSentiment(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTransactions without sending the request
      * @param {string} [agentId]
      * @param {string} [page]
@@ -7748,20 +7772,22 @@ export interface DefaultApiInterface {
     postApiTradingXFollowingRefresh(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiTradingXRuns without sending the request
+     * @param {PostApiTradingXRunsRequest} postApiTradingXRunsRequest
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiTradingXRunsRequestOpts(): Promise<runtime.RequestOpts>;
+    postApiTradingXRunsRequestOpts(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest): Promise<runtime.RequestOpts>;
     /**
      *
+     * @param {PostApiTradingXRunsRequest} postApiTradingXRunsRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiTradingXRunsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    postApiTradingXRunsRaw(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    postApiTradingXRuns(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    postApiTradingXRuns(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiTransactionsBaseSwap without sending the request
      * @param {PostApiTransactionsSwapRequest} postApiTransactionsSwapRequest
@@ -10372,6 +10398,16 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
      */
     getApiTradingXRunsById(requestParameters: DefaultApiGetApiTradingXRunsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getApiTradingXSentiment without sending the request
+     */
+    getApiTradingXSentimentRequestOpts(requestParameters: DefaultApiGetApiTradingXSentimentRequest): Promise<runtime.RequestOpts>;
+    /**
+     */
+    getApiTradingXSentimentRaw(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    getApiTradingXSentiment(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Creates request options for getApiTransactions without sending the request
      */
     getApiTransactionsRequestOpts(requestParameters: DefaultApiGetApiTransactionsRequest): Promise<runtime.RequestOpts>;
@@ -12054,13 +12090,13 @@ export declare class DefaultApi extends runtime.BaseAPI implements DefaultApiInt
     /**
      * Creates request options for postApiTradingXRuns without sending the request
      */
-    postApiTradingXRunsRequestOpts(): Promise<runtime.RequestOpts>;
+    postApiTradingXRunsRequestOpts(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest): Promise<runtime.RequestOpts>;
     /**
      */
-    postApiTradingXRunsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    postApiTradingXRunsRaw(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
-    postApiTradingXRuns(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    postApiTradingXRuns(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates request options for postApiTransactionsBaseSwap without sending the request
      */

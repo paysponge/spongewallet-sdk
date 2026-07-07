@@ -131,6 +131,7 @@ import type {
   PostApiTradingStrategiesByIdPreviewStartRequest,
   PostApiTradingStrategiesByIdTestRunRequest,
   PostApiTradingXConnectCompleteRequest,
+  PostApiTradingXRunsRequest,
   PostApiTransactionsBridgeRequest,
   PostApiTransactionsPrepareRequest,
   PostApiTransactionsSwapExecuteRequest,
@@ -392,6 +393,8 @@ import {
     PostApiTradingStrategiesByIdTestRunRequestToJSON,
     PostApiTradingXConnectCompleteRequestFromJSON,
     PostApiTradingXConnectCompleteRequestToJSON,
+    PostApiTradingXRunsRequestFromJSON,
+    PostApiTradingXRunsRequestToJSON,
     PostApiTransactionsBridgeRequestFromJSON,
     PostApiTransactionsBridgeRequestToJSON,
     PostApiTransactionsPrepareRequestFromJSON,
@@ -1022,6 +1025,10 @@ export interface DefaultApiGetApiTradingXIdeasRequest {
 
 export interface DefaultApiGetApiTradingXRunsByIdRequest {
     id: string;
+}
+
+export interface DefaultApiGetApiTradingXSentimentRequest {
+    symbol: string;
 }
 
 export interface DefaultApiGetApiTransactionsRequest {
@@ -1733,6 +1740,10 @@ export interface DefaultApiPostApiTradingStrategiesByIdTestRunOperationRequest {
 
 export interface DefaultApiPostApiTradingXConnectCompleteOperationRequest {
     postApiTradingXConnectCompleteRequest: PostApiTradingXConnectCompleteRequest;
+}
+
+export interface DefaultApiPostApiTradingXRunsOperationRequest {
+    postApiTradingXRunsRequest: PostApiTradingXRunsRequest;
 }
 
 export interface DefaultApiPostApiTransactionsBaseSwapRequest {
@@ -5910,6 +5921,27 @@ export interface DefaultApiInterface {
     getApiTradingXRunsById(requestParameters: DefaultApiGetApiTradingXRunsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Creates request options for getApiTradingXSentiment without sending the request
+     * @param {string} symbol 
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingXSentimentRequestOpts(requestParameters: DefaultApiGetApiTradingXSentimentRequest): Promise<runtime.RequestOpts>;
+
+    /**
+     * 
+     * @param {string} symbol 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getApiTradingXSentimentRaw(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     */
+    getApiTradingXSentiment(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Creates request options for getApiTransactions without sending the request
      * @param {string} [agentId] 
      * @param {string} [page] 
@@ -9571,22 +9603,24 @@ export interface DefaultApiInterface {
 
     /**
      * Creates request options for postApiTradingXRuns without sending the request
+     * @param {PostApiTradingXRunsRequest} postApiTradingXRunsRequest 
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiTradingXRunsRequestOpts(): Promise<runtime.RequestOpts>;
+    postApiTradingXRunsRequestOpts(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest): Promise<runtime.RequestOpts>;
 
     /**
      * 
+     * @param {PostApiTradingXRunsRequest} postApiTradingXRunsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    postApiTradingXRunsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    postApiTradingXRunsRaw(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      */
-    postApiTradingXRuns(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    postApiTradingXRuns(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Creates request options for postApiTransactionsBaseSwap without sending the request
@@ -18188,6 +18222,51 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Creates request options for getApiTradingXSentiment without sending the request
+     */
+    async getApiTradingXSentimentRequestOpts(requestParameters: DefaultApiGetApiTradingXSentimentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['symbol'] == null) {
+            throw new runtime.RequiredError(
+                'symbol',
+                'Required parameter "symbol" was null or undefined when calling getApiTradingXSentiment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['symbol'] != null) {
+            queryParameters['symbol'] = requestParameters['symbol'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/trading/x/sentiment`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getApiTradingXSentimentRaw(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.getApiTradingXSentimentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async getApiTradingXSentiment(requestParameters: DefaultApiGetApiTradingXSentimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getApiTradingXSentimentRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for getApiTransactions without sending the request
      */
     async getApiTransactionsRequestOpts(requestParameters: DefaultApiGetApiTransactionsRequest): Promise<runtime.RequestOpts> {
@@ -25929,10 +26008,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     /**
      * Creates request options for postApiTradingXRuns without sending the request
      */
-    async postApiTradingXRunsRequestOpts(): Promise<runtime.RequestOpts> {
+    async postApiTradingXRunsRequestOpts(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['postApiTradingXRunsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'postApiTradingXRunsRequest',
+                'Required parameter "postApiTradingXRunsRequest" was null or undefined when calling postApiTradingXRuns().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
 
         let urlPath = `/api/trading/x/runs`;
@@ -25942,13 +26030,14 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: PostApiTradingXRunsRequestToJSON(requestParameters['postApiTradingXRunsRequest']),
         };
     }
 
     /**
      */
-    async postApiTradingXRunsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.postApiTradingXRunsRequestOpts();
+    async postApiTradingXRunsRaw(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postApiTradingXRunsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -25956,8 +26045,8 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async postApiTradingXRuns(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.postApiTradingXRunsRaw(initOverrides);
+    async postApiTradingXRuns(requestParameters: DefaultApiPostApiTradingXRunsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postApiTradingXRunsRaw(requestParameters, initOverrides);
     }
 
     /**

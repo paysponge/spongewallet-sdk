@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime.js';
-import { GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON, PatchApiTradingAdminContentFeedsByIdRequestToJSON, PatchApiTradingXFollowingByIdRequestToJSON, PostApiAgentKeysRequestToJSON, PostApiAgentRequestsPlansRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidDepositRequestToJSON, PostApiAgentsByIdHyperliquidLinkRequestToJSON, PostApiAgentsByIdHyperliquidOrderRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdPolymarketWithdrawRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdStripePaymentMethodsRequestToJSON, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAgentsTradingTerminalRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTradingAdminContentDiscoverRequestToJSON, PostApiTradingAdminContentFeedsCatalogRequestToJSON, PostApiTradingAdminContentFeedsRequestToJSON, PostApiTradingAdminContentProcessRequestToJSON, PostApiTradingAdminKillSwitchRequestToJSON, PostApiTradingAdminStrategiesByIdReplayRequestToJSON, PostApiTradingAdminTestRunRequestToJSON, PostApiTradingManualStrategiesCloseRequestToJSON, PostApiTradingNotificationsReadAllRequestToJSON, PostApiTradingStrategiesByIdKillRequestToJSON, PostApiTradingStrategiesByIdPreviewStartRequestToJSON, PostApiTradingStrategiesByIdTestRunRequestToJSON, PostApiTradingXConnectCompleteRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
+import { GetApiAgentsByIdHyperliquidAddress200ResponseFromJSON, PatchApiTradingAdminContentFeedsByIdRequestToJSON, PatchApiTradingXFollowingByIdRequestToJSON, PostApiAgentKeysRequestToJSON, PostApiAgentRequestsPlansRequestToJSON, PostApiAgentsByIdAmazonAccountsCopyRequestToJSON, PostApiAgentsByIdAmazonAccountsRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyMethodRequestToJSON, PostApiAgentsByIdEnrollmentsByEnrollmentIdVerifyOtpRequestToJSON, PostApiAgentsByIdEnrollmentsRequestToJSON, PostApiAgentsByIdHyperliquidCancelOrderRequestToJSON, PostApiAgentsByIdHyperliquidClosePositionRequestToJSON, PostApiAgentsByIdHyperliquidDepositRequestToJSON, PostApiAgentsByIdHyperliquidLinkRequestToJSON, PostApiAgentsByIdHyperliquidOrderRequestToJSON, PostApiAgentsByIdHyperliquidTransferRequestToJSON, PostApiAgentsByIdHyperliquidWithdrawRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdCredentialsRequestToJSON, PostApiAgentsByIdInstructionsByInstructionIdVerifyPasskeyRequestToJSON, PostApiAgentsByIdInstructionsRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsCredentialRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsLinkRequestToJSON, PostApiAgentsByIdLinkPaymentMethodsRequestToJSON, PostApiAgentsByIdPaymentMethodsRequestToJSON, PostApiAgentsByIdPolymarketFundRequestToJSON, PostApiAgentsByIdPolymarketRedeemRequestToJSON, PostApiAgentsByIdPolymarketWithdrawRequestToJSON, PostApiAgentsByIdShippingAddressesRequestToJSON, PostApiAgentsByIdStripePaymentMethodsRequestToJSON, PostApiAgentsByIdStripePaymentMethodsSetupIntentRequestToJSON, PostApiAgentsByIdVirtualCardRequestToJSON, PostApiAgentsRegisterRequestToJSON, PostApiAgentsRequestToJSON, PostApiAgentsTradingTerminalRequestToJSON, PostApiAllowlistRequestToJSON, PostApiAmazonCheckoutAmazonSearchRequestToJSON, PostApiAmazonCheckoutRequestToJSON, PostApiAmazonCheckoutStreamRequestToJSON, PostApiBankExternalAccountsRequestToJSON, PostApiBankOnboardRequestToJSON, PostApiBankSendRequestToJSON, PostApiBankVirtualAccountRequestToJSON, PostApiBridgeFiatCustomerKycLinkRequestToJSON, PostApiBridgeFiatCustomerPersonaRequestToJSON, PostApiBridgeFiatCustomerSandboxRequestToJSON, PostApiBridgeFiatExternalAccountsRequestToJSON, PostApiBridgeFiatLiquidationAddressesRequestToJSON, PostApiBridgeFiatTransferTemplatesRequestToJSON, PostApiBridgeFiatTransfersRequestToJSON, PostApiCardAccessRequestsRequestToJSON, PostApiCardUsageRequestToJSON, PostApiCardsRequestToJSON, PostApiChatMessagesRequestToJSON, PostApiChatRateLimitReportRequestToJSON, PostApiCheckoutRequestToJSON, PostApiCoinbaseOnrampCallbackRequestToJSON, PostApiCoinbaseOnrampUrlRequestToJSON, PostApiCreditCardsRequestToJSON, PostApiEmailCheckAvailabilityRequestToJSON, PostApiFaucetRequestRequestToJSON, PostApiFlowsRequestToJSON, PostApiHyperliquidRequestToJSON, PostApiInvitesRedeemRequestToJSON, PostApiInvitesRegisterDirectRequestToJSON, PostApiInvitesValidateRequestToJSON, PostApiLinkCliAuthLoginRequestToJSON, PostApiMasterKeysRequestToJSON, PostApiMppFetchRequestToJSON, PostApiMppSessionCloseRequestToJSON, PostApiMppSessionRequestRequestToJSON, PostApiMppSessionStartRequestToJSON, PostApiOauthDeviceApproveRequestToJSON, PostApiOauthDeviceAuthorizationRequestToJSON, PostApiOauthDeviceDenyRequestToJSON, PostApiOauthDeviceTokenRequestToJSON, PostApiOnrampCryptoRequestToJSON, PostApiPaidFetchRequestToJSON, PostApiPaymentLinksRequestToJSON, PostApiPersonaKycInquiryRequestToJSON, PostApiPlansApproveRequestToJSON, PostApiPlansSubmitRequestToJSON, PostApiPolymarketRequestToJSON, PostApiRpcByChainIdRequestToJSON, PostApiSignupBonusClaimRequestToJSON, PostApiSiweGenerateRequestToJSON, PostApiSolanaSignRequestToJSON, PostApiSpendingLimitsRequestToJSON, PostApiSpongeCardCardRequestToJSON, PostApiSpongeCardCardsByCardIdSecretsRequestToJSON, PostApiSpongeCardContractsByContractIdFundRequestToJSON, PostApiSpongeCardContractsByContractIdWithdrawRequestToJSON, PostApiSpongeCardCreateCardRequestToJSON, PostApiSpongeCardCustomerRefreshRequestToJSON, PostApiSpongeCardCustomerRequestToJSON, PostApiSpongeCardFundRequestToJSON, PostApiSpongeCardOnboardRequestToJSON, PostApiSpongeCardTermsRequestToJSON, PostApiSpongeCardWithdrawRequestToJSON, PostApiStripeOnrampSessionRequestToJSON, PostApiTasksRequestToJSON, PostApiTradesProposeRequestToJSON, PostApiTradingAdminContentDiscoverRequestToJSON, PostApiTradingAdminContentFeedsCatalogRequestToJSON, PostApiTradingAdminContentFeedsRequestToJSON, PostApiTradingAdminContentProcessRequestToJSON, PostApiTradingAdminKillSwitchRequestToJSON, PostApiTradingAdminStrategiesByIdReplayRequestToJSON, PostApiTradingAdminTestRunRequestToJSON, PostApiTradingManualStrategiesCloseRequestToJSON, PostApiTradingNotificationsReadAllRequestToJSON, PostApiTradingStrategiesByIdKillRequestToJSON, PostApiTradingStrategiesByIdPreviewStartRequestToJSON, PostApiTradingStrategiesByIdTestRunRequestToJSON, PostApiTradingXConnectCompleteRequestToJSON, PostApiTradingXRunsRequestToJSON, PostApiTransactionsBridgeRequestToJSON, PostApiTransactionsPrepareRequestToJSON, PostApiTransactionsSwapExecuteRequestToJSON, PostApiTransactionsSwapRequestToJSON, PostApiTransactionsTransferRequestToJSON, PostApiTransfersEvmRequestToJSON, PostApiTransfersSolanaRequestToJSON, PostApiTransfersTempoRequestToJSON, PostApiUsersSyncRequestToJSON, PostApiVirtualCardsRequestToJSON, PostApiWalletsByIdExportKeyRequestToJSON, PostApiWalletsByIdWithdrawRequestToJSON, PostApiWalletsMigrateQuorumRequestToJSON, PostApiWalletsPricesRequestToJSON, PostApiWalletsRequestToJSON, PostApiX402FetchRequestToJSON, PostApiX402PaymentsRequestToJSON, PostOauthAuthorizeCallbackRequestToJSON, PostOauthRegisterRequestToJSON, PostOauthRevokeRequestToJSON, PostOauthTokenRequestToJSON, PutApiAgentRequestsByIdApproveRequestToJSON, PutApiAgentRequestsByIdRespondRequestToJSON, PutApiAgentRequestsPlansByPlanIdRejectRequestToJSON, PutApiAgentsByIdRequestToJSON, PutApiFlowsByIdRequestToJSON, PutApiSpendingLimitsByIdRequestToJSON, } from '../models/index.js';
 /**
  *
  */
@@ -5720,6 +5720,38 @@ export class DefaultApi extends runtime.BaseAPI {
         await this.getApiTradingXRunsByIdRaw(requestParameters, initOverrides);
     }
     /**
+     * Creates request options for getApiTradingXSentiment without sending the request
+     */
+    async getApiTradingXSentimentRequestOpts(requestParameters) {
+        if (requestParameters['symbol'] == null) {
+            throw new runtime.RequiredError('symbol', 'Required parameter "symbol" was null or undefined when calling getApiTradingXSentiment().');
+        }
+        const queryParameters = {};
+        if (requestParameters['symbol'] != null) {
+            queryParameters['symbol'] = requestParameters['symbol'];
+        }
+        const headerParameters = {};
+        let urlPath = `/api/trading/x/sentiment`;
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+    /**
+     */
+    async getApiTradingXSentimentRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.getApiTradingXSentimentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     */
+    async getApiTradingXSentiment(requestParameters, initOverrides) {
+        await this.getApiTradingXSentimentRaw(requestParameters, initOverrides);
+    }
+    /**
      * Creates request options for getApiTransactions without sending the request
      */
     async getApiTransactionsRequestOpts(requestParameters) {
@@ -11130,28 +11162,33 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Creates request options for postApiTradingXRuns without sending the request
      */
-    async postApiTradingXRunsRequestOpts() {
+    async postApiTradingXRunsRequestOpts(requestParameters) {
+        if (requestParameters['postApiTradingXRunsRequest'] == null) {
+            throw new runtime.RequiredError('postApiTradingXRunsRequest', 'Required parameter "postApiTradingXRunsRequest" was null or undefined when calling postApiTradingXRuns().');
+        }
         const queryParameters = {};
         const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
         let urlPath = `/api/trading/x/runs`;
         return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: PostApiTradingXRunsRequestToJSON(requestParameters['postApiTradingXRunsRequest']),
         };
     }
     /**
      */
-    async postApiTradingXRunsRaw(initOverrides) {
-        const requestOptions = await this.postApiTradingXRunsRequestOpts();
+    async postApiTradingXRunsRaw(requestParameters, initOverrides) {
+        const requestOptions = await this.postApiTradingXRunsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
     /**
      */
-    async postApiTradingXRuns(initOverrides) {
-        await this.postApiTradingXRunsRaw(initOverrides);
+    async postApiTradingXRuns(requestParameters, initOverrides) {
+        await this.postApiTradingXRunsRaw(requestParameters, initOverrides);
     }
     /**
      * Creates request options for postApiTransactionsBaseSwap without sending the request

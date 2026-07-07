@@ -15446,6 +15446,56 @@
     },
     "/api/trading/x/runs": {
       "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "maxItems": 5,
+                    "type": "array",
+                    "items": {
+                      "maxLength": 200,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "maxItems": 5,
+                    "type": "array",
+                    "items": {
+                      "maxLength": 200,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "maxItems": 5,
+                    "type": "array",
+                    "items": {
+                      "maxLength": 200,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "postApiTradingXRuns"
       },
       "get": {
@@ -15488,6 +15538,22 @@
           }
         ],
         "operationId": "getApiTradingXIdeas"
+      }
+    },
+    "/api/trading/x/sentiment": {
+      "get": {
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 20,
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getApiTradingXSentiment"
       }
     },
     "/api/trading/x/baskets": {
